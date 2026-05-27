@@ -82,8 +82,17 @@ function ResultContent() {
 
 export default function ResultPage() {
   return (
-    <Suspense fallback={null}>
+    <Suspense
+      fallback={
+        <main className="min-h-screen bg-gray-50 py-10 px-4">
+          <div className="max-w-2xl mx-auto text-center text-sm text-gray-400">
+            로딩 중…
+          </div>
+        </main>
+      }
+    >
       <ResultContent />
     </Suspense>
   );
 }
+
