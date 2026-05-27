@@ -1,24 +1,22 @@
 "use client";
 
-import { useState } from "react";
+import { useRouter } from "next/navigation";
 import AddressSearch from "@/components/AddressSearch";
-import AddressCard from "@/components/AddressCard";
-import DetailAddressInput from "@/components/DetailAddressInput";
-import { combineStreetWithDetail } from "@/lib/romanize";
 import type { AddressResult } from "@/lib/types";
 
 export default function HomePage() {
-  const [selected, setSelected] = useState<AddressResult | null>(null);
-  const [detail, setDetail] = useState("");
+  const router = useRouter();
 
-  const fields = selected
-    ? {
-        street: combineStreetWithDetail(selected.english.street, detail),
-        city: selected.english.city,
-        state: selected.english.state,
-        postalCode: selected.english.postalCode,
-      }
-    : { street: "", city: "", state: "", postalCode: "" };
+  function handleSelect(result: AddressResult) {
+    const params = new URLSearchParams({
+      street: result.english.street,
+      city: result.english.city,
+      state: result.english.state,
+      zip: result.english.postalCode,
+      ko: result.korean,
+    });
+    router.push(`/result?${params.toString()}`);
+  }
 
   return (
     <main className="min-h-screen bg-gray-50 py-10 px-4">
@@ -32,34 +30,8 @@ export default function HomePage() {
           </p>
         </header>
 
-        <section className="space-y-5 bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
-          <AddressSearch onSelect={setSelected} />
-          <DetailAddressInput value={detail} onChange={setDetail} />
-        </section>
-
-        <section className="mt-8">
-          <div className="flex items-center gap-3 mb-4">
-            <div className="flex-1 h-px bg-gray-200" />
-            <h2 className="text-sm font-semibold text-gray-500 tracking-wide">
-              변환 결과
-            </h2>
-            <div className="flex-1 h-px bg-gray-200" />
-          </div>
-
-          <div className="space-y-3">
-            <AddressCard
-              label="Street Address"
-              value={fields.street}
-              placeholder="위에서 한글 주소를 선택하세요"
-            />
-            <AddressCard label="City" value={fields.city} />
-            <AddressCard label="State / Province" value={fields.state} />
-            <AddressCard label="Postal Code" value={fields.postalCode} />
-          </div>
-
-          <div className="mt-4 px-4 py-3 bg-gray-100 rounded-lg text-sm text-gray-600">
-            <span className="font-medium">Country:</span> South Korea
-          </div>
+        <section className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
+          <AddressSearch onSelect={handleSelect} />
         </section>
 
         <footer className="mt-10 text-center text-xs text-gray-400">
@@ -69,3 +41,4 @@ export default function HomePage() {
     </main>
   );
 }
+
