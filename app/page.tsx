@@ -2,18 +2,22 @@
 
 import { useRouter } from "next/navigation";
 import AddressSearch from "@/components/AddressSearch";
+import { extractDetail } from "@/lib/extract-detail";
 import type { AddressResult } from "@/lib/types";
 
 export default function HomePage() {
   const router = useRouter();
 
-  function handleSelect(result: AddressResult) {
+  function handleSelect(result: AddressResult, query: string) {
+    const detail = extractDetail(query);
+    const koWithDetail = detail ? `${result.korean} ${detail}` : result.korean;
     const params = new URLSearchParams({
       street: result.english.street,
       city: result.english.city,
       state: result.english.state,
       zip: result.english.postalCode,
-      ko: result.korean,
+      ko: koWithDetail,
+      detail,
     });
     router.push(`/result?${params.toString()}`);
   }
@@ -41,4 +45,3 @@ export default function HomePage() {
     </main>
   );
 }
-

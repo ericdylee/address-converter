@@ -1,7 +1,7 @@
 const SUFFIX_MAP: Array<[RegExp, string]> = [
   [/번지/g, "-beonji"],
-  [/동/g, "-dong"],
-  [/호/g, "-ho"],
+  [/동\s+/g, "-"],
+  [/동/g, ""],
   [/층/g, "F"],
   [/관/g, "-gwan"],
   [/실/g, "-sil"],
