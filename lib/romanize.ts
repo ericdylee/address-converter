@@ -30,3 +30,12 @@ export function combineStreetWithDetail(street: string, detail: string): string 
   if (!romanized) return street;
   return `${street}, ${romanized}`;
 }
+
+// 일본식 어순: 번지(블록)가 동네 앞에 온다. "1-1-1" + "Marunochi" → "1-1-1 Marunochi"
+// (한국은 "도로명, 상세" 순이라 어순이 반대 → 별도 함수. 번지는 ASCII라 로마자 변환 불필요.)
+export function combineJpStreet(town: string, block: string): string {
+  const b = block.trim();
+  if (!b) return town;
+  if (!town) return b;
+  return `${b} ${town}`;
+}

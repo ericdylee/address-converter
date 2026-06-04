@@ -2,7 +2,7 @@
 
 한글→영문 주소 변환기 프로젝트의 단계별 작업 진행 상황입니다.
 
-> **진행률:** ▓▓▓▓▓▓▓▓▓▓▓░░░ 7/9 단계 완료 (8 통합 테스트 · 9 배포 남음)
+> **진행률:** ▓▓▓▓▓▓▓▓▓▓▓▓░░ 8/9 단계 완료 (9 배포 남음) · +11단계 일본 주소 변환 완료 ✅
 
 > **아키텍처 메모:** 초기 설계는 "단일 페이지 + 별도 상세주소 입력란"이었으나,
 > 이후 **2-라우트 구조(`/` 검색 · `/result` 결과) + AdSense Vignette** 로 재구조화되었고
@@ -89,19 +89,22 @@
 
 ---
 
-## 8단계 — 통합 테스트 ⏳
+## 8단계 — 통합 테스트 ✅
 
-API 키 검증 완료 — 이제 UI 레벨 E2E 점검:
+API 키 검증 완료 — UI 레벨 E2E 점검(Playwright로 실제 브라우저 검증):
 
-- [ ] 자동완성: 도로명 주소 검색 (예: "테헤란로 152")
-- [ ] 자동완성: 지번/동 검색 (예: "역삼동")
-- [ ] 후보 선택 → `/result`로 이동, 4개 카드(Street/City/State/PostalCode) 채워짐 확인
-- [ ] 검색어에 상세주소 포함 (예: "동덕아파트 101동 504호") → 키워드만 질의되고 Street에 `101-504` 합쳐짐
-- [ ] "영문 주소 한 줄" 블록 + 각 카드 [복사] → 다른 곳에 붙여넣어 실제 클립보드 확인
-- [ ] 키보드 네비게이션(↑↓ Enter Esc) 동작
-- [ ] `/result` 직접 접근(필수 param 누락) → "잘못된 접근입니다" 안내 + 검색 페이지 링크
-- [ ] 모바일 화면(좁은 폭) 레이아웃 확인
-- [ ] 잘못된 검색어 (예: "ㅁㄴㅇㄹ") → "검색 결과가 없습니다" 표시
+- [x] 자동완성: 도로명 주소 검색 ("테헤란로", "강남대로 396") → 후보 드롭다운 정상
+- [x] 자동완성: 지번/동 검색 ("역삼동") → 후보 정상
+- [x] 후보 선택 → `/result`로 이동, 4개 카드(Street/City/State/PostalCode) 채워짐 확인
+- [x] 검색어에 상세주소 포함 ("올림픽로 300 101동 504호") → 키워드만 질의되고 Street에 `101-504` 합쳐짐
+- [x] "영문 주소 한 줄" 블록 + 각 카드 [복사] → 실제 클립보드에 값 들어감 확인 (예: Postal Code → "06211")
+- [x] 키보드 네비게이션(↑↓ Enter) 동작 — ↓↓+Enter로 3번째 후보 선택 후 `/result` 이동 확인
+- [x] `/result` 직접 접근(필수 param 누락) → "잘못된 접근입니다" 안내 + 검색 페이지 링크
+- [x] 모바일 화면(375px) 레이아웃 확인 — 가로 오버플로우 없음
+- [x] 잘못된 검색어 ("ㅁㄴㅇㄹ") → "검색 결과가 없습니다" 표시
+
+**E2E 중 관찰한 이슈:**
+- 점검 초반 후보 선택 시 `ReferenceError: extractDetail is not defined`가 한 번 발생해 `/result` 이동이 안 됐으나, 이는 **소스 버그가 아니라 개발서버(Turbopack)의 깨진 컴파일 상태**였음 — 같은 시점 dev 로그에 `Turbopack FATAL … Next.js package not found` 패닉 기록이 있고, 재컴파일 후 정상화됨. 소스(`app/page.tsx`)는 이미 `extractDetail`를 정상 import 하고 있으며 `git` 기준 변경 없음. **교훈: 개발 중 원인 불명의 클라이언트 에러가 나면 dev 서버를 재시작(재컴파일)해볼 것.**
 
 ---
 
@@ -127,9 +130,31 @@ API 키 검증 완료 — 이제 UI 레벨 E2E 점검:
 - [ ] 도로명/지번 토글 또는 모두 표시
 - [ ] 영문 표기 보정 옵션 (예: `-gu` → `gu`, 공식 우편번호 형식 등)
 - [ ] juso API 응답 캐싱 (같은 키워드 반복 호출 시)
-- [ ] 단위 테스트 (`romanize.ts`, `parseEnglishAddress`, `extract-detail`)
-- [ ] 다국어 변환 (일본어/중국어 표기)
+- [ ] 단위 테스트 (`romanize.ts`, `parseEnglishAddress`, `extract-detail`, `jp-postal`)
+- [x] 다국어 변환 — **일본 주소(우편번호→영문) 추가** (아래 11단계 참고) / 중국어는 미정
 - [ ] PWA 설정 (오프라인 일부 지원)
+
+---
+
+## 11단계 — 일본 주소(우편번호) 영문 변환 ✅
+
+홈에 **[🇰🇷 한국][🇯🇵 일본] 탭**을 추가. 일본은 한국(juso)처럼 무료 영문 자동완성 API가
+없어 **우편번호(7자리) 조회** 방식으로 구현. 결과 페이지(4-필드 카드)는 그대로 재사용하고
+`country` 파라미터로 분기.
+
+- [x] `scripts/build-jp-postal.mjs` — 일본우편 공식 로마자 데이터(`KEN_ALL_ROME.CSV`, Shift_JIS)를
+      다운로드/디코딩/정제 → `data/jp-postal.json`(우편번호 12만건). `npm run build:jp-data`로 갱신
+- [x] `lib/jp-postal.ts` — JSON을 fs로 1회 로드/캐시, `lookupPostalCode()` (외부 키 불필요)
+- [x] `lib/romanize.ts` — `combineJpStreet()` (일본식 어순: 번지가 동네 앞 → `1-1-1 Marunochi`)
+- [x] `app/api/jp-address/route.ts` — `GET ?zip=` 우편번호 조회 프록시
+- [x] `components/JpAddressSearch.tsx` — 우편번호 입력 + 번지·건물번호 입력 + 후보 드롭다운
+- [x] `app/page.tsx` — 한국/일본 탭. `app/result/page.tsx` — `country`별 Street 어순/라벨/가이드 분기
+- [x] `next.config.ts` — `outputFileTracingIncludes`로 `data/jp-postal.json`을 서버 번들에 포함
+- [x] E2E(Playwright) 검증: `100-0005`→`1-1-1 Marunochi, Chiyoda-ku, Tokyo 100-0005, Japan`,
+      동네 없는 `060-0000`(시 전체) 엣지케이스, 한국 흐름 회귀, 콘솔 에러 0
+
+> **데이터 갱신 메모:** `KEN_ALL_ROME`은 연 1회 정도 갱신됨. `npm run build:jp-data` 재실행 후
+> `data/jp-postal.json` 교체. 일본우편 공식 로마자는 장음을 생략함(예: 丸の内=`Marunochi`, 東京=`Tokyo`).
 
 ---
 

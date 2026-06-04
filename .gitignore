@@ -48,3 +48,4 @@ next-env.d.ts
 
 # verification artifacts
 verify-result.png
+.gstack/

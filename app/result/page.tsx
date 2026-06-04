@@ -4,7 +4,9 @@ import { useState, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 import AddressCard from "@/components/AddressCard";
-import { combineStreetWithDetail } from "@/lib/romanize";
+import { combineStreetWithDetail, combineJpStreet } from "@/lib/romanize";
+
+type Country = "kr" | "jp";
 
 function FullAddressBlock({ value }: { value: string }) {
   const [copied, setCopied] = useState(false);
@@ -47,42 +49,65 @@ function FullAddressBlock({ value }: { value: string }) {
   );
 }
 
-// 해외 사이트 입력 양식의 칸 이름 ↔ 우리 앱 필드 매핑 안내.
-// 정적 콘텐츠라 props 없이 항상 같은 표를 보여준다(필드가 비어 있어도 안내는 노출).
-function FieldMappingGuide() {
-  const rows: Array<{ foreign: string; field: string; note?: string }> = [
-    {
-      foreign: "Address / Street address / Address Line 1",
-      field: "Street Address",
-      note: "도로명 + 건물번호. 동/호도 이 칸 끝에 함께 넣어도 됩니다.",
-    },
-    {
-      foreign: "apartment, Suite, Unit, etc. / Address Line 2 (선택)",
-      field: "동 / 호 (예: 101-502)",
-      note: "Street 칸에 이미 합쳐져 있어요. 이 칸이 따로 있으면 동/호 부분만 떼어 넣으세요.",
-    },
-    {
-      foreign: "City / ward / town / village / Town·City",
-      field: "City (구·시·군, 예: Gangnam-gu)",
-    },
-    {
-      foreign: "State / Province / Region",
-      field: "State / Province (시·도, 예: Seoul)",
-    },
-    {
-      foreign: "ZIP / Postal Code / Postcode",
-      field: "Postal Code (예: 06232)",
-    },
-    {
-      foreign: "Country / Region",
-      field: "South Korea (또는 Korea, Republic of)",
-    },
-  ];
+// 해외 사이트 입력 양식의 칸 이름 ↔ 우리 앱 필드 매핑 안내. 나라별로 예시가 달라진다.
+type GuideRow = { foreign: string; field: string; note?: string };
+
+const KR_ROWS: GuideRow[] = [
+  {
+    foreign: "Address / Street address / Address Line 1",
+    field: "Street Address",
+    note: "도로명 + 건물번호. 동/호도 이 칸 끝에 함께 넣어도 됩니다.",
+  },
+  {
+    foreign: "apartment, Suite, Unit, etc. / Address Line 2 (선택)",
+    field: "동 / 호 (예: 101-502)",
+    note: "Street 칸에 이미 합쳐져 있어요. 이 칸이 따로 있으면 동/호 부분만 떼어 넣으세요.",
+  },
+  {
+    foreign: "City / ward / town / village / Town·City",
+    field: "City (구·시·군, 예: Gangnam-gu)",
+  },
+  {
+    foreign: "State / Province / Region",
+    field: "State / Province (시·도, 예: Seoul)",
+  },
+  { foreign: "ZIP / Postal Code / Postcode", field: "Postal Code (예: 06232)" },
+  {
+    foreign: "Country / Region",
+    field: "South Korea (또는 Korea, Republic of)",
+  },
+];
+
+const JP_ROWS: GuideRow[] = [
+  {
+    foreign: "Address / Street address / Address Line 1",
+    field: "Street Address",
+    note: "번지 + 동네 (예: 1-1-1 Marunochi). 건물명도 이 칸 끝에 함께 넣어도 됩니다.",
+  },
+  {
+    foreign: "apartment, Suite, Unit, etc. / Address Line 2 (선택)",
+    field: "건물·호 (예: 〇〇빌딩 5F)",
+    note: "Street 칸에 이미 합쳐져 있어요. 이 칸이 따로 있으면 건물/호 부분만 떼어 넣으세요.",
+  },
+  {
+    foreign: "City / ward / town / Town·City",
+    field: "City (시·구, 예: Chiyoda-ku)",
+  },
+  {
+    foreign: "State / Province / Prefecture",
+    field: "Prefecture (도도부현, 예: Tokyo)",
+  },
+  { foreign: "ZIP / Postal Code / Postcode", field: "Postal Code (예: 100-0005)" },
+  { foreign: "Country / Region", field: "Japan" },
+];
+
+function FieldMappingGuide({ country }: { country: Country }) {
+  const rows = country === "jp" ? JP_ROWS : KR_ROWS;
 
   return (
-    <details className="group mt-4 border border-gray-200 rounded-2xl bg-white overflow-hidden">
+    <details open className="group mt-4 border border-gray-200 rounded-2xl bg-white overflow-hidden">
       <summary className="flex items-center justify-between gap-2 px-5 py-4 cursor-pointer list-none select-none text-sm font-medium text-gray-800 hover:bg-gray-50">
-        <span>해외 사이트 어느 칸에 넣나요?</span>
+        <span>해외사이트 양식 입력가이드</span>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 24 24"
@@ -100,7 +125,7 @@ function FieldMappingGuide() {
 
       <div className="px-5 pb-5 pt-1 border-t border-gray-100">
         <p className="text-xs text-gray-500 mb-3">
-          칸 이름은 사이트마다 조금씩 다릅니다. 아래 짝을 참고해 넣으세요.
+          칸 이름은 사이트마다 조금씩 다를 수 있습니다. 아래 가이드를 참고해주세요
         </p>
         <ul className="space-y-3">
           {rows.map((row) => (
@@ -125,12 +150,21 @@ function FieldMappingGuide() {
         </ul>
 
         <div className="mt-4 rounded-lg bg-blue-50 border border-blue-100 px-4 py-3">
-          <p className="text-xs text-blue-800 leading-relaxed">
-            <span className="font-semibold">팁 · </span>
-            양식에 <span className="font-medium">City 칸만 있고 State 칸이 없으면</span>{" "}
-            보통 큰 도시 이름(예: <span className="font-mono">Seoul</span>)을 City에 넣습니다.
-            서울·부산 같은 광역시는 시(State)와 구(City)가 나뉘어 있어 헷갈릴 수 있어요.
-          </p>
+          {country === "jp" ? (
+            <p className="text-xs text-blue-800 leading-relaxed">
+              <span className="font-semibold">팁 · </span>
+              일본 영문 주소는 <span className="font-medium">작은 단위 → 큰 단위</span> 순으로
+              씁니다(번지 → 동네 → 시·구 → 도도부현). City 칸만 있으면 보통 시·구 이름(예:{" "}
+              <span className="font-mono">Chiyoda-ku</span>)을 넣습니다.
+            </p>
+          ) : (
+            <p className="text-xs text-blue-800 leading-relaxed">
+              <span className="font-semibold">팁 · </span>
+              양식에 <span className="font-medium">City 칸만 있고 State 칸이 없으면</span>{" "}
+              보통 큰 도시 이름(예: <span className="font-mono">Seoul</span>)을 City에 넣습니다.
+              서울·부산 같은 광역시는 시(State)와 구(City)가 나뉘어 있어 헷갈릴 수 있어요.
+            </p>
+          )}
         </div>
       </div>
     </details>
@@ -145,8 +179,11 @@ function ResultContent() {
   const zip = params.get("zip") ?? "";
   const ko = params.get("ko") ?? "";
   const detail = params.get("detail") ?? "";
+  const country: Country = params.get("country") === "jp" ? "jp" : "kr";
+  const isJp = country === "jp";
 
-  const hasRequired = street && city && state && zip;
+  // 일본은 동네(street)가 빈 우편번호가 있으므로(시 전체) city·state·zip만 있으면 유효.
+  const hasRequired = isJp ? city && state && zip : street && city && state && zip;
 
   if (!hasRequired) {
     return (
@@ -164,8 +201,15 @@ function ResultContent() {
     );
   }
 
-  const streetWithDetail = combineStreetWithDetail(street, detail);
-  const fullEnglish = `${streetWithDetail}, ${city}, ${state} ${zip}, South Korea`;
+  // 한국: "도로명, 상세" 순 / 일본: "번지 동네" 순(번지가 앞).
+  const streetWithDetail = isJp
+    ? combineJpStreet(street, detail)
+    : combineStreetWithDetail(street, detail);
+  const countryLabel = isJp ? "Japan" : "South Korea";
+  // 빈 칸(예: 동네 없는 일본 우편번호)이 콤마로 남지 않도록 비어있는 조각은 제외.
+  const fullEnglish = [streetWithDetail, city, `${state} ${zip}`, countryLabel]
+    .filter(Boolean)
+    .join(", ");
 
   return (
     <main className="min-h-screen bg-gray-50 py-10 px-4">
@@ -180,7 +224,7 @@ function ResultContent() {
         <section className="space-y-3 mb-8">
           <div className="bg-white border-2 border-gray-200 rounded-2xl p-5">
             <div className="text-xs font-semibold text-gray-600 uppercase tracking-wide mb-2">
-              한글 주소
+              {isJp ? "일본어 주소" : "한글 주소"}
             </div>
             <div className="text-sm text-gray-900 break-words leading-relaxed">
               {ko}
@@ -200,18 +244,23 @@ function ResultContent() {
           <div className="space-y-3">
             <AddressCard label="Street Address" value={streetWithDetail} />
             <AddressCard label="City" value={city} />
-            <AddressCard label="State / Province" value={state} />
+            <AddressCard
+              label={isJp ? "Prefecture" : "State / Province"}
+              value={state}
+            />
             <AddressCard label="Postal Code" value={zip} />
           </div>
           <div className="mt-3 px-4 py-2 text-xs text-gray-500">
-            Country: South Korea
+            Country: {countryLabel}
           </div>
 
-          <FieldMappingGuide />
+          <FieldMappingGuide country={country} />
         </section>
 
         <footer className="mt-10 text-center text-xs text-gray-400">
-          데이터: 행정안전부 도로명주소 영문 API
+          {isJp
+            ? "데이터: 일본우편(Japan Post) 로마자 우편번호"
+            : "데이터: 행정안전부 도로명주소 영문 API"}
         </footer>
       </div>
     </main>
