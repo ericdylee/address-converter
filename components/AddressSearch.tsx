@@ -103,7 +103,7 @@ export default function AddressSearch({ onSelect }: Props) {
 
   return (
     <div ref={containerRef} className="relative w-full">
-      <label htmlFor="address-search" className="block text-sm font-medium text-gray-700 mb-2">
+      <label htmlFor="address-search" className="mb-2 block text-sm font-semibold text-gray-800">
         한글 주소 검색 (도로명 · 지번 · 건물명 + 상세주소)
       </label>
       <div className="flex items-stretch gap-2">
@@ -124,11 +124,11 @@ export default function AddressSearch({ onSelect }: Props) {
             onFocus={() => results.length > 0 && setOpen(true)}
             onKeyDown={handleKeyDown}
             placeholder="예: 강남대로 396 · 동덕아파트 101동 504호"
-            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-900 placeholder-gray-400"
+            className="h-12 w-full rounded-lg border border-gray-300 bg-white px-4 text-[15px] text-gray-950 outline-none transition placeholder:text-gray-400 hover:border-gray-400 focus:border-blue-500 focus:ring-[3px] focus:ring-blue-100"
             autoComplete="off"
           />
           {loading && (
-            <div className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm">
+            <div className="absolute right-3 top-1/2 -translate-y-1/2 text-sm text-gray-400">
               검색중...
             </div>
           )}
@@ -138,10 +138,10 @@ export default function AddressSearch({ onSelect }: Props) {
           onClick={handleSearchClick}
           disabled={searchDisabled}
           aria-label="검색"
-          className={`px-4 rounded-lg flex items-center justify-center transition-colors ${
+          className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-lg transition-colors ${
             searchDisabled
-              ? "bg-gray-200 text-gray-400 cursor-not-allowed"
-              : "bg-blue-600 hover:bg-blue-700 text-white"
+              ? "cursor-not-allowed bg-blue-50 text-blue-200"
+              : "bg-blue-600 text-white shadow-sm shadow-blue-600/20 hover:bg-blue-700"
           }`}
         >
           <svg
@@ -162,11 +162,11 @@ export default function AddressSearch({ onSelect }: Props) {
       </div>
 
       {error && (
-        <div className="mt-2 text-sm text-red-600">{error}</div>
+        <div className="mt-2 text-sm font-medium text-red-600">{error}</div>
       )}
 
       {open && results.length > 0 && (
-        <ul className="absolute z-10 mt-1 w-full bg-white border border-gray-200 rounded-lg shadow-lg max-h-80 overflow-auto">
+        <ul className="absolute z-10 mt-2 max-h-80 w-full overflow-auto rounded-lg border border-gray-200 bg-white shadow-[0_22px_55px_rgba(15,23,42,0.14)]">
           {results.map((item, idx) => (
             <li
               key={item.id}
@@ -175,19 +175,19 @@ export default function AddressSearch({ onSelect }: Props) {
                 handleSelect(item);
               }}
               onMouseEnter={() => setHighlighted(idx)}
-              className={`px-4 py-3 cursor-pointer border-b border-gray-100 last:border-b-0 ${
+              className={`cursor-pointer border-b border-gray-100 px-4 py-3 last:border-b-0 ${
                 idx === highlighted ? "bg-blue-50" : "hover:bg-gray-50"
               }`}
             >
-              <div className="text-sm text-gray-900">{item.korean}</div>
-              <div className="text-xs text-gray-500 mt-1">{item.englishFull}</div>
+              <div className="text-sm font-medium text-gray-950">{item.korean}</div>
+              <div className="mt-1 text-xs leading-5 text-gray-500">{item.englishFull}</div>
             </li>
           ))}
         </ul>
       )}
 
       {open && !loading && results.length === 0 && query.trim().length >= 2 && !error && (
-        <div className="absolute z-10 mt-1 w-full bg-white border border-gray-200 rounded-lg shadow-lg px-4 py-3 text-sm text-gray-500">
+        <div className="absolute z-10 mt-2 w-full rounded-lg border border-gray-200 bg-white px-4 py-3 text-sm text-gray-500 shadow-[0_22px_55px_rgba(15,23,42,0.14)]">
           검색 결과가 없습니다.
         </div>
       )}

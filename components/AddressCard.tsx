@@ -33,9 +33,9 @@ export default function AddressCard({ label, value, placeholder }: Props) {
 
   return (
     <div className="flex items-stretch gap-2">
-      <div className="flex-1 border border-gray-200 rounded-lg px-4 py-3 bg-white">
-        <div className="text-xs text-gray-500 font-medium mb-1">{label}</div>
-        <div className={`text-sm break-all ${hasValue ? "text-gray-900" : "text-gray-300"}`}>
+      <div className="flex-1 rounded-lg border border-gray-200/90 bg-white px-4 py-3 shadow-[0_1px_2px_rgba(15,23,42,0.03)]">
+        <div className="mb-1 text-[11px] font-semibold uppercase text-gray-500">{label}</div>
+        <div className={`break-all text-sm leading-6 ${hasValue ? "text-gray-950" : "text-gray-300"}`}>
           {hasValue ? value : placeholder ?? "—"}
         </div>
       </div>
@@ -43,12 +43,12 @@ export default function AddressCard({ label, value, placeholder }: Props) {
         type="button"
         onClick={handleCopy}
         disabled={!hasValue}
-        className={`px-4 rounded-lg text-sm font-medium transition-colors whitespace-nowrap min-w-[80px] ${
+        className={`min-w-[84px] rounded-lg px-4 text-sm font-semibold transition-colors ${
           !hasValue
-            ? "bg-gray-100 text-gray-400 cursor-not-allowed"
+            ? "cursor-not-allowed bg-gray-100 text-gray-400"
             : copied
-              ? "bg-green-600 text-white"
-              : "bg-blue-600 text-white hover:bg-blue-700"
+              ? "bg-emerald-600 text-white"
+              : "bg-blue-600 text-white shadow-sm shadow-blue-600/20 hover:bg-blue-700"
         }`}
       >
         {copied ? "복사됨!" : "복사"}

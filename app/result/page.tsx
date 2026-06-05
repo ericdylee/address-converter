@@ -27,20 +27,22 @@ function FullAddressBlock({ value }: { value: string }) {
   }
 
   return (
-    <div className="flex items-stretch gap-2">
-      <div className="flex-1 bg-blue-50 border-2 border-blue-200 rounded-lg px-4 py-3">
-        <div className="text-xs font-semibold text-blue-700 uppercase tracking-wide mb-1">
+    <div className="flex flex-col gap-2 sm:flex-row sm:items-stretch">
+      <div className="flex-1 rounded-lg border border-blue-200 bg-blue-50/80 px-4 py-3 shadow-[0_1px_2px_rgba(37,99,235,0.08)]">
+        <div className="mb-1 text-[11px] font-semibold uppercase text-blue-700">
           영문 주소
         </div>
-        <div className="text-sm text-gray-900 break-words font-mono leading-relaxed">
+        <div className="break-words font-mono text-sm leading-7 text-gray-950">
           {value}
         </div>
       </div>
       <button
         type="button"
         onClick={copy}
-        className={`px-4 rounded-lg text-sm font-medium transition-colors whitespace-nowrap min-w-[80px] ${
-          copied ? "bg-green-600 text-white" : "bg-blue-600 text-white hover:bg-blue-700"
+        className={`min-h-12 rounded-lg px-5 text-sm font-semibold transition-colors sm:min-w-[92px] ${
+          copied
+            ? "bg-emerald-600 text-white"
+            : "bg-blue-600 text-white shadow-sm shadow-blue-600/20 hover:bg-blue-700"
         }`}
       >
         {copied ? "복사됨!" : "복사"}
@@ -105,9 +107,9 @@ function FieldMappingGuide({ country }: { country: Country }) {
   const rows = country === "jp" ? JP_ROWS : KR_ROWS;
 
   return (
-    <details open className="group mt-4 border border-gray-200 rounded-2xl bg-white overflow-hidden">
-      <summary className="flex items-center justify-between gap-2 px-5 py-4 cursor-pointer list-none select-none text-sm font-medium text-gray-800 hover:bg-gray-50">
-        <span>해외사이트 양식 입력가이드</span>
+    <details open className="group mt-4 overflow-hidden rounded-lg border border-gray-200 bg-white">
+      <summary className="flex cursor-pointer list-none items-center justify-between gap-2 px-5 py-4 text-sm font-semibold text-gray-900 select-none hover:bg-gray-50">
+        <span>입력 가이드</span>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 24 24"
@@ -123,15 +125,15 @@ function FieldMappingGuide({ country }: { country: Country }) {
         </svg>
       </summary>
 
-      <div className="px-5 pb-5 pt-1 border-t border-gray-100">
-        <p className="text-xs text-gray-500 mb-3">
+      <div className="border-t border-gray-100 px-5 pt-1 pb-5">
+        <p className="mb-3 text-xs leading-5 text-gray-500">
           칸 이름은 사이트마다 조금씩 다를 수 있습니다. 아래 가이드를 참고해주세요
         </p>
         <ul className="space-y-3">
           {rows.map((row) => (
             <li
               key={row.field}
-              className="grid grid-cols-1 sm:grid-cols-[1fr_auto_1fr] sm:items-baseline gap-0.5 sm:gap-3"
+              className="grid grid-cols-1 gap-0.5 sm:grid-cols-[1fr_auto_1fr] sm:items-baseline sm:gap-3"
             >
               <span className="text-xs text-gray-500 break-words">{row.foreign}</span>
               <span className="hidden sm:block text-gray-300" aria-hidden="true">
@@ -149,7 +151,7 @@ function FieldMappingGuide({ country }: { country: Country }) {
           ))}
         </ul>
 
-        <div className="mt-4 rounded-lg bg-blue-50 border border-blue-100 px-4 py-3">
+        <div className="mt-4 border-l-2 border-blue-500 bg-blue-50/60 px-4 py-3">
           {country === "jp" ? (
             <p className="text-xs text-blue-800 leading-relaxed">
               <span className="font-semibold">팁 · </span>
@@ -187,12 +189,12 @@ function ResultContent() {
 
   if (!hasRequired) {
     return (
-      <main className="min-h-screen bg-gray-50 py-10 px-4">
+      <main className="min-h-screen bg-[#f6f8fc] px-4 py-10">
         <div className="max-w-2xl mx-auto text-center">
           <p className="text-gray-700">잘못된 접근입니다.</p>
           <Link
             href="/"
-            className="inline-block mt-4 px-4 py-2 bg-blue-600 text-white rounded-lg text-sm font-medium hover:bg-blue-700"
+            className="mt-4 inline-block rounded-lg bg-blue-600 px-4 py-2 text-sm font-semibold text-white shadow-sm shadow-blue-600/20 hover:bg-blue-700"
           >
             검색 페이지로 이동
           </Link>
@@ -212,21 +214,23 @@ function ResultContent() {
     .join(", ");
 
   return (
-    <main className="min-h-screen bg-gray-50 py-10 px-4">
-      <div className="max-w-2xl mx-auto">
+    <main className="min-h-screen bg-[#f6f8fc] px-4 py-10 sm:py-14">
+      <div className="mx-auto max-w-3xl">
         <header className="mb-6 flex items-center justify-between">
-          <Link href="/" className="text-sm text-blue-600 hover:text-blue-700">
+          <Link href="/" className="text-sm font-medium text-blue-700 hover:text-blue-800">
             ← 다시 검색
           </Link>
-          <span className="text-xs text-gray-400">변환 결과</span>
+          <span className="rounded-full border border-blue-100 bg-blue-50 px-3 py-1 text-xs font-semibold text-blue-700">
+            변환 결과
+          </span>
         </header>
 
-        <section className="space-y-3 mb-8">
-          <div className="bg-white border-2 border-gray-200 rounded-2xl p-5">
-            <div className="text-xs font-semibold text-gray-600 uppercase tracking-wide mb-2">
+        <section className="mb-8 space-y-3">
+          <div className="rounded-lg border border-gray-200/90 bg-white p-5 shadow-[0_20px_60px_rgba(15,23,42,0.06)]">
+            <div className="mb-2 text-[11px] font-semibold uppercase text-gray-500">
               {isJp ? "일본어 주소" : "한글 주소"}
             </div>
-            <div className="text-sm text-gray-900 break-words leading-relaxed">
+            <div className="break-words text-sm leading-7 text-gray-950">
               {ko}
             </div>
           </div>
@@ -234,9 +238,9 @@ function ResultContent() {
         </section>
 
         <section>
-          <div className="flex items-center gap-3 mb-3">
+          <div className="mb-3 flex items-center gap-3">
             <div className="flex-1 h-px bg-gray-200" />
-            <h2 className="text-xs font-semibold text-gray-500 tracking-wide">
+            <h2 className="text-xs font-semibold text-gray-500">
               필드별 복사
             </h2>
             <div className="flex-1 h-px bg-gray-200" />
@@ -249,9 +253,7 @@ function ResultContent() {
               value={state}
             />
             <AddressCard label="Postal Code" value={zip} />
-          </div>
-          <div className="mt-3 px-4 py-2 text-xs text-gray-500">
-            Country: {countryLabel}
+            <AddressCard label="Country" value={countryLabel} />
           </div>
 
           <FieldMappingGuide country={country} />
@@ -265,8 +267,8 @@ export default function ResultPage() {
   return (
     <Suspense
       fallback={
-        <main className="min-h-screen bg-gray-50 py-10 px-4">
-          <div className="max-w-2xl mx-auto text-center text-sm text-gray-400">
+        <main className="min-h-screen bg-[#f6f8fc] px-4 py-10">
+          <div className="mx-auto max-w-2xl text-center text-sm text-gray-400">
             로딩 중…
           </div>
         </main>

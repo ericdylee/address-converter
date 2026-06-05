@@ -101,7 +101,7 @@ export default function JpAddressSearch({ onSelect }: Props) {
     <div ref={containerRef} className="relative w-full">
       <label
         htmlFor="jp-zip-search"
-        className="block text-sm font-medium text-gray-700 mb-2"
+        className="mb-2 block text-sm font-semibold text-gray-800"
       >
         일본 우편번호 (7자리)
       </label>
@@ -123,11 +123,11 @@ export default function JpAddressSearch({ onSelect }: Props) {
             onFocus={() => results.length > 0 && setOpen(true)}
             onKeyDown={handleKeyDown}
             placeholder="예: 100-0005"
-            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-900 placeholder-gray-400"
+            className="h-12 w-full rounded-lg border border-gray-300 bg-white px-4 text-[15px] text-gray-950 outline-none transition placeholder:text-gray-400 hover:border-gray-400 focus:border-blue-500 focus:ring-[3px] focus:ring-blue-100"
             autoComplete="off"
           />
           {loading && (
-            <div className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm">
+            <div className="absolute right-3 top-1/2 -translate-y-1/2 text-sm text-gray-400">
               검색중...
             </div>
           )}
@@ -137,10 +137,10 @@ export default function JpAddressSearch({ onSelect }: Props) {
           onClick={handleSearchClick}
           disabled={results.length === 0}
           aria-label="검색"
-          className={`px-4 rounded-lg flex items-center justify-center transition-colors ${
+          className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-lg transition-colors ${
             results.length === 0
-              ? "bg-gray-200 text-gray-400 cursor-not-allowed"
-              : "bg-blue-600 hover:bg-blue-700 text-white"
+              ? "cursor-not-allowed bg-blue-50 text-blue-200"
+              : "bg-blue-600 text-white shadow-sm shadow-blue-600/20 hover:bg-blue-700"
           }`}
         >
           <svg
@@ -163,7 +163,7 @@ export default function JpAddressSearch({ onSelect }: Props) {
       <div className="mt-3">
         <label
           htmlFor="jp-block"
-          className="block text-sm font-medium text-gray-700 mb-2"
+          className="mb-2 block text-sm font-semibold text-gray-800"
         >
           번지·건물번호 (선택)
         </label>
@@ -173,18 +173,18 @@ export default function JpAddressSearch({ onSelect }: Props) {
           value={block}
           onChange={(e) => setBlock(e.target.value)}
           placeholder="예: 1-1-1 또는 1-1-1 〇〇빌딩 5F"
-          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-900 placeholder-gray-400"
+          className="h-12 w-full rounded-lg border border-gray-300 bg-white px-4 text-[15px] text-gray-950 outline-none transition placeholder:text-gray-400 hover:border-gray-400 focus:border-blue-500 focus:ring-[3px] focus:ring-blue-100"
           autoComplete="off"
         />
-        <p className="mt-1 text-xs text-gray-500">
+        <p className="mt-2 text-xs leading-5 text-gray-500">
           우편번호로 동네까지 채워집니다. 丁目·番地·号(예: 1-1-1)와 건물명은 여기에 입력하세요.
         </p>
       </div>
 
-      {error && <div className="mt-2 text-sm text-red-600">{error}</div>}
+      {error && <div className="mt-2 text-sm font-medium text-red-600">{error}</div>}
 
       {open && results.length > 0 && (
-        <ul className="absolute z-10 mt-1 w-full bg-white border border-gray-200 rounded-lg shadow-lg max-h-80 overflow-auto">
+        <ul className="absolute z-10 mt-2 max-h-80 w-full overflow-auto rounded-lg border border-gray-200 bg-white shadow-[0_22px_55px_rgba(15,23,42,0.14)]">
           {results.map((item, idx) => (
             <li
               key={item.id}
@@ -193,19 +193,19 @@ export default function JpAddressSearch({ onSelect }: Props) {
                 handleSelect(item);
               }}
               onMouseEnter={() => setHighlighted(idx)}
-              className={`px-4 py-3 cursor-pointer border-b border-gray-100 last:border-b-0 ${
+              className={`cursor-pointer border-b border-gray-100 px-4 py-3 last:border-b-0 ${
                 idx === highlighted ? "bg-blue-50" : "hover:bg-gray-50"
               }`}
             >
-              <div className="text-sm text-gray-900">{item.japanese}</div>
-              <div className="text-xs text-gray-500 mt-1">{item.englishLabel}</div>
+              <div className="text-sm font-medium text-gray-950">{item.japanese}</div>
+              <div className="mt-1 text-xs leading-5 text-gray-500">{item.englishLabel}</div>
             </li>
           ))}
         </ul>
       )}
 
       {open && !loading && results.length === 0 && digits.length === 7 && !error && (
-        <div className="absolute z-10 mt-1 w-full bg-white border border-gray-200 rounded-lg shadow-lg px-4 py-3 text-sm text-gray-500">
+        <div className="absolute z-10 mt-2 w-full rounded-lg border border-gray-200 bg-white px-4 py-3 text-sm text-gray-500 shadow-[0_22px_55px_rgba(15,23,42,0.14)]">
           해당 우편번호를 찾을 수 없습니다.
         </div>
       )}

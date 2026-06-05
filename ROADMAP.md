@@ -2,7 +2,7 @@
 
 한글→영문 주소 변환기 프로젝트의 단계별 작업 진행 상황입니다.
 
-> **진행률:** ▓▓▓▓▓▓▓▓▓▓▓▓░░ 8/9 단계 완료 (9 배포 남음) · +11단계 일본 주소 변환 완료 ✅
+> **진행률:** ▓▓▓▓▓▓▓▓▓▓▓▓░░ 8/9 단계 완료 (9 배포 남음) · +11단계 일본 주소 변환 완료 ✅ · +12단계 푸터/디자인 개선 완료 ✅
 
 > **아키텍처 메모:** 초기 설계는 "단일 페이지 + 별도 상세주소 입력란"이었으나,
 > 이후 **2-라우트 구조(`/` 검색 · `/result` 결과) + AdSense Vignette** 로 재구조화되었고
@@ -155,6 +155,41 @@ API 키 검증 완료 — UI 레벨 E2E 점검(Playwright로 실제 브라우저
 
 > **데이터 갱신 메모:** `KEN_ALL_ROME`은 연 1회 정도 갱신됨. `npm run build:jp-data` 재실행 후
 > `data/jp-postal.json` 교체. 일본우편 공식 로마자는 장음을 생략함(예: 丸の内=`Marunochi`, 東京=`Tokyo`).
+
+---
+
+## 12단계 — 푸터 · 개인정보처리방침 · 디자인 개선 ✅
+
+AdSense/신뢰도 보강을 위해 공통 푸터와 개인정보처리방침을 정리하고, 전체 UI를 더 깔끔한 최신 유틸리티 디자인 톤으로 개선.
+
+- [x] `components/Footer.tsx` — 전역 공통 푸터 문구 정리
+  - copyright 문구: `copyrightⓒ한글일본주소-영문변환기`
+  - 하단 문구: `all right reserve`
+  - 데이터 출처 + 개인정보처리방침 링크 유지
+- [x] `app/privacy/page.tsx` — 개인정보처리방침 문서 페이지를 문서형 카드 UI로 정리
+- [x] `app/globals.css` — 기본 배경/전경색, Geist 폰트 기준, selection 컬러 정리
+- [x] `app/page.tsx` — 홈 화면 레이아웃 개선
+  - `Address Converter` eyebrow 추가
+  - 한국/일본 탭을 segmented control 형태로 개선
+  - 활성 `KR 한국` 버튼과 주요 버튼 색상을 파란색으로 통일
+- [x] `components/AddressSearch.tsx`, `components/JpAddressSearch.tsx` — 입력창/검색 버튼/드롭다운 디자인 통일
+  - 검색 버튼은 파란색 유지
+  - hover/focus 상태, 비활성 상태, 드롭다운 그림자/선택 상태 개선
+- [x] `app/result/page.tsx`, `components/AddressCard.tsx` — 결과 화면 디자인 개선
+  - 대표 영문 주소 블록 강조
+  - 필드별 복사 카드 정돈
+  - 복사 버튼 파란색 유지, 복사 완료 상태는 emerald로 표시
+  - Country도 필드별 복사 카드에 포함
+- [x] 전체 페이지 톤 통일
+  - 배경 `#f6f8fc` 계열
+  - 과한 둥근 모서리 축소
+  - 얕은 그림자와 섬세한 border 중심의 세련된 업무 도구 UI
+- [x] 검증 완료
+  - `npm run lint` 통과
+  - `npm run build` 통과
+  - `/`, `/privacy`, `/result?...` 모두 로컬 개발 서버에서 `200 OK`
+
+**현재 로컬 확인 URL:** `http://localhost:3000`
 
 ---
 

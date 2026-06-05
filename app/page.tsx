@@ -45,24 +45,31 @@ export default function HomePage() {
   }
 
   const tabBase =
-    "flex-1 px-4 py-2.5 text-sm font-medium rounded-lg transition-colors";
-  const tabActive = "bg-blue-600 text-white";
-  const tabIdle = "bg-gray-100 text-gray-600 hover:bg-gray-200";
+    "flex-1 rounded-md px-4 py-2.5 text-sm font-semibold transition-colors";
+  const tabActive = "bg-blue-600 text-white shadow-sm";
+  const tabIdle = "text-gray-500 hover:bg-white hover:text-gray-900";
 
   return (
-    <main className="min-h-screen bg-gray-50 py-10 px-4">
-      <div className="max-w-2xl mx-auto">
+    <main className="min-h-screen bg-[#f6f8fc] px-4 py-10 sm:py-14">
+      <div className="mx-auto max-w-3xl">
         <header className="mb-8 text-center">
-          <h1 className="text-3xl font-bold text-gray-900">
+          <p className="mb-3 text-xs font-semibold uppercase tracking-[0.14em] text-blue-700">
+            Address Converter
+          </p>
+          <h1 className="text-2xl font-semibold text-gray-950 sm:text-3xl">
             한글·일본 주소 → 영문 변환기
           </h1>
-          <p className="mt-2 text-sm text-gray-600">
+          <p className="mt-3 text-sm leading-6 text-gray-600">
             해외 사이트 입력란에 맞춰 필드별로 복사할 수 있습니다
           </p>
         </header>
 
-        <section className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
-          <div className="flex gap-2 mb-5" role="tablist" aria-label="국가 선택">
+        <section className="rounded-lg border border-gray-200/90 bg-white p-5 shadow-[0_20px_60px_rgba(15,23,42,0.07)] sm:p-6">
+          <div
+            className="mb-6 flex gap-1 rounded-lg border border-gray-200 bg-gray-50 p-1"
+            role="tablist"
+            aria-label="국가 선택"
+          >
             <button
               type="button"
               role="tab"
@@ -70,7 +77,14 @@ export default function HomePage() {
               onClick={() => setTab("kr")}
               className={`${tabBase} ${tab === "kr" ? tabActive : tabIdle}`}
             >
-              🇰🇷 한국
+              <span
+                className={`mr-2 rounded px-1.5 py-0.5 text-[10px] font-bold ${
+                  tab === "kr" ? "bg-white/20 text-white" : "bg-blue-100 text-blue-700"
+                }`}
+              >
+                KR
+              </span>
+              한국
             </button>
             <button
               type="button"
@@ -79,7 +93,14 @@ export default function HomePage() {
               onClick={() => setTab("jp")}
               className={`${tabBase} ${tab === "jp" ? tabActive : tabIdle}`}
             >
-              🇯🇵 일본
+              <span
+                className={`mr-2 rounded px-1.5 py-0.5 text-[10px] font-bold ${
+                  tab === "jp" ? "bg-white/20 text-white" : "bg-red-100 text-red-700"
+                }`}
+              >
+                JP
+              </span>
+              일본
             </button>
           </div>
 
