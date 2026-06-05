@@ -256,12 +256,6 @@ function ResultContent() {
 
           <FieldMappingGuide country={country} />
         </section>
-
-        <footer className="mt-10 text-center text-xs text-gray-400">
-          {isJp
-            ? "데이터: 일본우편(Japan Post) 로마자 우편번호"
-            : "데이터: 행정안전부 도로명주소 영문 API"}
-        </footer>
       </div>
     </main>
   );

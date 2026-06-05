@@ -89,10 +89,6 @@ export default function HomePage() {
             <JpAddressSearch onSelect={handleJpSelect} />
           )}
         </section>
-
-        <footer className="mt-10 text-center text-xs text-gray-400">
-          데이터: 행정안전부 도로명주소 영문 API · 일본우편(Japan Post) 로마자 우편번호
-        </footer>
       </div>
     </main>
   );
