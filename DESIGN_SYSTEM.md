@@ -128,7 +128,7 @@ Tailwind 클래스 이름이 곧 토큰입니다. `hex`는 참고용 근삿값(T
 ### 그림자
 | 용도 | 값 |
 |------|----|
-| 큰 카드(전체) | `shadow-card` = `0 20px 60px rgba(15,23,42,0.06)` ✅ 통일 |
+| 큰 카드(전체) | `shadow-card` = 다층 그림자 `0 1px 2px /.04, 0 4px 8px /.05, 0 10px 20px /.06, 0 24px 48px /.10` (입체감) |
 | 작은 필드 카드 | `shadow-field` = `0 1px 2px rgba(15,23,42,0.03)` |
 | 드롭다운 | `shadow-dropdown` = `0 22px 55px rgba(15,23,42,0.14)` |
 | 한 줄 주소 강조 카드 | `shadow-[0_1px_2px_rgba(37,99,235,0.08)]` (파란 강조, 별도 유지) |
@@ -247,7 +247,8 @@ mt-auto border-t border-border px-4 py-8 text-center text-xs leading-5 text-gray
   --color-foreground: var(--foreground);   --color-border: var(--border);
   --color-primary: var(--primary);         --color-primary-hover: var(--primary-hover);
   --color-success: var(--success);         --color-danger: var(--danger);
-  --shadow-card: 0 20px 60px rgba(15,23,42,0.06);
+  --shadow-card: 0 1px 2px rgba(15,23,42,.04), 0 4px 8px rgba(15,23,42,.05),
+                 0 10px 20px rgba(15,23,42,.06), 0 24px 48px rgba(15,23,42,.10);
   --shadow-field: 0 1px 2px rgba(15,23,42,0.03);
   --shadow-dropdown: 0 22px 55px rgba(15,23,42,0.14);
 }
