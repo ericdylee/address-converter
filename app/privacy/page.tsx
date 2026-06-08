@@ -7,7 +7,7 @@ export const metadata: Metadata = {
 
 export default function PrivacyPage() {
   return (
-    <main className="min-h-screen bg-[#f6f8fc] px-4 py-10 sm:py-14">
+    <main className="min-h-screen bg-background px-4 py-10 sm:py-14">
       <div className="mx-auto max-w-3xl">
         <header className="mb-6">
           <Link href="/" className="text-sm font-medium text-blue-700 hover:text-blue-800">
@@ -17,7 +17,7 @@ export default function PrivacyPage() {
           <p className="mt-2 text-xs text-gray-500">시행일 · 최종 수정일: 2026-06-04</p>
         </header>
 
-        <div className="space-y-6 rounded-lg border border-gray-200/90 bg-white p-6 text-sm leading-7 text-gray-700 shadow-[0_20px_60px_rgba(15,23,42,0.06)]">
+        <div className="space-y-6 rounded-lg border border-border bg-white p-6 text-sm leading-7 text-gray-700 shadow-card">
           <p>
             본 방침은 ‘한글 → 영문 주소 변환기’(이하 ‘서비스’)가 이용자의 개인정보를 어떻게
             처리하는지 설명합니다.

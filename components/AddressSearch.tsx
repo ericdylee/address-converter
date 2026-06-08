@@ -140,7 +140,7 @@ export default function AddressSearch({ onSelect }: Props) {
           aria-label="검색"
           className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-lg transition-colors ${
             searchDisabled
-              ? "cursor-not-allowed bg-blue-50 text-blue-200"
+              ? "cursor-not-allowed bg-gray-100 text-gray-400"
               : "bg-blue-600 text-white shadow-sm shadow-blue-600/20 hover:bg-blue-700"
           }`}
         >
@@ -166,7 +166,7 @@ export default function AddressSearch({ onSelect }: Props) {
       )}
 
       {open && results.length > 0 && (
-        <ul className="absolute z-10 mt-2 max-h-80 w-full overflow-auto rounded-lg border border-gray-200 bg-white shadow-[0_22px_55px_rgba(15,23,42,0.14)]">
+        <ul className="absolute z-10 mt-2 max-h-80 w-full overflow-auto rounded-lg border border-border bg-white shadow-dropdown">
           {results.map((item, idx) => (
             <li
               key={item.id}
@@ -187,7 +187,7 @@ export default function AddressSearch({ onSelect }: Props) {
       )}
 
       {open && !loading && results.length === 0 && query.trim().length >= 2 && !error && (
-        <div className="absolute z-10 mt-2 w-full rounded-lg border border-gray-200 bg-white px-4 py-3 text-sm text-gray-500 shadow-[0_22px_55px_rgba(15,23,42,0.14)]">
+        <div className="absolute z-10 mt-2 w-full rounded-lg border border-border bg-white px-4 py-3 text-sm text-gray-500 shadow-dropdown">
           검색 결과가 없습니다.
         </div>
       )}

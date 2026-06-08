@@ -50,13 +50,13 @@ export default function HomePage() {
   const tabIdle = "text-gray-500 hover:bg-white hover:text-gray-900";
 
   return (
-    <main className="min-h-screen bg-[#f6f8fc] px-4 py-10 sm:py-14">
+    <main className="min-h-screen bg-background px-4 py-10 sm:py-14">
       <div className="mx-auto max-w-3xl">
         <header className="mb-8 text-center">
           <p className="mb-3 text-xs font-semibold uppercase tracking-[0.14em] text-blue-700">
             Address Converter
           </p>
-          <h1 className="text-2xl font-semibold text-gray-950 sm:text-3xl">
+          <h1 className="text-2xl font-bold text-gray-950 sm:text-3xl">
             한글·일본 주소 → 영문 변환기
           </h1>
           <p className="mt-3 text-sm leading-6 text-gray-600">
@@ -64,9 +64,9 @@ export default function HomePage() {
           </p>
         </header>
 
-        <section className="rounded-lg border border-gray-200/90 bg-white p-5 shadow-[0_20px_60px_rgba(15,23,42,0.07)] sm:p-6">
+        <section className="rounded-lg border border-border bg-white p-5 shadow-card sm:p-6">
           <div
-            className="mb-6 flex gap-1 rounded-lg border border-gray-200 bg-gray-50 p-1"
+            className="mb-6 flex gap-1 rounded-lg border border-border bg-gray-50 p-1"
             role="tablist"
             aria-label="국가 선택"
           >

@@ -1,21 +1,56 @@
 @import "tailwindcss";
 
+/* ── 디자인 토큰 (단일 출처) ─────────────────────────────────────
+   색·그림자의 표준 값을 여기 한곳에 모은다. 앞으로 컴포넌트는 점차
+   이 토큰으로 옮겨가며, 다크모드는 이 값만 바꿔 구현한다.
+   자세한 매핑은 DESIGN_SYSTEM.md 참고. */
 :root {
-  --background: #f7f8fb;
+  /* 표면 & 텍스트 */
+  --background: #f6f8fc;
+  --surface: #ffffff;
   --foreground: #111827;
+  --border: #e5e7eb;        /* gray-200 */
+
+  /* 브랜드 & 의미색 */
+  --primary: #2563eb;       /* blue-600 */
+  --primary-hover: #1d4ed8; /* blue-700 */
+  --success: #059669;       /* emerald-600 */
+  --danger: #dc2626;        /* red-600 */
 }
 
 @theme inline {
   --color-background: var(--background);
+  --color-surface: var(--surface);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-border: var(--border);
+  --color-primary: var(--primary);
+  --color-primary-hover: var(--primary-hover);
+  --color-success: var(--success);
+  --color-danger: var(--danger);
+
+  /* 기본 폰트: Pretendard 우선, 없으면 시스템 한글/영문 폰트로 폴백 */
+  --font-sans: "Pretendard Variable", Pretendard, var(--font-geist-sans),
+    -apple-system, BlinkMacSystemFont, system-ui, "Apple SD Gothic Neo",
+    "Noto Sans KR", sans-serif;
+  /* 고정폭(영문 주소 예시 정렬용): 영문은 Geist Mono, 한글은 Pretendard로 폴백 */
+  --font-mono: var(--font-geist-mono), "Pretendard Variable", monospace;
+
+  /* 그림자 — 카드/필드/드롭다운 단계를 표준화 (값 불일치 정리) */
+  --shadow-card: 0 20px 60px rgba(15, 23, 42, 0.06);
+  --shadow-field: 0 1px 2px rgba(15, 23, 42, 0.03);
+  --shadow-dropdown: 0 22px 55px rgba(15, 23, 42, 0.14);
+}
+
+/* 기준 글씨 크기를 16px → 18px(112.5%)로 키워 전체 텍스트·간격이
+   비례해서 조금 더 커지게 한다. (rem 기반이라 한 곳만 바꾸면 전체 적용) */
+html {
+  font-size: 112.5%;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans);
 }
 
 ::selection {

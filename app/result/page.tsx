@@ -107,7 +107,7 @@ function FieldMappingGuide({ country }: { country: Country }) {
   const rows = country === "jp" ? JP_ROWS : KR_ROWS;
 
   return (
-    <details open className="group mt-4 overflow-hidden rounded-lg border border-gray-200 bg-white">
+    <details open className="group mt-4 overflow-hidden rounded-lg border border-border bg-white">
       <summary className="flex cursor-pointer list-none items-center justify-between gap-2 px-5 py-4 text-sm font-semibold text-gray-900 select-none hover:bg-gray-50">
         <span>입력 가이드</span>
         <svg
@@ -189,7 +189,7 @@ function ResultContent() {
 
   if (!hasRequired) {
     return (
-      <main className="min-h-screen bg-[#f6f8fc] px-4 py-10">
+      <main className="min-h-screen bg-background px-4 py-10">
         <div className="max-w-2xl mx-auto text-center">
           <p className="text-gray-700">잘못된 접근입니다.</p>
           <Link
@@ -214,7 +214,7 @@ function ResultContent() {
     .join(", ");
 
   return (
-    <main className="min-h-screen bg-[#f6f8fc] px-4 py-10 sm:py-14">
+    <main className="min-h-screen bg-background px-4 py-10 sm:py-14">
       <div className="mx-auto max-w-3xl">
         <header className="mb-6 flex items-center justify-between">
           <Link href="/" className="text-sm font-medium text-blue-700 hover:text-blue-800">
@@ -226,7 +226,7 @@ function ResultContent() {
         </header>
 
         <section className="mb-8 space-y-3">
-          <div className="rounded-lg border border-gray-200/90 bg-white p-5 shadow-[0_20px_60px_rgba(15,23,42,0.06)]">
+          <div className="rounded-lg border border-border bg-white p-5 shadow-card">
             <div className="mb-2 text-[11px] font-semibold uppercase text-gray-500">
               {isJp ? "일본어 주소" : "한글 주소"}
             </div>
@@ -267,7 +267,7 @@ export default function ResultPage() {
   return (
     <Suspense
       fallback={
-        <main className="min-h-screen bg-[#f6f8fc] px-4 py-10">
+        <main className="min-h-screen bg-background px-4 py-10">
           <div className="mx-auto max-w-2xl text-center text-sm text-gray-400">
             로딩 중…
           </div>

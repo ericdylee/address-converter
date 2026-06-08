@@ -33,7 +33,7 @@ export default function AddressCard({ label, value, placeholder }: Props) {
 
   return (
     <div className="flex items-stretch gap-2">
-      <div className="flex-1 rounded-lg border border-gray-200/90 bg-white px-4 py-3 shadow-[0_1px_2px_rgba(15,23,42,0.03)]">
+      <div className="flex-1 rounded-lg border border-border bg-white px-4 py-3 shadow-field">
         <div className="mb-1 text-[11px] font-semibold uppercase text-gray-500">{label}</div>
         <div className={`break-all text-sm leading-6 ${hasValue ? "text-gray-950" : "text-gray-300"}`}>
           {hasValue ? value : placeholder ?? "—"}
