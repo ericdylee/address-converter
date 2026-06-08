@@ -123,7 +123,7 @@ export default function JpAddressSearch({ onSelect }: Props) {
             onFocus={() => results.length > 0 && setOpen(true)}
             onKeyDown={handleKeyDown}
             placeholder="예: 100-0005"
-            className="h-12 w-full rounded-lg border border-gray-300 bg-white px-4 text-[15px] text-gray-950 outline-none transition placeholder:text-gray-400 hover:border-gray-400 focus:border-blue-500 focus:ring-[3px] focus:ring-blue-100"
+            className="h-12 w-full rounded-lg border border-gray-300 bg-white px-4 text-[15px] text-gray-950 shadow-sm outline-none transition placeholder:text-gray-400 hover:border-blue-500 focus:border-blue-500 focus:ring-[3px] focus:ring-blue-100"
             autoComplete="off"
           />
           {loading && (
@@ -173,7 +173,7 @@ export default function JpAddressSearch({ onSelect }: Props) {
           value={block}
           onChange={(e) => setBlock(e.target.value)}
           placeholder="예: 1-1-1 또는 1-1-1 〇〇빌딩 5F"
-          className="h-12 w-full rounded-lg border border-gray-300 bg-white px-4 text-[15px] text-gray-950 outline-none transition placeholder:text-gray-400 hover:border-gray-400 focus:border-blue-500 focus:ring-[3px] focus:ring-blue-100"
+          className="h-12 w-full rounded-lg border border-gray-300 bg-white px-4 text-[15px] text-gray-950 shadow-sm outline-none transition placeholder:text-gray-400 hover:border-blue-500 focus:border-blue-500 focus:ring-[3px] focus:ring-blue-100"
           autoComplete="off"
         />
         <p className="mt-2 text-xs leading-5 text-gray-500">

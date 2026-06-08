@@ -124,7 +124,7 @@ export default function AddressSearch({ onSelect }: Props) {
             onFocus={() => results.length > 0 && setOpen(true)}
             onKeyDown={handleKeyDown}
             placeholder="예: 강남대로 396 · 동덕아파트 101동 504호"
-            className="h-12 w-full rounded-lg border border-gray-300 bg-white px-4 text-[15px] text-gray-950 outline-none transition placeholder:text-gray-400 hover:border-gray-400 focus:border-blue-500 focus:ring-[3px] focus:ring-blue-100"
+            className="h-12 w-full rounded-lg border border-gray-300 bg-white px-4 text-[15px] text-gray-950 shadow-sm outline-none transition placeholder:text-gray-400 hover:border-blue-500 focus:border-blue-500 focus:ring-[3px] focus:ring-blue-100"
             autoComplete="off"
           />
           {loading && (
