@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64" fill="none" role="img" aria-label="Address Converter">
+  <rect width="64" height="64" rx="15" fill="#2563eb"/>
+  <path d="M32 13c-9.94 0-18 8.06-18 18 0 13.5 18 23 18 23s18-9.5 18-23c0-9.94-8.06-18-18-18Z" fill="#ffffff"/>
+  <circle cx="32" cy="31" r="7" fill="#2563eb"/>
+</svg>

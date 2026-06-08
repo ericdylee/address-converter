@@ -1,6 +1,7 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import Script from "next/script";
 import { Geist, Geist_Mono } from "next/font/google";
+import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import "./globals.css";
 
@@ -17,6 +18,14 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "한글 → 영문 주소 변환기",
   description: "한글 주소를 영문으로 변환하고 해외 사이트 입력 필드에 맞춰 개별 복사할 수 있습니다.",
+};
+
+// 모바일 대응: 기기 너비에 맞춰 렌더(확대/축소 기본값) + 모바일 브라우저
+// 상단바 색을 헤더/푸터(다크)와 맞춤.
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  themeColor: "#101828",
 };
 
 export default function RootLayout({
@@ -39,6 +48,7 @@ export default function RootLayout({
         />
       </head>
       <body className="min-h-full flex flex-col">
+        <Header />
         {children}
         <Footer />
         {adsenseClientId && (

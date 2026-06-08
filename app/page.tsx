@@ -53,9 +53,6 @@ export default function HomePage() {
     <main className="min-h-screen bg-background px-4 py-10 sm:py-14">
       <div className="mx-auto max-w-3xl">
         <header className="mb-8 text-center">
-          <p className="mb-3 text-xs font-semibold uppercase tracking-[0.14em] text-blue-700">
-            Address Converter
-          </p>
           <h1 className="text-2xl font-bold text-gray-950 sm:text-3xl">
             한글·일본 주소 → 영문 변환기
           </h1>
