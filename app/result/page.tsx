@@ -29,10 +29,10 @@ function FullAddressBlock({ value }: { value: string }) {
   return (
     <div className="flex flex-col gap-2 sm:flex-row sm:items-stretch">
       <div className="flex-1 rounded-lg border border-blue-200 bg-blue-50/80 px-4 py-3 shadow-[0_1px_2px_rgba(37,99,235,0.08)]">
-        <div className="mb-1 text-[11px] font-semibold uppercase text-blue-700">
+        <div className="mb-1 text-xs font-semibold uppercase text-blue-700">
           영문 주소
         </div>
-        <div className="break-words font-mono text-sm leading-7 text-gray-950">
+        <div className="break-words font-mono text-base leading-7 text-gray-950">
           {value}
         </div>
       </div>
@@ -126,7 +126,7 @@ function FieldMappingGuide({ country }: { country: Country }) {
       </summary>
 
       <div className="border-t border-gray-100 px-5 pt-1 pb-5">
-        <p className="mb-3 text-xs leading-5 text-gray-500">
+        <p className="mb-3 text-sm leading-6 text-gray-500">
           칸 이름은 사이트마다 조금씩 다를 수 있습니다. 아래 가이드를 참고해주세요
         </p>
         <ul className="space-y-3">
@@ -135,14 +135,14 @@ function FieldMappingGuide({ country }: { country: Country }) {
               key={row.field}
               className="grid grid-cols-1 gap-0.5 sm:grid-cols-[1fr_auto_1fr] sm:items-baseline sm:gap-3"
             >
-              <span className="text-xs text-gray-500 break-words">{row.foreign}</span>
+              <span className="text-sm text-gray-500 break-words">{row.foreign}</span>
               <span className="hidden sm:block text-gray-300" aria-hidden="true">
                 →
               </span>
               <span className="text-sm font-medium text-gray-900 break-words">
                 {row.field}
                 {row.note && (
-                  <span className="block mt-0.5 text-xs font-normal text-gray-500">
+                  <span className="block mt-0.5 text-sm font-normal text-gray-500">
                     {row.note}
                   </span>
                 )}
@@ -153,14 +153,14 @@ function FieldMappingGuide({ country }: { country: Country }) {
 
         <div className="mt-4 border-l-2 border-blue-500 bg-blue-50/60 px-4 py-3">
           {country === "jp" ? (
-            <p className="text-xs text-blue-800 leading-relaxed">
+            <p className="text-sm text-blue-800 leading-relaxed">
               <span className="font-semibold">팁 · </span>
               일본 영문 주소는 <span className="font-medium">작은 단위 → 큰 단위</span> 순으로
               씁니다(번지 → 동네 → 시·구 → 도도부현). City 칸만 있으면 보통 시·구 이름(예:{" "}
               <span className="font-mono">Chiyoda-ku</span>)을 넣습니다.
             </p>
           ) : (
-            <p className="text-xs text-blue-800 leading-relaxed">
+            <p className="text-sm text-blue-800 leading-relaxed">
               <span className="font-semibold">팁 · </span>
               양식에 <span className="font-medium">City 칸만 있고 State 칸이 없으면</span>{" "}
               보통 큰 도시 이름(예: <span className="font-mono">Seoul</span>)을 City에 넣습니다.
@@ -227,10 +227,10 @@ function ResultContent() {
 
         <section className="mb-8 space-y-3">
           <div className="rounded-lg border border-border bg-white p-5 shadow-card">
-            <div className="mb-2 text-[11px] font-semibold uppercase text-gray-500">
+            <div className="mb-2 text-xs font-semibold uppercase text-gray-500">
               {isJp ? "일본어 주소" : "한글 주소"}
             </div>
-            <div className="break-words text-sm leading-7 text-gray-950">
+            <div className="break-words text-base leading-7 text-gray-950">
               {ko}
             </div>
           </div>
@@ -240,7 +240,7 @@ function ResultContent() {
         <section>
           <div className="mb-3 flex items-center gap-3">
             <div className="flex-1 h-px bg-gray-200" />
-            <h2 className="text-xs font-semibold text-gray-500">
+            <h2 className="text-sm font-semibold text-gray-500">
               필드별 복사
             </h2>
             <div className="flex-1 h-px bg-gray-200" />
