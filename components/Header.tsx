@@ -4,7 +4,7 @@ import Link from "next/link";
 // 로고 아이콘(파비콘과 같은 모양)과 사이트명을 묶어 홈으로 가는 링크로 둔다.
 export default function Header() {
   return (
-    <header className="bg-gray-900">
+    <header className="sticky top-0 z-50 bg-gray-900 shadow-sm">
       <div className="mx-auto flex max-w-3xl items-center px-4 py-3">
         <Link
           href="/"
