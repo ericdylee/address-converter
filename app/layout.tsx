@@ -3,6 +3,7 @@ import Script from "next/script";
 import { Geist, Geist_Mono } from "next/font/google";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import { SITE_NAME, SITE_URL } from "@/lib/site";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -15,9 +16,46 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+// SEO/공유용 메타데이터.
+// - metadataBase: 상대경로(canonical, OG 이미지 등)를 절대 URL로 만들 기준 도메인.
+// - title.template: 하위 페이지가 title만 정하면 "소개 | …" 처럼 자동으로 붙는다.
+// - 도메인은 환경변수 NEXT_PUBLIC_SITE_URL 로 주입(lib/site.ts).
+const description =
+  "한글·일본 주소를 행정안전부·우편번호 공식 데이터 기반으로 영문 주소(Street/City/State/Postal)로 변환하고 칸별로 복사하세요. 해외직구·해외 배송·유학 서류 작성에 유용합니다.";
+
 export const metadata: Metadata = {
-  title: "한글 → 영문 주소 변환기",
-  description: "한글 주소를 영문으로 변환하고 해외 사이트 입력 필드에 맞춰 개별 복사할 수 있습니다.",
+  metadataBase: new URL(SITE_URL),
+  title: {
+    default: "한글·일본 주소 → 영문 변환기 | 도로명·지번 영문주소 변환",
+    template: `%s | ${SITE_NAME}`,
+  },
+  description,
+  applicationName: SITE_NAME,
+  keywords: [
+    "영문주소 변환",
+    "한글주소 영문변환",
+    "도로명주소 영문",
+    "지번주소 영문",
+    "일본 주소 영문 변환",
+    "해외직구 주소 입력",
+    "영문 주소 변환기",
+    "english address converter korea",
+  ],
+  alternates: { canonical: "/" },
+  openGraph: {
+    type: "website",
+    locale: "ko_KR",
+    siteName: SITE_NAME,
+    url: SITE_URL,
+    title: "한글·일본 주소 → 영문 변환기",
+    description,
+  },
+  twitter: {
+    card: "summary",
+    title: "한글·일본 주소 → 영문 변환기",
+    description,
+  },
+  robots: { index: true, follow: true },
 };
 
 // 모바일 대응: 기기 너비에 맞춰 렌더(확대/축소 기본값) + 모바일 브라우저

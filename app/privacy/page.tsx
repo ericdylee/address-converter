@@ -1,8 +1,12 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { CONTACT_EMAIL } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "개인정보처리방침 | 한글 → 영문 주소 변환기",
+  title: "개인정보처리방침",
+  description:
+    "한글·일본 주소 영문 변환기의 개인정보 수집·이용, 쿠키 및 Google AdSense 광고, 외부 링크에 관한 처리방침입니다.",
+  alternates: { canonical: "/privacy" },
 };
 
 export default function PrivacyPage() {
@@ -40,6 +44,21 @@ export default function PrivacyPage() {
               제공할 수 있습니다.
             </p>
             <p className="mt-2">
+              Google은 DoubleClick DART 쿠키를 포함한 쿠키를 사용하여 이용자가 본
+              사이트 및 다른 웹사이트를 방문한 기록을 바탕으로 광고를 게재할 수
+              있습니다. 제3자 광고 사업자의 쿠키 사용에 대한 자세한 내용과 거부
+              방법은{" "}
+              <a
+                href="https://policies.google.com/technologies/ads"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-medium text-blue-700 hover:underline"
+              >
+                Google 광고 기술 정책
+              </a>
+              에서 확인할 수 있습니다.
+            </p>
+            <p className="mt-2">
               이용자는{" "}
               <a
                 href="https://adssettings.google.com"
@@ -74,6 +93,21 @@ export default function PrivacyPage() {
           <section>
             <h2 className="mb-2 font-semibold text-gray-950">4. 방침 변경</h2>
             <p>본 개인정보처리방침이 변경되는 경우 변경 내용을 본 페이지에 게시합니다.</p>
+          </section>
+
+          <section>
+            <h2 className="mb-2 font-semibold text-gray-950">5. 문의</h2>
+            <p>
+              개인정보 처리에 관한 문의는 아래 이메일로 연락 주시기 바랍니다.
+              <br />
+              이메일:{" "}
+              <a
+                href={`mailto:${CONTACT_EMAIL}`}
+                className="font-medium text-blue-700 hover:underline"
+              >
+                {CONTACT_EMAIL}
+              </a>
+            </p>
           </section>
         </div>
 

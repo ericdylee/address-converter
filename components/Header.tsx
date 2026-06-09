@@ -1,15 +1,23 @@
 import Link from "next/link";
 
 // 전역 상단 헤더. 배경은 푸터와 동일한 다크 톤(bg-gray-900).
-// 로고 아이콘(파비콘과 같은 모양)과 사이트명을 묶어 홈으로 가는 링크로 둔다.
+// 로고(홈 링크) + 주요 메뉴를 둔다. 메뉴는 자바스크립트 없이 동작하며,
+// 화면이 좁으면 가로로 스크롤된다.
+const NAV = [
+  { href: "/about", label: "소개" },
+  { href: "/guide", label: "가이드" },
+  { href: "/faq", label: "FAQ" },
+  { href: "/contact", label: "문의" },
+];
+
 export default function Header() {
   return (
     <header className="sticky top-0 z-50 bg-gray-900 shadow-sm">
-      <div className="mx-auto flex max-w-3xl items-center px-4 py-3">
+      <div className="mx-auto flex max-w-3xl items-center justify-between gap-3 px-4 py-3">
         <Link
           href="/"
           aria-label="Address-Converter 홈"
-          className="flex items-center gap-2.5 rounded-md outline-none focus-visible:ring-2 focus-visible:ring-blue-400/70"
+          className="flex shrink-0 items-center gap-2.5 rounded-md outline-none focus-visible:ring-2 focus-visible:ring-blue-400/70"
         >
           {/* 파비콘과 동일한 위치 핀 마크 */}
           <svg
@@ -30,6 +38,21 @@ export default function Header() {
             <span className="text-blue-400">-Converter</span>
           </span>
         </Link>
+
+        <nav
+          aria-label="주요 메뉴"
+          className="flex items-center gap-0.5 overflow-x-auto text-sm font-medium"
+        >
+          {NAV.map((item) => (
+            <Link
+              key={item.href}
+              href={item.href}
+              className="whitespace-nowrap rounded-md px-2.5 py-1.5 text-gray-300 transition-colors hover:bg-white/10 hover:text-white"
+            >
+              {item.label}
+            </Link>
+          ))}
+        </nav>
       </div>
     </header>
   );
