@@ -79,6 +79,10 @@ export default function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <head>
+        {/* AdSense 사이트 소유권 확인용 메타태그 (클라이언트 ID가 설정된 경우에만) */}
+        {adsenseClientId && (
+          <meta name="google-adsense-account" content={adsenseClientId} />
+        )}
         {/* 본문 기본 폰트: Pretendard (한글 가독성 좋은 웹폰트, 공식 CDN의 동적 서브셋 사용) */}
         <link
           rel="stylesheet"
