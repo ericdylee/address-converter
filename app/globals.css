@@ -60,3 +60,11 @@ body {
   background: #dbeafe;
   color: #172554;
 }
+
+/* 가로 스크롤은 되지만 스크롤바는 보이지 않게 (아주 좁은 기기의 헤더 메뉴 등) */
+@utility scrollbar-none {
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}

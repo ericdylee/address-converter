@@ -13,17 +13,17 @@ const NAV = [
 export default function Header() {
   return (
     <header className="sticky top-0 z-50 bg-gray-900 shadow-sm">
-      <div className="mx-auto flex max-w-3xl items-center justify-between gap-3 px-4 py-3">
+      <div className="mx-auto flex max-w-3xl items-center justify-between gap-2 px-3 py-3 sm:gap-3 sm:px-4">
         <Link
           href="/"
           aria-label="Address-Converter 홈"
-          className="flex shrink-0 items-center gap-2.5 rounded-md outline-none focus-visible:ring-2 focus-visible:ring-blue-400/70"
+          className="flex shrink-0 items-center gap-1.5 rounded-md outline-none focus-visible:ring-2 focus-visible:ring-blue-400/70 sm:gap-2.5"
         >
           {/* 파비콘과 동일한 위치 핀 마크 */}
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 64 64"
-            className="h-7 w-7 shrink-0"
+            className="h-6 w-6 shrink-0 sm:h-7 sm:w-7"
             aria-hidden="true"
           >
             <rect width="64" height="64" rx="15" fill="#2563eb" />
@@ -33,7 +33,7 @@ export default function Header() {
             />
             <circle cx="32" cy="31" r="7" fill="#2563eb" />
           </svg>
-          <span className="text-base font-bold tracking-tight sm:text-lg">
+          <span className="text-[13px] font-bold tracking-tight sm:text-lg">
             <span className="text-white">Address</span>
             <span className="text-blue-400">-Converter</span>
           </span>
@@ -41,13 +41,13 @@ export default function Header() {
 
         <nav
           aria-label="주요 메뉴"
-          className="flex items-center gap-0.5 overflow-x-auto text-sm font-medium"
+          className="scrollbar-none flex items-center overflow-x-auto text-[13px] font-medium sm:gap-0.5 sm:text-sm"
         >
           {NAV.map((item) => (
             <Link
               key={item.href}
               href={item.href}
-              className="whitespace-nowrap rounded-md px-2.5 py-1.5 text-gray-300 transition-colors hover:bg-white/10 hover:text-white"
+              className="whitespace-nowrap rounded-md px-1.5 py-1.5 text-gray-300 transition-colors hover:bg-white/10 hover:text-white sm:px-2.5"
             >
               {item.label}
             </Link>

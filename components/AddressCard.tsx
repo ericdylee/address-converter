@@ -43,6 +43,7 @@ export default function AddressCard({ label, value, placeholder }: Props) {
         type="button"
         onClick={handleCopy}
         disabled={!hasValue}
+        aria-live="polite"
         className={`min-w-[84px] rounded-lg px-4 text-sm font-semibold transition-colors ${
           !hasValue
             ? "cursor-not-allowed bg-gray-100 text-gray-400"

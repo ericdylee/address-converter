@@ -39,13 +39,14 @@ function FullAddressBlock({ value }: { value: string }) {
       <button
         type="button"
         onClick={copy}
-        className={`min-h-12 rounded-lg px-5 text-sm font-semibold transition-colors sm:min-w-[92px] ${
+        aria-live="polite"
+        className={`min-h-12 whitespace-nowrap rounded-lg px-5 text-sm font-semibold transition-colors ${
           copied
             ? "bg-emerald-600 text-white"
             : "bg-blue-600 text-white shadow-sm shadow-blue-600/20 hover:bg-blue-700"
         }`}
       >
-        {copied ? "복사됨!" : "복사"}
+        {copied ? "복사됨!" : "전체 복사"}
       </button>
     </div>
   );
@@ -180,9 +181,12 @@ function ResultContent() {
   const state = params.get("state") ?? "";
   const zip = params.get("zip") ?? "";
   const ko = params.get("ko") ?? "";
-  const detail = params.get("detail") ?? "";
   const country: Country = params.get("country") === "jp" ? "jp" : "kr";
   const isJp = country === "jp";
+
+  // 상세주소(동·호 등). 검색 단계에서 넘어온 값으로 시작하고,
+  // 결과 페이지에서도 직접 추가·수정할 수 있다 (입력 즉시 Street 칸에 반영).
+  const [detail, setDetail] = useState(params.get("detail") ?? "");
 
   // 일본은 동네(street)가 빈 우편번호가 있으므로(시 전체) city·state·zip만 있으면 유효.
   const hasRequired = isJp ? city && state && zip : street && city && state && zip;
@@ -191,7 +195,9 @@ function ResultContent() {
     return (
       <main className="min-h-screen bg-background px-4 py-10">
         <div className="max-w-2xl mx-auto text-center">
-          <p className="text-gray-700">잘못된 접근입니다.</p>
+          <p className="text-gray-700">
+            표시할 주소 정보가 없습니다. 홈에서 주소를 다시 검색해주세요.
+          </p>
           <Link
             href="/"
             className="mt-4 inline-block rounded-lg bg-blue-600 px-4 py-2 text-sm font-semibold text-white shadow-sm shadow-blue-600/20 hover:bg-blue-700"
@@ -233,6 +239,28 @@ function ResultContent() {
             <div className="break-words text-base leading-7 text-gray-950">
               {ko}
             </div>
+          </div>
+          <div className="rounded-lg border border-border bg-white p-5 shadow-card">
+            <label
+              htmlFor="detail-input"
+              className="mb-2 block text-xs font-semibold uppercase text-gray-500"
+            >
+              {isJp ? "번지·건물 추가 (선택)" : "상세주소 추가 (선택)"}
+            </label>
+            <input
+              id="detail-input"
+              type="text"
+              value={detail}
+              onChange={(e) => setDetail(e.target.value)}
+              placeholder={isJp ? "예: 1-1-1 〇〇빌딩 5F" : "예: 101동 502호"}
+              className="h-11 w-full rounded-lg border border-gray-300 bg-white px-3.5 text-[15px] text-gray-950 shadow-sm outline-none transition placeholder:text-gray-400 hover:border-blue-500 focus:border-blue-500 focus:ring-[3px] focus:ring-blue-100"
+              autoComplete="off"
+            />
+            <p className="mt-2 text-xs leading-5 text-gray-500">
+              {isJp
+                ? "입력하면 아래 Street 칸 맨 앞에 합쳐집니다."
+                : "입력하면 아래 Street 칸에 영문으로 합쳐집니다. (예: 101동 502호 → 101-502)"}
+            </p>
           </div>
           <FullAddressBlock value={fullEnglish} />
         </section>

@@ -90,7 +90,9 @@ export default function RootLayout({
         {adsenseClientId && (
           <meta name="google-adsense-account" content={adsenseClientId} />
         )}
-        {/* 본문 기본 폰트: Pretendard (한글 가독성 좋은 웹폰트, 공식 CDN의 동적 서브셋 사용) */}
+        {/* 본문 기본 폰트: Pretendard (한글 가독성 좋은 웹폰트, 공식 CDN의 동적 서브셋 사용)
+            preconnect로 CDN과의 연결을 미리 맺어 첫 화면 글꼴 로딩을 앞당긴다. */}
+        <link rel="preconnect" href="https://cdn.jsdelivr.net" crossOrigin="anonymous" />
         <link
           rel="stylesheet"
           href="https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.css"
