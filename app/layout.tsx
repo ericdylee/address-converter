@@ -56,6 +56,13 @@ export const metadata: Metadata = {
     description,
   },
   robots: { index: true, follow: true },
+  // 네이버 서치어드바이저 사이트 소유확인용 메타태그.
+  // other에 넣은 키 그대로 <meta name="naver-site-verification" content="..."> 로 렌더됨.
+  verification: {
+    other: {
+      "naver-site-verification": "e52cddfb91c7105e57acf177046d70525744dde3",
+    },
+  },
 };
 
 // 모바일 대응: 기기 너비에 맞춰 렌더(확대/축소 기본값) + 모바일 브라우저
