@@ -15,6 +15,7 @@ npm run dev      # 개발 서버 (Turbopack), http://localhost:3000
 npm run build    # 프로덕션 빌드
 npm run start    # 프로덕션 빌드 실행
 npm run lint     # eslint
+npm test         # vitest 단위 테스트 (lib/*.test.ts)
 npx tsc --noEmit # 타입 체크만
 ```
 
