@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { CheckIcon, CopyIcon } from "@/components/icons";
 
 type Props = {
   label: string;
@@ -39,20 +40,22 @@ export default function AddressCard({ label, value, placeholder }: Props) {
           {hasValue ? value : placeholder ?? "—"}
         </div>
       </div>
+      {/* 보조 액션이라 고스트 스타일 — 진한 파랑은 "전체 복사" 하나만 (버튼 위계) */}
       <button
         type="button"
         onClick={handleCopy}
         disabled={!hasValue}
         aria-live="polite"
-        className={`min-w-[84px] rounded-lg px-4 text-sm font-semibold transition-colors ${
+        className={`flex min-w-[84px] items-center justify-center gap-1.5 rounded-lg border px-4 text-sm font-semibold transition-colors ${
           !hasValue
-            ? "cursor-not-allowed bg-gray-100 text-gray-400"
+            ? "cursor-not-allowed border-gray-200 bg-gray-50 text-gray-300"
             : copied
-              ? "bg-emerald-600 text-white"
-              : "bg-blue-600 text-white shadow-sm shadow-blue-600/20 hover:bg-blue-700"
+              ? "border-emerald-300 bg-emerald-50 text-emerald-700"
+              : "border-gray-300 bg-white text-gray-700 shadow-field hover:border-blue-500 hover:text-blue-700"
         }`}
       >
-        {copied ? "복사됨!" : "복사"}
+        {copied ? <CheckIcon /> : <CopyIcon />}
+        {copied ? "복사됨" : "복사"}
       </button>
     </div>
   );

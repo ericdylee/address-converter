@@ -54,6 +54,9 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-sans);
+  /* 한글이 단어 중간에서 잘리지 않게 (예: "상세주소" → "상세주" + "소" 방지).
+     영문 주소 값처럼 강제 줄바꿈이 필요한 곳은 break-words/break-all이 우선 적용된다. */
+  word-break: keep-all;
 }
 
 ::selection {
@@ -67,4 +70,21 @@ body {
   &::-webkit-scrollbar {
     display: none;
   }
+}
+
+/* 에어메일 봉투 줄무늬 — 브랜드 시그니처 (DESIGN.md: 화면당 1~2곳만).
+   얇은 가로 띠(h-1.5 정도)로 카드 상단에 붙여 쓴다. */
+@utility airmail-stripe {
+  background-color: #ffffff;
+  background-image: repeating-linear-gradient(
+    -45deg,
+    #2563eb 0,
+    #2563eb 10px,
+    transparent 10px,
+    transparent 20px,
+    #dc2626 20px,
+    #dc2626 30px,
+    transparent 30px,
+    transparent 40px
+  );
 }

@@ -4,6 +4,7 @@ import { useState, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 import AddressCard from "@/components/AddressCard";
+import { CheckIcon, CopyIcon } from "@/components/icons";
 import { combineStreetWithDetail, combineJpStreet } from "@/lib/romanize";
 
 type Country = "kr" | "jp";
@@ -28,24 +29,29 @@ function FullAddressBlock({ value }: { value: string }) {
 
   return (
     <div className="flex flex-col gap-2 sm:flex-row sm:items-stretch">
-      <div className="flex-1 rounded-lg border border-blue-200 bg-blue-50/80 px-4 py-3 shadow-[0_1px_2px_rgba(37,99,235,0.08)]">
-        <div className="mb-1 text-xs font-semibold uppercase text-blue-700">
-          영문 주소
-        </div>
-        <div className="break-words font-mono text-base leading-7 text-gray-950">
-          {value}
+      {/* 우편 라벨 연출: 에어메일 줄무늬 + 흰 카드 + mono 주소 (이 화면의 모티프 사용처는 여기 한 곳) */}
+      <div className="flex-1 overflow-hidden rounded-lg border border-border bg-white shadow-card">
+        <div className="airmail-stripe h-1.5" aria-hidden="true" />
+        <div className="px-4 py-3">
+          <div className="mb-1 text-xs font-semibold uppercase text-gray-500">
+            영문 주소
+          </div>
+          <div className="break-words font-mono text-base leading-7 text-gray-950">
+            {value}
+          </div>
         </div>
       </div>
       <button
         type="button"
         onClick={copy}
         aria-live="polite"
-        className={`min-h-12 whitespace-nowrap rounded-lg px-5 text-sm font-semibold transition-colors ${
+        className={`flex min-h-12 items-center justify-center gap-1.5 whitespace-nowrap rounded-lg px-5 text-sm font-semibold transition-colors ${
           copied
             ? "bg-emerald-600 text-white"
             : "bg-blue-600 text-white shadow-sm shadow-blue-600/20 hover:bg-blue-700"
         }`}
       >
+        {copied ? <CheckIcon /> : <CopyIcon />}
         {copied ? "복사됨!" : "전체 복사"}
       </button>
     </div>
@@ -152,7 +158,7 @@ function FieldMappingGuide({ country }: { country: Country }) {
           ))}
         </ul>
 
-        <div className="mt-4 border-l-2 border-blue-500 bg-blue-50/60 px-4 py-3">
+        <div className="mt-4 rounded-lg bg-blue-50/60 px-4 py-3">
           {country === "jp" ? (
             <p className="text-sm text-blue-800 leading-relaxed">
               <span className="font-semibold">팁 · </span>
@@ -222,13 +228,13 @@ function ResultContent() {
   return (
     <main className="min-h-screen bg-background px-4 py-10 sm:py-14">
       <div className="mx-auto max-w-3xl">
-        <header className="mb-6 flex items-center justify-between">
+        <header className="mb-6">
           <Link href="/" className="text-sm font-medium text-blue-700 hover:text-blue-800">
             ← 다시 검색
           </Link>
-          <span className="rounded-full border border-blue-100 bg-blue-50 px-3 py-1 text-xs font-semibold text-blue-700">
-            변환 결과
-          </span>
+          <h1 className="mt-3 text-2xl font-bold tracking-tight text-gray-950">
+            영문 주소 변환 결과
+          </h1>
         </header>
 
         <section className="mb-8 space-y-3">

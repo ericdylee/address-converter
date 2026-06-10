@@ -54,15 +54,22 @@ export default function HomePage() {
     <main className="min-h-screen bg-background px-4 py-10 sm:py-14">
       <div className="mx-auto max-w-3xl">
         <header className="mb-8 text-center">
-          <h1 className="text-2xl font-bold text-gray-950 sm:text-3xl">
-            한글·일본 주소 → 영문 변환기
+          <h1 className="text-balance break-keep text-3xl font-extrabold tracking-tight text-gray-950 sm:text-4xl">
+            한글·일본 주소{" "}
+            <span aria-hidden="true" className="text-blue-600">
+              →
+            </span>{" "}
+            영문 변환기
           </h1>
-          <p className="mt-3 text-sm leading-6 text-gray-600">
+          <p className="mt-3 text-[15px] leading-7 text-gray-600">
             해외 사이트 입력란에 맞춰 필드별로 복사할 수 있습니다
           </p>
         </header>
 
-        <section className="rounded-lg border border-border bg-white p-5 shadow-card sm:p-6">
+        <section className="overflow-hidden rounded-lg border border-border bg-white shadow-card">
+          {/* 에어메일 줄무늬 — 검색 카드가 이 화면의 주인공임을 표시하는 시그니처 */}
+          <div className="airmail-stripe h-1.5" aria-hidden="true" />
+          <div className="p-5 sm:p-6">
           <div
             className="mb-6 flex gap-1 rounded-lg border border-border bg-gray-50 p-1"
             role="tablist"
@@ -107,11 +114,12 @@ export default function HomePage() {
           ) : (
             <JpAddressSearch onSelect={handleJpSelect} />
           )}
+          </div>
         </section>
 
         {/* 검색 카드 아래 설명·안내 콘텐츠 (서비스 이해를 돕고 검색엔진 색인에도 도움) */}
         <section className="mt-10 space-y-6">
-          <div className="rounded-lg border border-border bg-white p-6 shadow-card sm:p-8">
+          <div className="rounded-lg border border-border bg-white p-6 shadow-field sm:p-8">
             <h2 className="text-xl font-bold text-gray-950">
               한글·일본 주소를 영문으로 쉽고 정확하게
             </h2>
@@ -124,7 +132,7 @@ export default function HomePage() {
           </div>
 
           <div className="grid gap-4 sm:grid-cols-2">
-            <div className="rounded-lg border border-border bg-white p-6 shadow-card">
+            <div className="rounded-lg border border-border bg-white p-6 shadow-field">
               <h2 className="text-base font-semibold text-gray-950">
                 이런 분께 추천해요
               </h2>
@@ -135,7 +143,7 @@ export default function HomePage() {
                 <li>일본 주소를 영문으로 정리해야 하는 분</li>
               </ul>
             </div>
-            <div className="rounded-lg border border-border bg-white p-6 shadow-card">
+            <div className="rounded-lg border border-border bg-white p-6 shadow-field">
               <h2 className="text-base font-semibold text-gray-950">
                 사용 방법 (3단계)
               </h2>
@@ -147,25 +155,23 @@ export default function HomePage() {
             </div>
           </div>
 
-          <div className="rounded-lg border border-blue-100 bg-blue-50/70 p-6 text-center">
-            <p className="text-sm leading-7 text-blue-900">
-              영문 주소 작성법이 궁금하다면{" "}
-              <Link
-                href="/guide"
-                className="font-semibold text-blue-700 hover:underline"
-              >
-                사용 가이드
-              </Link>
-              를, 궁금한 점은{" "}
-              <Link
-                href="/faq"
-                className="font-semibold text-blue-700 hover:underline"
-              >
-                자주 묻는 질문
-              </Link>
-              을 확인하세요.
-            </p>
-          </div>
+          <p className="text-center text-sm leading-7 text-gray-600">
+            영문 주소 작성법이 궁금하다면{" "}
+            <Link
+              href="/guide"
+              className="font-semibold text-blue-700 hover:underline"
+            >
+              사용 가이드
+            </Link>
+            를, 궁금한 점은{" "}
+            <Link
+              href="/faq"
+              className="font-semibold text-blue-700 hover:underline"
+            >
+              자주 묻는 질문
+            </Link>
+            을 확인하세요.
+          </p>
         </section>
       </div>
     </main>

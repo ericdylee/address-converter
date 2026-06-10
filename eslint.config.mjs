@@ -12,6 +12,9 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // 에이전트 스킬 스크립트 (우리 코드가 아님)
+    ".claude/**",
+    ".impeccable/**",
   ]),
 ]);
 

@@ -79,13 +79,14 @@ Tailwind 클래스 이름이 곧 토큰입니다. `hex`는 참고용 근삿값(T
 
 ## 3. 타이포그래피 (Typography)
 
-- **본문 폰트:** Geist Sans (`--font-geist-sans`, `next/font/google`)
+- **본문 폰트:** Pretendard Variable (CDN, `--font-sans` 1순위) → Geist Sans 폴백
 - **모노 폰트:** Geist Mono (`--font-geist-mono`) — **영문 주소 값 전용**(`font-mono`)
-- 전역 `antialiased`
+- 전역 `antialiased`, 전역 `word-break: keep-all` (한글이 단어 중간에서 잘리지 않게 — body에 적용)
 
 | 용도 | 클래스 |
 |------|--------|
-| 페이지 제목 (h1) | `text-2xl font-semibold` (sm 이상 `text-3xl`) |
+| 홈 히어로 (h1) | `text-3xl font-extrabold tracking-tight text-balance break-keep` (sm 이상 `text-4xl`) — "→"는 `text-blue-600` 포인트 |
+| 내부 페이지 제목 (h1) | `text-2xl font-bold tracking-tight` |
 | 섹션 제목 (h2) | `font-semibold` (privacy), `text-xs font-semibold` (구분선 라벨) |
 | 본문 / 버튼 / 링크 / 라벨 | `text-sm` |
 | 입력창 텍스트 | `text-[15px]` |
@@ -145,7 +146,15 @@ Tailwind 클래스 이름이 곧 토큰입니다. `hex`는 참고용 근삿값(T
 bg-blue-600 text-white shadow-sm shadow-blue-600/20 hover:bg-blue-700  + rounded-lg + text-sm font-semibold
 ```
 - **복사 완료 상태:** `bg-emerald-600 text-white` (1.5초간 "복사됨!")
-- **비활성(공통):** `cursor-not-allowed bg-gray-100 text-gray-400` (필드 카드·검색 버튼 동일 ✅)
+- **버튼 위계:** 진한 파랑(solid)은 **화면당 핵심 액션 1개**만 (검색, 전체 복사). 보조 액션은 6.1b 고스트.
+
+### 6.1b 보조 버튼 (Ghost Button — 필드별 복사)
+```
+flex items-center gap-1.5 rounded-lg border border-gray-300 bg-white text-gray-700 shadow-field
+hover:border-blue-500 hover:text-blue-700  + text-sm font-semibold + CopyIcon(components/icons.tsx)
+```
+- **복사 완료 상태:** `border-emerald-300 bg-emerald-50 text-emerald-700` + CheckIcon ("복사됨")
+- **비활성:** `cursor-not-allowed border-gray-200 bg-gray-50 text-gray-300`
 
 ### 6.2 입력창 (Input)
 ```
@@ -183,20 +192,27 @@ rounded px-1.5 py-0.5 text-[10px] font-bold
 - 항목: `cursor-pointer border-b border-gray-100 px-4 py-3 last:border-b-0`
 - 항목 강조(키보드/hover): `bg-blue-50` / 일반 hover: `hover:bg-gray-50`
 
-### 6.8 강조 카드 — 영문 주소 한 줄 (Highlight Card)
+### 6.8 우편 라벨 카드 — 영문 주소 한 줄 (Airmail Label Card)
 ```
-rounded-lg border border-blue-200 bg-blue-50/80 px-4 py-3 shadow-[0_1px_2px_rgba(37,99,235,0.08)]
+overflow-hidden rounded-lg border border-border bg-white shadow-card
+  └ <div class="airmail-stripe h-1.5" aria-hidden /> (상단 줄무늬)
+  └ <div class="px-4 py-3"> 라벨 + font-mono 값 </div>
 ```
+- `airmail-stripe`는 `globals.css`의 유틸리티(빨강·파랑 사선 반복 그라데이션). **브랜드 시그니처 — 화면당 1~2곳만** (현재: 홈 검색 카드 상단, 결과 영문 주소 블록).
 
-### 6.9 칩 (Status Chip — "변환 결과")
+### 6.9 예시 칩 (Example Chip — 검색 카드)
 ```
-rounded-full border border-blue-100 bg-blue-50 px-3 py-1 text-xs font-semibold text-blue-700
+rounded-full border border-gray-200 bg-white px-3 py-1 text-xs text-gray-600
+hover:border-blue-400 hover:text-blue-700
 ```
+- 입력이 비어 있을 때만 노출. 클릭하면 해당 예시로 즉시 검색.
+- (구) "변환 결과" 상태 칩은 결과 페이지 h1 도입과 함께 제거됨.
 
 ### 6.10 팁 박스 (Callout)
 ```
-border-l-2 border-blue-500 bg-blue-50/60 px-4 py-3   + 글자 text-blue-800
+rounded-lg bg-blue-50/60 px-4 py-3   + 글자 text-blue-800
 ```
+- 좌측 색 보더(border-l) 사용 금지 — 배경 틴트만으로 구분.
 
 ### 6.11 접이식 가이드 (Details / Summary)
 - 컨테이너: `rounded-lg border border-border bg-white`

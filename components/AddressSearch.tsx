@@ -12,6 +12,9 @@ type Props = {
 // sessionStorage라 탭을 닫으면 사라진다.
 const QUERY_STORAGE_KEY = "kr-address-query";
 
+// 빈 입력 상태에서 눌러볼 수 있는 예시 (도로명 / 관공서 / 건물명+상세주소 케이스를 하나씩)
+const EXAMPLE_QUERIES = ["강남대로 396", "세종대로 110", "동덕아파트 101동 504호"];
+
 // 검색어에서 상세주소(동·호 등)를 떼어내고 juso API에 보낼 키워드만 남긴다.
 function toKeyword(raw: string): string {
   const trimmed = raw.trim();
@@ -228,6 +231,26 @@ export default function AddressSearch({ onSelect }: Props) {
           </svg>
         </button>
       </div>
+
+      {trimmedLength === 0 && (
+        <div className="mt-3 flex flex-wrap items-center gap-2">
+          <span className="text-xs text-gray-500">예시:</span>
+          {EXAMPLE_QUERIES.map((example) => (
+            <button
+              key={example}
+              type="button"
+              onClick={() => {
+                interactedRef.current = true;
+                setQuery(example);
+                sessionStorage.setItem(QUERY_STORAGE_KEY, example);
+              }}
+              className="rounded-full border border-gray-200 bg-white px-3 py-1 text-xs text-gray-600 transition-colors hover:border-blue-400 hover:text-blue-700"
+            >
+              {example}
+            </button>
+          ))}
+        </div>
+      )}
 
       {trimmedLength === 1 && (
         <p className="mt-2 text-sm text-gray-500">
