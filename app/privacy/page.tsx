@@ -18,7 +18,7 @@ export default function PrivacyPage() {
             ← 홈으로
           </Link>
           <h1 className="mt-4 text-2xl font-semibold text-gray-950">개인정보처리방침</h1>
-          <p className="mt-2 text-xs text-gray-500">시행일 · 최종 수정일: 2026-06-04</p>
+          <p className="mt-2 text-xs text-gray-500">시행일: 2026-06-04 · 최종 수정일: 2026-06-11</p>
         </header>
 
         <div className="space-y-6 rounded-lg border border-border bg-white p-6 text-sm leading-7 text-gray-700 shadow-card">
@@ -32,7 +32,8 @@ export default function PrivacyPage() {
             <p>
               서비스는 회원가입이나 로그인 기능이 없으며, 이름·연락처 등 이용자의 개인정보를 직접
               수집하거나 저장하지 않습니다. 이용자가 입력한 주소 검색어는 영문 변환을 위해
-              행정안전부 도로명주소 영문 API 조회에만 사용되며, 서버에 저장하지 않습니다.
+              행정안전부 도로명주소 영문 API 조회 및 일본 우편번호 데이터(일본우편 기반) 조회에만
+              사용되며, 서버에 저장하지 않습니다.
             </p>
           </section>
 
