@@ -259,7 +259,7 @@ function ResultContent() {
               value={detail}
               onChange={(e) => setDetail(e.target.value)}
               placeholder={isJp ? "예: 1-1-1 〇〇빌딩 5F" : "예: 101동 502호"}
-              className="h-11 w-full rounded-lg border border-gray-300 bg-white px-3.5 text-[15px] text-gray-950 shadow-sm outline-none transition placeholder:text-gray-400 hover:border-blue-500 focus:border-blue-500 focus:ring-[3px] focus:ring-blue-100"
+              className="h-11 w-full rounded-lg border border-gray-300 bg-white px-3.5 text-[15px] text-gray-950 shadow-sm outline-none transition placeholder:text-gray-500 hover:border-blue-500 focus:border-blue-500 focus:ring-[3px] focus:ring-blue-100"
               autoComplete="off"
             />
             <p className="mt-2 text-xs leading-5 text-gray-500">

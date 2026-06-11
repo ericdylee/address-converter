@@ -176,7 +176,7 @@ export default function AddressSearch({ onSelect }: Props) {
             }}
             onKeyDown={handleKeyDown}
             placeholder="예: 강남대로 396 · 101동 502호"
-            className="h-12 w-full rounded-lg border border-gray-300 bg-white px-4 text-[15px] text-gray-950 shadow-sm outline-none transition placeholder:text-gray-400 hover:border-blue-500 focus:border-blue-500 focus:ring-[3px] focus:ring-blue-100"
+            className="h-12 w-full rounded-lg border border-gray-300 bg-white px-4 text-[15px] text-gray-950 shadow-sm outline-none transition placeholder:text-gray-500 hover:border-blue-500 focus:border-blue-500 focus:ring-[3px] focus:ring-blue-100"
             autoComplete="off"
           />
           {loading && (
@@ -292,7 +292,10 @@ export default function AddressSearch({ onSelect }: Props) {
       )}
 
       {open && !loading && results.length === 0 && trimmedLength >= 2 && !error && (
-        <div className="absolute z-10 mt-2 w-full rounded-lg border border-border bg-white px-4 py-3 text-sm text-gray-500 shadow-dropdown">
+        <div
+          role="status"
+          className="absolute z-10 mt-2 w-full rounded-lg border border-border bg-white px-4 py-3 text-sm text-gray-500 shadow-dropdown"
+        >
           <p className="font-medium text-gray-700">검색 결과가 없습니다.</p>
           <p className="mt-1 text-xs leading-5">
             도로명+건물번호(예: 테헤란로 152)나 건물명으로 다시 검색해 보세요.

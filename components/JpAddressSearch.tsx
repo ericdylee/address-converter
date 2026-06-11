@@ -169,7 +169,7 @@ export default function JpAddressSearch({ onSelect }: Props) {
             }}
             onKeyDown={handleKeyDown}
             placeholder="예: 100-0005"
-            className="h-12 w-full rounded-lg border border-gray-300 bg-white px-4 text-[15px] text-gray-950 shadow-sm outline-none transition placeholder:text-gray-400 hover:border-blue-500 focus:border-blue-500 focus:ring-[3px] focus:ring-blue-100"
+            className="h-12 w-full rounded-lg border border-gray-300 bg-white px-4 text-[15px] text-gray-950 shadow-sm outline-none transition placeholder:text-gray-500 hover:border-blue-500 focus:border-blue-500 focus:ring-[3px] focus:ring-blue-100"
             autoComplete="off"
           />
           {loading && (
@@ -247,7 +247,7 @@ export default function JpAddressSearch({ onSelect }: Props) {
             sessionStorage.setItem(BLOCK_STORAGE_KEY, e.target.value);
           }}
           placeholder="예: 1-1-1 또는 1-1-1 〇〇빌딩 5F"
-          className="h-12 w-full rounded-lg border border-gray-300 bg-white px-4 text-[15px] text-gray-950 shadow-sm outline-none transition placeholder:text-gray-400 hover:border-blue-500 focus:border-blue-500 focus:ring-[3px] focus:ring-blue-100"
+          className="h-12 w-full rounded-lg border border-gray-300 bg-white px-4 text-[15px] text-gray-950 shadow-sm outline-none transition placeholder:text-gray-500 hover:border-blue-500 focus:border-blue-500 focus:ring-[3px] focus:ring-blue-100"
           autoComplete="off"
         />
         <p className="mt-2 text-xs leading-5 text-gray-500">
@@ -287,7 +287,10 @@ export default function JpAddressSearch({ onSelect }: Props) {
       )}
 
       {open && !loading && results.length === 0 && digits.length === 7 && !error && (
-        <div className="absolute z-10 mt-2 w-full rounded-lg border border-border bg-white px-4 py-3 text-sm text-gray-500 shadow-dropdown">
+        <div
+          role="status"
+          className="absolute z-10 mt-2 w-full rounded-lg border border-border bg-white px-4 py-3 text-sm text-gray-500 shadow-dropdown"
+        >
           <p className="font-medium text-gray-700">해당 우편번호를 찾을 수 없습니다.</p>
           <p className="mt-1 text-xs leading-5">
             숫자 7자리를 다시 확인해 주세요. 우편번호는 일본 우편(Japan Post)
