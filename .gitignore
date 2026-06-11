@@ -49,3 +49,8 @@ next-env.d.ts
 # verification artifacts
 verify-result.png
 .gstack/
+
+# 디자인 감사/브라우저 점검 산출물
+.impeccable/
+audit-*.png
+result-page.png

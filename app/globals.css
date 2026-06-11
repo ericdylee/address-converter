@@ -73,7 +73,9 @@ body {
 }
 
 /* 에어메일 봉투 줄무늬 — 브랜드 시그니처 (DESIGN.md: 화면당 1~2곳만).
-   얇은 가로 띠(h-1.5 정도)로 카드 상단에 붙여 쓴다. */
+   얇은 가로 띠(h-1.5 정도)로 카드 상단에 붙여 쓴다.
+   카드 안에서 쓸 때 모서리는 이 요소에 rounded-t-lg를 직접 줄 것 — 부모에
+   overflow-hidden을 주면 absolute 드롭다운까지 잘린다 (2026-06-11 P0 원인). */
 @utility airmail-stripe {
   background-color: #ffffff;
   background-image: repeating-linear-gradient(
