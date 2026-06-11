@@ -22,6 +22,12 @@ const articles = [
     desc: "Address Line 1/2, City, State, ZIP 같은 해외 양식의 칸에 무엇을 넣어야 하는지 예시로 설명합니다.",
     example: "Address Line 1 → 152 Teheran-ro · City → Gangnam-gu · ZIP → 06236",
   },
+  {
+    href: "/guide/japan-address",
+    title: "일본 주소, 영문으로 쓰는 법",
+    desc: "도도부현·시구정촌 구분, 丁目·番地·号의 하이픈 표기, 우편번호 형식까지 일본 주소 로마자 표기 규칙을 정리했습니다.",
+    example: "東京都千代田区丸の内1-1-1 → 1-1-1 Marunouchi, Chiyoda-ku, Tokyo",
+  },
 ];
 
 export default function GuideIndexPage() {
