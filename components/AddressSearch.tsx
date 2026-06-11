@@ -293,7 +293,11 @@ export default function AddressSearch({ onSelect }: Props) {
 
       {open && !loading && results.length === 0 && trimmedLength >= 2 && !error && (
         <div className="absolute z-10 mt-2 w-full rounded-lg border border-border bg-white px-4 py-3 text-sm text-gray-500 shadow-dropdown">
-          검색 결과가 없습니다.
+          <p className="font-medium text-gray-700">검색 결과가 없습니다.</p>
+          <p className="mt-1 text-xs leading-5">
+            도로명+건물번호(예: 테헤란로 152)나 건물명으로 다시 검색해 보세요.
+            띄어쓰기를 바꾸거나 일부만 입력해도 좋습니다.
+          </p>
         </div>
       )}
     </div>

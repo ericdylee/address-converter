@@ -288,7 +288,11 @@ export default function JpAddressSearch({ onSelect }: Props) {
 
       {open && !loading && results.length === 0 && digits.length === 7 && !error && (
         <div className="absolute z-10 mt-2 w-full rounded-lg border border-border bg-white px-4 py-3 text-sm text-gray-500 shadow-dropdown">
-          해당 우편번호를 찾을 수 없습니다.
+          <p className="font-medium text-gray-700">해당 우편번호를 찾을 수 없습니다.</p>
+          <p className="mt-1 text-xs leading-5">
+            숫자 7자리를 다시 확인해 주세요. 우편번호는 일본 우편(Japan Post)
+            사이트나 받는 분에게 확인할 수 있습니다.
+          </p>
         </div>
       )}
     </div>
