@@ -66,9 +66,11 @@ export default function HomePage() {
           </p>
         </header>
 
-        <section className="overflow-hidden rounded-lg border border-border bg-white shadow-card">
-          {/* 에어메일 줄무늬 — 검색 카드가 이 화면의 주인공임을 표시하는 시그니처 */}
-          <div className="airmail-stripe h-1.5" aria-hidden="true" />
+        <section className="rounded-lg border border-border bg-white shadow-card">
+          {/* 에어메일 줄무늬 — 검색 카드가 이 화면의 주인공임을 표시하는 시그니처.
+              줄무늬 모서리는 직접 둥글게 처리 (section에 overflow-hidden을 주면
+              자동완성 드롭다운까지 잘리므로 금지 — 2026-06-11 P0 회귀의 원인). */}
+          <div className="airmail-stripe h-1.5 rounded-t-lg" aria-hidden="true" />
           <div className="p-5 sm:p-6">
           <div
             className="mb-6 flex gap-1 rounded-lg border border-border bg-gray-50 p-1"
