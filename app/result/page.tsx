@@ -91,7 +91,7 @@ const JP_ROWS: GuideRow[] = [
   {
     foreign: "Address / Street address / Address Line 1",
     field: "Street Address",
-    note: "번지 + 동네 (예: 1-1-1 Marunochi). 건물명도 이 칸 끝에 함께 넣어도 됩니다.",
+    note: "번지 + 동네 (예: 1-1-1 Marunouchi). 건물명도 이 칸 끝에 함께 넣어도 됩니다.",
   },
   {
     foreign: "apartment, Suite, Unit, etc. / Address Line 2 (선택)",

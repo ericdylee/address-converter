@@ -42,10 +42,10 @@ test("combineStreetWithDetail: 상세 없으면 도로명만", () => {
 });
 
 test("combineJpStreet: 번지가 동네 앞에 온다", () => {
-  expect(combineJpStreet("Marunochi", "1-1-1")).toBe("1-1-1 Marunochi");
+  expect(combineJpStreet("Marunouchi", "1-1-1")).toBe("1-1-1 Marunouchi");
 });
 
 test("combineJpStreet: 번지 없으면 동네만, 동네 없으면 번지만", () => {
-  expect(combineJpStreet("Marunochi", "")).toBe("Marunochi");
+  expect(combineJpStreet("Marunouchi", "")).toBe("Marunouchi");
   expect(combineJpStreet("", "1-1-1")).toBe("1-1-1");
 });

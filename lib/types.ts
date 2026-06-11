@@ -27,7 +27,7 @@ export type SearchError = {
 export type JpAddressResult = {
   id: string;
   japanese: string; // 한자 원본 주소 (예: 東京都千代田区丸の内)
-  englishLabel: string; // 후보 표시용 영문 한 줄 (예: Marunochi, Chiyoda-ku, Tokyo)
+  englishLabel: string; // 후보 표시용 영문 한 줄 (예: Marunouchi, Chiyoda-ku, Tokyo)
   english: AddressFields;
 };
 

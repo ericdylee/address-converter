@@ -120,7 +120,7 @@ export default function JapanAddressGuide() {
             <span className="font-mono">1-2-3</span> 처럼 하이픈으로 이어 적는
             것이 표준입니다. 일본 우편(Japan Post)의 로마자 표기도 이 방식을
             씁니다. 이 도구의 일본 탭에서 우편번호로 동네까지 찾은 뒤,
-            번지 칸에 <span className="font-mono">1-2-3</span> 형태로 입력하면
+            번지·건물번호 칸에 <span className="font-mono">1-2-3</span> 형태로 입력하면
             Street 칸 맨 앞에 자동으로 합쳐집니다.
           </p>
         </section>
