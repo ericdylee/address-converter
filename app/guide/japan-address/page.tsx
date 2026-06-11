@@ -109,6 +109,13 @@ export default function JapanAddressGuide() {
               </div>
             </div>
           </div>
+          <p className="mt-3 text-sm leading-6 text-gray-500">
+            참고: 이 도구의 변환 결과는 일본우편(Japan Post) 공식 로마자
+            데이터를 그대로 따릅니다. 공식 데이터는 장음을 생략하는 경우가
+            있어(예: 丸の内 → <span className="font-mono">Marunochi</span>),
+            널리 쓰이는 표기(<span className="font-mono">Marunouchi</span>)와
+            철자가 조금 다를 수 있습니다. 둘 다 우편 배송에는 문제가 없습니다.
+          </p>
         </section>
 
         <section>
