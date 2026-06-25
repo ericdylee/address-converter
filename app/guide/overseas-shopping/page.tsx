@@ -1,13 +1,15 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import ContentLayout from "@/components/ContentLayout";
+import GuideCta from "@/components/GuideCta";
+import GuideQuickAnswer from "@/components/GuideQuickAnswer";
+import { createPageMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = createPageMetadata({
   title: "해외직구 배송지에 한국·일본 주소 넣는 법",
   description:
-    "해외 쇼핑몰 주문서의 Address Line 1/2, City, State/Province, ZIP, Country 칸에 한국·일본 주소를 어떻게 넣어야 하는지 실제 예시로 정리했습니다.",
-  alternates: { canonical: "/guide/overseas-shopping" },
-};
+    "해외 쇼핑몰 주문서의 Address Line 1/2, City, State/Province, ZIP, Country 칸에 한국·일본 주소를 어떻게 넣는지 예시로 확인하세요.",
+  path: "/guide/overseas-shopping",
+});
 
 export default function OverseasShoppingGuide() {
   return (
@@ -16,6 +18,28 @@ export default function OverseasShoppingGuide() {
       lead="해외 주문서의 영어 칸 이름이 낯설어도, 어떤 칸에 무엇을 넣는지만 알면 됩니다."
       backLink={{ label: "가이드 목록", href: "/guide" }}
     >
+      <GuideQuickAnswer
+        title="한국 주소 빠른 답"
+        rows={[
+          { label: "Address Line 1", value: "152 Teheran-ro" },
+          { label: "Address Line 2", value: "101-502" },
+          { label: "City", value: "Gangnam-gu" },
+          { label: "State / Province", value: "Seoul" },
+          { label: "ZIP / Postal Code", value: "06236" },
+          { label: "Country", value: "South Korea" },
+        ]}
+      />
+      <GuideQuickAnswer
+        title="일본 주소 빠른 답"
+        rows={[
+          { label: "Address Line 1", value: "1-1-1 Marunouchi" },
+          { label: "City", value: "Chiyoda-ku" },
+          { label: "State / Prefecture", value: "Tokyo" },
+          { label: "ZIP / Postal Code", value: "100-0005" },
+          { label: "Country", value: "Japan" },
+        ]}
+      />
+
       <article className="space-y-7 rounded-lg border border-border bg-white p-6 text-[15px] leading-7 text-gray-700 shadow-card sm:p-8">
         <section>
           <h2 className="mb-2 text-lg font-semibold text-gray-950">
@@ -142,14 +166,7 @@ export default function OverseasShoppingGuide() {
         </section>
       </article>
 
-      <div className="mt-6 rounded-lg border border-blue-100 bg-blue-50/70 p-5 text-center">
-        <p className="text-sm text-blue-900">
-          내 주소로 바로 만들어 보세요 —{" "}
-          <Link href="/" className="font-semibold text-blue-700 hover:underline">
-            주소 변환기로 이동 →
-          </Link>
-        </p>
-      </div>
+      <GuideCta />
     </ContentLayout>
   );
 }

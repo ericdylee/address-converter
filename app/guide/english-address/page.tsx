@@ -1,13 +1,15 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import ContentLayout from "@/components/ContentLayout";
+import GuideCta from "@/components/GuideCta";
+import GuideQuickAnswer from "@/components/GuideQuickAnswer";
+import { createPageMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = createPageMetadata({
   title: "한글 주소, 영문으로 쓰는 법",
   description:
-    "한국 주소를 영문으로 작성하는 방법을 정리했습니다. 영문 주소의 어순, 도로명·지번 주소의 차이, 동/호수·층 표기, 그리고 실제 변환 예시까지 예시 중심으로 설명합니다.",
-  alternates: { canonical: "/guide/english-address" },
-};
+    "한국 주소를 영문으로 작성할 때 Address Line 1/2, City, State, ZIP 칸에 무엇을 넣는지 실제 예시로 빠르게 확인하세요.",
+  path: "/guide/english-address",
+});
 
 export default function EnglishAddressGuide() {
   return (
@@ -16,6 +18,21 @@ export default function EnglishAddressGuide() {
       lead="영문 주소는 한글 주소와 순서가 반대입니다. 원리만 이해하면 어렵지 않습니다."
       backLink={{ label: "가이드 목록", href: "/guide" }}
     >
+      <GuideQuickAnswer
+        rows={[
+          { label: "Address Line 1", value: "152 Teheran-ro" },
+          {
+            label: "Address Line 2",
+            value: "101-502",
+            note: "동/호수 칸이 따로 있을 때만 사용합니다.",
+          },
+          { label: "City", value: "Gangnam-gu" },
+          { label: "State / Province", value: "Seoul" },
+          { label: "ZIP / Postal Code", value: "06236" },
+          { label: "Country", value: "South Korea" },
+        ]}
+      />
+
       <article className="space-y-7 rounded-lg border border-border bg-white p-6 text-[15px] leading-7 text-gray-700 shadow-card sm:p-8">
         <section>
           <h2 className="mb-2 text-lg font-semibold text-gray-950">
@@ -146,14 +163,7 @@ export default function EnglishAddressGuide() {
         </section>
       </article>
 
-      <div className="mt-6 rounded-lg border border-blue-100 bg-blue-50/70 p-5 text-center">
-        <p className="text-sm text-blue-900">
-          직접 변환해 보세요 —{" "}
-          <Link href="/" className="font-semibold text-blue-700 hover:underline">
-            주소 변환기로 이동 →
-          </Link>
-        </p>
-      </div>
+      <GuideCta />
     </ContentLayout>
   );
 }

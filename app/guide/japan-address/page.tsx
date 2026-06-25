@@ -1,13 +1,15 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import ContentLayout from "@/components/ContentLayout";
+import GuideCta from "@/components/GuideCta";
+import GuideQuickAnswer from "@/components/GuideQuickAnswer";
+import { createPageMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = createPageMetadata({
   title: "일본 주소, 영문으로 쓰는 법",
   description:
-    "일본 주소를 영문(로마자)으로 작성하는 방법을 정리했습니다. 영문 주소의 어순, 도도부현·시구정촌 구분, 丁目·番地·号의 숫자 표기, 우편번호 형식, 실제 변환 예시까지 예시 중심으로 설명합니다.",
-  alternates: { canonical: "/guide/japan-address" },
-};
+    "일본 주소를 영문으로 쓸 때 번지, 동네, 시·구, 도도부현, 우편번호를 어느 순서와 어느 칸에 넣는지 예시로 정리했습니다.",
+  path: "/guide/japan-address",
+});
 
 export default function JapanAddressGuide() {
   return (
@@ -16,6 +18,21 @@ export default function JapanAddressGuide() {
       lead="일본 주소도 영문으로 쓸 때는 순서가 반대가 됩니다. 우편번호와 丁目·番地·号 규칙만 알면 어렵지 않습니다."
       backLink={{ label: "가이드 목록", href: "/guide" }}
     >
+      <GuideQuickAnswer
+        rows={[
+          { label: "Address Line 1", value: "1-1-1 Marunouchi" },
+          {
+            label: "Address Line 2",
+            value: "Sakura Bldg. 5F",
+            note: "건물명·층·호수가 있을 때만 사용합니다.",
+          },
+          { label: "City", value: "Chiyoda-ku" },
+          { label: "State / Prefecture", value: "Tokyo" },
+          { label: "ZIP / Postal Code", value: "100-0005" },
+          { label: "Country", value: "Japan" },
+        ]}
+      />
+
       <article className="space-y-7 rounded-lg border border-border bg-white p-6 text-[15px] leading-7 text-gray-700 shadow-card sm:p-8">
         <section>
           <h2 className="mb-2 text-lg font-semibold text-gray-950">
@@ -167,14 +184,7 @@ export default function JapanAddressGuide() {
         </section>
       </article>
 
-      <div className="mt-6 rounded-lg border border-blue-100 bg-blue-50/70 p-5 text-center">
-        <p className="text-sm text-blue-900">
-          직접 변환해 보세요 —{" "}
-          <Link href="/" className="font-semibold text-blue-700 hover:underline">
-            주소 변환기로 이동 →
-          </Link>
-        </p>
-      </div>
+      <GuideCta />
     </ContentLayout>
   );
 }

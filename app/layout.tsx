@@ -4,6 +4,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { SITE_NAME, SITE_URL } from "@/lib/site";
+import { defaultDescription } from "@/lib/metadata";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -20,16 +21,13 @@ const geistMono = Geist_Mono({
 // - metadataBase: 상대경로(canonical, OG 이미지 등)를 절대 URL로 만들 기준 도메인.
 // - title.template: 하위 페이지가 title만 정하면 "소개 | …" 처럼 자동으로 붙는다.
 // - 도메인은 환경변수 NEXT_PUBLIC_SITE_URL 로 주입(lib/site.ts).
-const description =
-  "한글·일본 주소를 행정안전부·우편번호 공식 데이터 기반으로 영문 주소(Street/City/State/Postal)로 변환하고 칸별로 복사하세요. 해외직구·해외 배송·유학 서류 작성에 유용합니다.";
-
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
     default: "한글·일본 주소 → 영문 변환기 | 도로명·지번 영문주소 변환",
     template: `%s | ${SITE_NAME}`,
   },
-  description,
+  description: defaultDescription,
   applicationName: SITE_NAME,
   keywords: [
     "영문주소 변환",
@@ -48,12 +46,12 @@ export const metadata: Metadata = {
     siteName: SITE_NAME,
     url: SITE_URL,
     title: "한글·일본 주소 → 영문 변환기",
-    description,
+    description: defaultDescription,
   },
   twitter: {
-    card: "summary",
+    card: "summary_large_image",
     title: "한글·일본 주소 → 영문 변환기",
-    description,
+    description: defaultDescription,
   },
   robots: { index: true, follow: true },
   // 네이버 서치어드바이저 사이트 소유확인용 메타태그.
