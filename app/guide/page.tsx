@@ -29,6 +29,18 @@ const articles = [
     desc: "도도부현·시구정촌 구분, 丁目·番地·号의 하이픈 표기, 우편번호 형식까지 일본 주소 로마자 표기 규칙을 정리했습니다.",
     example: "東京都千代田区丸の内1-1-1 → 1-1-1 Marunouchi, Chiyoda-ku, Tokyo",
   },
+  {
+    href: "/guide/common-mistakes",
+    title: "영문 주소 변환할 때 자주 틀리는 실수 7가지",
+    desc: "City·State 자리 바꾸기, 동/호수 표기, 우편번호 형식, 국가 누락 등 흔한 실수를 잘못된 예·올바른 예로 비교합니다.",
+    example: "City: Seoul / State: Gangnam-gu ✕ → City: Gangnam-gu / State: Seoul ✓",
+  },
+  {
+    href: "/guide/korea-region-names",
+    title: "전국 시·도 영문 표기 정리표",
+    desc: "서울·부산·경기도 등 전국 17개 시·도의 공식 영문 표기와 City·State 칸에 넣는 법, 우편번호 형식을 정리했습니다.",
+    example: "경기도 → Gyeonggi-do · 제주특별자치도 → Jeju-do",
+  },
 ];
 
 export default function GuideIndexPage() {
