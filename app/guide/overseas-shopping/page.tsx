@@ -21,11 +21,15 @@ export default function OverseasShoppingGuide() {
       <GuideQuickAnswer
         title="한국 주소 빠른 답"
         rows={[
-          { label: "Address Line 1", value: "152 Teheran-ro" },
-          { label: "Address Line 2", value: "101-502" },
-          { label: "City", value: "Gangnam-gu" },
-          { label: "State / Province", value: "Seoul" },
-          { label: "ZIP / Postal Code", value: "06236" },
+          { label: "Address Line 1", value: "1001 Jungang-daero" },
+          {
+            label: "Address Line 2",
+            value: "동/호수 (선택)",
+            note: "아파트라면 101-502 처럼 넣습니다.",
+          },
+          { label: "City", value: "Yeonje-gu" },
+          { label: "State / Province", value: "Busan" },
+          { label: "ZIP / Postal Code", value: "47545" },
           { label: "Country", value: "South Korea" },
         ]}
       />
@@ -111,15 +115,14 @@ export default function OverseasShoppingGuide() {
             3. 한국 주소 입력 예시
           </h2>
           <p className="mb-3">
-            “서울특별시 강남구 테헤란로 152, 101동 502호 (06236)”를 칸별로 넣으면
-            다음과 같습니다.
+            “부산광역시 연제구 중앙대로 1001 (47545)”을 칸별로 넣으면 다음과
+            같습니다. 아파트라면 동/호수는 Address Line 2에 넣습니다.
           </p>
           <ul className="space-y-1.5 font-mono text-sm text-gray-900">
-            <li>Address Line 1 — 152 Teheran-ro</li>
-            <li>Address Line 2 — 101-502</li>
-            <li>City — Gangnam-gu</li>
-            <li>State / Province — Seoul</li>
-            <li>ZIP / Postal Code — 06236</li>
+            <li>Address Line 1 — 1001 Jungang-daero</li>
+            <li>City — Yeonje-gu</li>
+            <li>State / Province — Busan</li>
+            <li>ZIP / Postal Code — 47545</li>
             <li>Country — South Korea</li>
           </ul>
         </section>

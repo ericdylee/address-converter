@@ -49,18 +49,81 @@ export default function AboutPage() {
 
         <section>
           <h2 className="mb-2 text-lg font-semibold text-gray-950">
+            공식 주소 사이트와 무엇이 다른가요?
+          </h2>
+          <p>
+            정부의 도로명주소 사이트에서도 영문 주소를 볼 수 있지만, 보통 한 줄로
+            이어진 형태로만 제공됩니다. 해외 사이트나 서류는 대부분 Street, City,
+            State, Postal Code처럼 <strong className="font-semibold text-gray-900">칸이 나뉘어</strong>{" "}
+            있어서, 한 줄 주소를 매번 잘라 붙여야 하는 번거로움이 있습니다. 이
+            도구는 그 과정을 대신합니다.
+          </p>
+          <ul className="mt-3 list-disc space-y-1.5 pl-5">
+            <li>
+              영문 주소를 <strong className="font-semibold text-gray-900">칸별로 분리</strong>하고
+              칸마다 개별 복사 버튼을 제공
+            </li>
+            <li>
+              “101동 502호”, “3층” 같은{" "}
+              <strong className="font-semibold text-gray-900">상세주소를 영문 규칙으로 자동 변환</strong>
+            </li>
+            <li>한국 주소와 일본 주소를 한 곳에서 처리</li>
+            <li>
+              해외 양식의 칸 이름(Address Line 1/2, City, State, ZIP)에 무엇을
+              넣을지까지 안내
+            </li>
+          </ul>
+        </section>
+
+        <section>
+          <h2 className="mb-2 text-lg font-semibold text-gray-950">
             어떻게 동작하나요?
           </h2>
           <p>
-            한국 주소는{" "}
-            <strong className="font-semibold text-gray-900">
-              행정안전부 도로명주소 영문 API
-            </strong>
-            의 공식 영문 표기를 사용합니다. 일본 주소는 우편번호를 기준으로 영문
-            지명을 정리해 보여줍니다. 입력 중 자동완성으로 후보를 제시하고,
-            선택하면 콤마로 이어진 영문 주소를 칸별로 분리해 줍니다. 동·호수나
-            번지 같은 상세주소는 영문 규칙에 맞춰 합쳐집니다.
+            입력 중 자동완성으로 후보를 제시하고, 선택하면 콤마로 이어진 영문
+            주소를 칸별로 분리해 줍니다. 동·호수나 번지 같은 상세주소는 영문
+            규칙에 맞춰 자동으로 합쳐집니다.
           </p>
+        </section>
+
+        <section>
+          <h2 className="mb-2 text-lg font-semibold text-gray-950">
+            데이터 출처와 표기 기준
+          </h2>
+          <p>정확도의 근거가 되는 데이터 출처는 다음과 같습니다.</p>
+          <ul className="mt-3 list-disc space-y-2 pl-5">
+            <li>
+              <strong className="font-semibold text-gray-900">한국 주소</strong> —
+              행정안전부 도로명주소 영문 변환 API(
+              <a
+                href="https://business.juso.go.kr"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-medium text-blue-700 hover:underline"
+              >
+                business.juso.go.kr
+              </a>
+              )의 공식 영문 표기를 그대로 사용합니다.
+            </li>
+            <li>
+              <strong className="font-semibold text-gray-900">일본 주소</strong> —
+              일본우편(Japan Post)의 우편번호별 공식 로마자 데이터를 기준으로
+              지명을 정리합니다.
+            </li>
+            <li>
+              <strong className="font-semibold text-gray-900">상세주소(동·호·층)</strong>{" "}
+              — 우편 관례에 따라 동은 하이픈으로, 호는 숫자만, 층은 F로 표기하는
+              규칙을 적용합니다(예: 101동 502호 → 101-502, 3층 → 3F). 자세한
+              규칙은{" "}
+              <Link
+                href="/guide/apartment-unit"
+                className="font-medium text-blue-700 hover:underline"
+              >
+                동·호수 영문 표기 정리
+              </Link>
+              에서 볼 수 있습니다.
+            </li>
+          </ul>
         </section>
 
         <section>
@@ -97,6 +160,25 @@ export default function AboutPage() {
               개인정보처리방침
             </Link>
             에서 확인할 수 있습니다.
+          </p>
+        </section>
+
+        <section>
+          <h2 className="mb-2 text-lg font-semibold text-gray-950">
+            운영 안내
+          </h2>
+          <p>
+            이 사이트는 해외 주소 입력에 불편을 겪는 분들을 돕기 위해 개인이
+            운영하는 무료 서비스입니다. 공식 데이터가 갱신되거나 표기 규칙에
+            개선이 필요하면 반영하고 있으며, 잘못된 결과 제보나 기능 제안은{" "}
+            <Link
+              href="/contact"
+              className="font-medium text-blue-700 hover:underline"
+            >
+              문의
+            </Link>{" "}
+            페이지로 받고 있습니다. 보내주신 의견은 서비스 개선에 직접
+            활용됩니다.
           </p>
         </section>
       </article>

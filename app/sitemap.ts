@@ -23,10 +23,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     entry("", 1, "weekly"), // 홈(검색)
     entry("/guide", 0.8, "monthly"), // 가이드 목록
     entry("/guide/english-address", 0.8, "monthly"), // 영문주소 작성법
+    entry("/guide/apartment-unit", 0.8, "monthly"), // 동·호수 영문 표기
     entry("/guide/overseas-shopping", 0.8, "monthly"), // 해외직구 배송지 작성법
+    entry("/guide/international-shipping", 0.8, "monthly"), // 국제우편·EMS 라벨
     entry("/guide/japan-address", 0.8, "monthly"), // 일본 주소 영문 표기법
     entry("/guide/common-mistakes", 0.8, "monthly"), // 자주 틀리는 실수
     entry("/guide/korea-region-names", 0.8, "monthly"), // 시·도 영문 표기 정리표
+    entry("/guide/english-documents", 0.6, "monthly"), // 영문 주소가 필요한 서류
     entry("/faq", 0.7, "monthly"), // 자주 묻는 질문
     entry("/about", 0.6, "monthly"), // 소개
     entry("/contact", 0.4, "yearly"), // 문의

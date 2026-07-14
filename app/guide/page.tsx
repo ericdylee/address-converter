@@ -18,10 +18,22 @@ const articles = [
     example: "서울특별시 강남구 테헤란로 152 → 152 Teheran-ro, Gangnam-gu, Seoul",
   },
   {
+    href: "/guide/apartment-unit",
+    title: "아파트 동·호수, 건물명 영문 표기 정리",
+    desc: "‘101동 502호’, ‘3층’, 오피스텔·빌라 건물명처럼 영문으로 옮기기 까다로운 상세주소를 규칙과 예시로 정리했습니다.",
+    example: "101동 502호 → 101-502 · 3층 → 3F",
+  },
+  {
     href: "/guide/overseas-shopping",
     title: "해외직구 배송지에 한국·일본 주소 넣는 법",
     desc: "Address Line 1/2, City, State, ZIP 같은 해외 양식의 칸에 무엇을 넣어야 하는지 예시로 설명합니다.",
     example: "Address Line 1 → 152 Teheran-ro · City → Gangnam-gu · ZIP → 06236",
+  },
+  {
+    href: "/guide/international-shipping",
+    title: "국제우편·EMS 영문 주소와 라벨 작성법",
+    desc: "우체국 EMS·국제소포 라벨의 보내는 사람/받는 사람 영문 주소, 세관신고서(CN22/CN23), 반품 라벨 작성법을 정리했습니다.",
+    example: "From/To 주소 · CN22 세관신고서 · 전화 +82 표기",
   },
   {
     href: "/guide/japan-address",
@@ -40,6 +52,12 @@ const articles = [
     title: "전국 시·도 영문 표기 정리표",
     desc: "서울·부산·경기도 등 전국 17개 시·도의 공식 영문 표기와 City·State 칸에 넣는 법, 우편번호 형식을 정리했습니다.",
     example: "경기도 → Gyeonggi-do · 제주특별자치도 → Jeju-do",
+  },
+  {
+    href: "/guide/english-documents",
+    title: "영문 주소가 필요한 서류 총정리 (비자·유학·해외 계좌)",
+    desc: "비자·유학 원서, 해외 은행 계좌·송금, 영문 재직·재학 증명서처럼 주소를 영어로 적어야 하는 서류별 요령과 표기 일관성 팁을 정리했습니다.",
+    example: "Permanent address = 한국 집 주소 · 모든 서류에 표기 통일",
   },
 ];
 

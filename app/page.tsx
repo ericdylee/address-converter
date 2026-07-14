@@ -131,6 +131,16 @@ export default function HomePage() {
               칸별로 보여줍니다. 각 칸은 복사 버튼으로 바로 붙여넣을 수 있어요.
               회원가입 없이 무료로 사용하세요.
             </p>
+            <p className="mt-3 text-[15px] leading-7 text-gray-700">
+              한국 주소는{" "}
+              <span className="font-semibold text-gray-900">
+                행정안전부 도로명주소 영문 API
+              </span>
+              의 공식 표기를, 일본 주소는 일본우편(Japan Post)의 로마자 데이터를
+              사용합니다. 공식 사이트가 한 줄로만 보여주는 것과 달리, 이 도구는
+              칸별로 나눠 복사할 수 있고 “101동 502호” 같은 상세주소까지
+              영문 규칙으로 자동 변환해 줍니다.
+            </p>
           </div>
 
           <div className="grid gap-4 sm:grid-cols-2">
