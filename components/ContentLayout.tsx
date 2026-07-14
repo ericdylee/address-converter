@@ -1,5 +1,6 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
+import JsonLd from "@/components/JsonLd";
 
 // 글 형태의 정적 페이지(소개·가이드·FAQ·문의·개인정보)가 공통으로 쓰는 바깥 틀.
 // 상단 뒤로가기 링크 + 제목 + 안내문(lead) + 본문(children) 구조를 한곳에 모아
@@ -10,12 +11,15 @@ type Props = {
   lead?: ReactNode;
   /** 상단 뒤로가기 링크. 기본은 "← 홈으로". */
   backLink?: { label: string; href: string };
+  /** 구조화 데이터(JSON-LD). 있으면 페이지에 <script>로 삽입된다. */
+  jsonLd?: object | object[];
   children: ReactNode;
 };
 
-export default function ContentLayout({ title, lead, backLink, children }: Props) {
+export default function ContentLayout({ title, lead, backLink, jsonLd, children }: Props) {
   return (
     <main className="min-h-screen bg-background px-4 py-10 sm:py-14">
+      {jsonLd && <JsonLd data={jsonLd} />}
       <div className="mx-auto max-w-3xl">
         <header className="mb-6">
           <Link

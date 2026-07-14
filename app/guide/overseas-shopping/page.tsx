@@ -4,6 +4,7 @@ import ContentLayout from "@/components/ContentLayout";
 import GuideCta from "@/components/GuideCta";
 import GuideQuickAnswer from "@/components/GuideQuickAnswer";
 import { createPageMetadata } from "@/lib/metadata";
+import { guideJsonLd } from "@/lib/structured-data";
 
 export const metadata: Metadata = createPageMetadata({
   title: "해외직구 배송지에 한국·일본 주소 넣는 법",
@@ -18,6 +19,10 @@ export default function OverseasShoppingGuide() {
       title="해외직구 배송지에 한국·일본 주소 넣는 법"
       lead="해외 주문서의 영어 칸 이름이 낯설어도, 어떤 칸에 무엇을 넣는지만 알면 됩니다."
       backLink={{ label: "가이드 목록", href: "/guide" }}
+      jsonLd={guideJsonLd({
+        title: "해외직구 배송지에 한국·일본 주소 넣는 법",
+        path: "/guide/overseas-shopping",
+      })}
     >
       <GuideQuickAnswer
         title="한국 주소 빠른 답"

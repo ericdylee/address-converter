@@ -4,6 +4,7 @@ import ContentLayout from "@/components/ContentLayout";
 import GuideCta from "@/components/GuideCta";
 import GuideQuickAnswer from "@/components/GuideQuickAnswer";
 import { createPageMetadata } from "@/lib/metadata";
+import { guideJsonLd } from "@/lib/structured-data";
 
 export const metadata: Metadata = createPageMetadata({
   title: "일본 주소, 영문으로 쓰는 법",
@@ -18,6 +19,10 @@ export default function JapanAddressGuide() {
       title="일본 주소, 영문으로 쓰는 법"
       lead="일본 주소도 영문으로 쓸 때는 순서가 반대가 됩니다. 우편번호와 丁目·番地·号 규칙만 알면 어렵지 않습니다."
       backLink={{ label: "가이드 목록", href: "/guide" }}
+      jsonLd={guideJsonLd({
+        title: "일본 주소, 영문으로 쓰는 법",
+        path: "/guide/japan-address",
+      })}
     >
       <GuideQuickAnswer
         rows={[

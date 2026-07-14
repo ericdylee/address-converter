@@ -4,6 +4,7 @@ import ContentLayout from "@/components/ContentLayout";
 import GuideCta from "@/components/GuideCta";
 import GuideQuickAnswer from "@/components/GuideQuickAnswer";
 import { createPageMetadata } from "@/lib/metadata";
+import { guideJsonLd } from "@/lib/structured-data";
 
 export const metadata: Metadata = createPageMetadata({
   title: "한글 주소, 영문으로 쓰는 법",
@@ -18,6 +19,10 @@ export default function EnglishAddressGuide() {
       title="한글 주소, 영문으로 쓰는 법"
       lead="영문 주소는 한글 주소와 순서가 반대입니다. 원리만 이해하면 어렵지 않습니다."
       backLink={{ label: "가이드 목록", href: "/guide" }}
+      jsonLd={guideJsonLd({
+        title: "한글 주소, 영문으로 쓰는 법",
+        path: "/guide/english-address",
+      })}
     >
       <GuideQuickAnswer
         rows={[

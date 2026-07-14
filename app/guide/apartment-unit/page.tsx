@@ -4,6 +4,7 @@ import ContentLayout from "@/components/ContentLayout";
 import GuideCta from "@/components/GuideCta";
 import GuideQuickAnswer from "@/components/GuideQuickAnswer";
 import { createPageMetadata } from "@/lib/metadata";
+import { guideJsonLd } from "@/lib/structured-data";
 
 export const metadata: Metadata = createPageMetadata({
   title: "아파트 동·호수, 건물명 영문 표기 정리",
@@ -29,6 +30,10 @@ export default function ApartmentUnitGuide() {
       title="아파트 동·호수, 건물명 영문 표기 정리"
       lead="도로명까지는 쉬운데 ‘101동 502호’를 영어로 어떻게 쓰는지에서 막히는 경우가 많습니다. 규칙은 생각보다 단순합니다."
       backLink={{ label: "가이드 목록", href: "/guide" }}
+      jsonLd={guideJsonLd({
+        title: "아파트 동·호수, 건물명 영문 표기 정리",
+        path: "/guide/apartment-unit",
+      })}
     >
       <GuideQuickAnswer
         title="한눈에 보는 변환 규칙"

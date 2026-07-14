@@ -3,6 +3,7 @@ import Link from "next/link";
 import ContentLayout from "@/components/ContentLayout";
 import GuideCta from "@/components/GuideCta";
 import { createPageMetadata } from "@/lib/metadata";
+import { guideJsonLd } from "@/lib/structured-data";
 
 export const metadata: Metadata = createPageMetadata({
   title: "전국 시·도 영문 표기 정리표 (City·State 넣는 법)",
@@ -38,6 +39,10 @@ export default function KoreaRegionNamesGuide() {
       title="전국 시·도 영문 표기 정리표"
       lead="영문 주소의 State / Province 칸에 들어가는 전국 17개 시·도의 공식 영문 표기를 한 표에 모았습니다."
       backLink={{ label: "가이드 목록", href: "/guide" }}
+      jsonLd={guideJsonLd({
+        title: "전국 시·도 영문 표기 정리표",
+        path: "/guide/korea-region-names",
+      })}
     >
       <article className="space-y-7 rounded-lg border border-border bg-white p-6 text-[15px] leading-7 text-gray-700 shadow-card sm:p-8">
         <section>

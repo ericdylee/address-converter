@@ -3,6 +3,7 @@ import Link from "next/link";
 import ContentLayout from "@/components/ContentLayout";
 import GuideCta from "@/components/GuideCta";
 import { createPageMetadata } from "@/lib/metadata";
+import { guideJsonLd } from "@/lib/structured-data";
 
 export const metadata: Metadata = createPageMetadata({
   title: "영문 주소 변환할 때 자주 틀리는 실수 7가지",
@@ -58,6 +59,10 @@ export default function CommonMistakesGuide() {
       title="영문 주소 변환할 때 자주 틀리는 실수 7가지"
       lead="해외 배송지나 영문 서류에 한국·일본 주소를 적을 때 가장 많이 나오는 실수와 올바른 예를 모았습니다."
       backLink={{ label: "가이드 목록", href: "/guide" }}
+      jsonLd={guideJsonLd({
+        title: "영문 주소 변환할 때 자주 틀리는 실수 7가지",
+        path: "/guide/common-mistakes",
+      })}
     >
       <article className="space-y-7 rounded-lg border border-border bg-white p-6 text-[15px] leading-7 text-gray-700 shadow-card sm:p-8">
         <p>

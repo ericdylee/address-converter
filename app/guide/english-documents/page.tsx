@@ -3,6 +3,7 @@ import Link from "next/link";
 import ContentLayout from "@/components/ContentLayout";
 import GuideCta from "@/components/GuideCta";
 import { createPageMetadata } from "@/lib/metadata";
+import { guideJsonLd } from "@/lib/structured-data";
 
 export const metadata: Metadata = createPageMetadata({
   title: "영문 주소가 필요한 서류 총정리 (비자·유학·해외 계좌)",
@@ -40,6 +41,10 @@ export default function EnglishDocumentsGuide() {
       title="영문 주소가 필요한 서류 총정리"
       lead="배송뿐 아니라 비자·유학·해외 계좌·증명서 같은 서류에서도 주소를 영어로 적어야 합니다. 서류는 배송과 달리 ‘표기 일관성’이 특히 중요합니다."
       backLink={{ label: "가이드 목록", href: "/guide" }}
+      jsonLd={guideJsonLd({
+        title: "영문 주소가 필요한 서류 총정리",
+        path: "/guide/english-documents",
+      })}
     >
       <article className="space-y-7 rounded-lg border border-border bg-white p-6 text-[15px] leading-7 text-gray-700 shadow-card sm:p-8">
         <section>
