@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import Script from "next/script";
+import { Analytics } from "@vercel/analytics/next";
 import { Geist, Geist_Mono } from "next/font/google";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -100,6 +101,7 @@ export default function RootLayout({
         <Header />
         {children}
         <Footer />
+        <Analytics />
         {adsenseClientId && (
           <Script
             async
