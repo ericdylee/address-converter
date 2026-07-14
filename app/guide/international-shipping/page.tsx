@@ -3,6 +3,7 @@ import Link from "next/link";
 import ContentLayout from "@/components/ContentLayout";
 import GuideCta from "@/components/GuideCta";
 import { createPageMetadata } from "@/lib/metadata";
+import { guideJsonLd } from "@/lib/structured-data";
 
 export const metadata: Metadata = createPageMetadata({
   title: "국제우편·EMS 영문 주소와 라벨 작성법",
@@ -17,6 +18,10 @@ export default function InternationalShippingGuide() {
       title="국제우편·EMS 영문 주소와 라벨 작성법"
       lead="해외 쇼핑몰 주문서가 아니라, 내가 직접 해외로 물건을 ‘보낼 때’ 필요한 영문 주소와 라벨 작성법입니다."
       backLink={{ label: "가이드 목록", href: "/guide" }}
+      jsonLd={guideJsonLd({
+        title: "국제우편·EMS 영문 주소와 라벨 작성법",
+        path: "/guide/international-shipping",
+      })}
     >
       <article className="space-y-7 rounded-lg border border-border bg-white p-6 text-[15px] leading-7 text-gray-700 shadow-card sm:p-8">
         <section>

@@ -3,6 +3,7 @@ import Link from "next/link";
 import ContentLayout from "@/components/ContentLayout";
 import GuideCta from "@/components/GuideCta";
 import { createPageMetadata } from "@/lib/metadata";
+import { guideJsonLd } from "@/lib/structured-data";
 
 export const metadata: Metadata = createPageMetadata({
   title: "영문 주소 변환할 때 자주 틀리는 실수 7가지",
@@ -13,21 +14,41 @@ export const metadata: Metadata = createPageMetadata({
 
 // 잘못된 예 / 올바른 예를 나란히 보여 주는 작은 블록.
 // 사이트 브랜드 색(파랑·빨강 = 에어메일)을 그대로 써서 별도 컴포넌트 없이 인라인으로 둔다.
-function WrongRight({ wrong, right }: { wrong: string; right: string }) {
+// why: "이걸 틀리면 실제로 무슨 일이 생기는지"를 한 줄로 덧붙인다(선택).
+function WrongRight({
+  wrong,
+  right,
+  why,
+}: {
+  wrong: string;
+  right: string;
+  why?: string;
+}) {
   return (
-    <div className="grid gap-3 sm:grid-cols-2">
-      <div className="rounded-lg border border-red-200 bg-red-50/70 px-4 py-3">
-        <div className="mb-1 text-xs font-semibold uppercase text-red-700">
-          ✕ 잘못된 예
+    <div className="space-y-2">
+      <div className="grid gap-3 sm:grid-cols-2">
+        <div className="rounded-lg border border-red-200 bg-red-50/70 px-4 py-3">
+          <div className="mb-1 text-xs font-semibold uppercase text-red-700">
+            ✕ 잘못된 예
+          </div>
+          <div className="break-words font-mono text-sm text-gray-900">
+            {wrong}
+          </div>
         </div>
-        <div className="break-words font-mono text-sm text-gray-900">{wrong}</div>
-      </div>
-      <div className="rounded-lg border border-blue-200 bg-blue-50/80 px-4 py-3">
-        <div className="mb-1 text-xs font-semibold uppercase text-blue-700">
-          ✓ 올바른 예
+        <div className="rounded-lg border border-blue-200 bg-blue-50/80 px-4 py-3">
+          <div className="mb-1 text-xs font-semibold uppercase text-blue-700">
+            ✓ 올바른 예
+          </div>
+          <div className="break-words font-mono text-sm text-gray-950">
+            {right}
+          </div>
         </div>
-        <div className="break-words font-mono text-sm text-gray-950">{right}</div>
       </div>
+      {why && (
+        <p className="px-1 text-sm text-gray-500">
+          <span className="font-semibold text-gray-600">왜 문제?</span> {why}
+        </p>
+      )}
     </div>
   );
 }
@@ -38,6 +59,10 @@ export default function CommonMistakesGuide() {
       title="영문 주소 변환할 때 자주 틀리는 실수 7가지"
       lead="해외 배송지나 영문 서류에 한국·일본 주소를 적을 때 가장 많이 나오는 실수와 올바른 예를 모았습니다."
       backLink={{ label: "가이드 목록", href: "/guide" }}
+      jsonLd={guideJsonLd({
+        title: "영문 주소 변환할 때 자주 틀리는 실수 7가지",
+        path: "/guide/common-mistakes",
+      })}
     >
       <article className="space-y-7 rounded-lg border border-border bg-white p-6 text-[15px] leading-7 text-gray-700 shadow-card sm:p-8">
         <p>
@@ -62,6 +87,7 @@ export default function CommonMistakesGuide() {
           <WrongRight
             wrong={"City: Seoul\nState: Gangnam-gu"}
             right={"City: Gangnam-gu\nState: Seoul"}
+            why="배송 시스템이 지역을 잘못 분류해 배송이 지연되거나, 영문 서류에서는 주소 불일치로 반려될 수 있습니다."
           />
         </section>
 
@@ -76,6 +102,7 @@ export default function CommonMistakesGuide() {
           <WrongRight
             wrong={"Seoul, Gangnam-gu, Teheran-ro 152"}
             right={"152 Teheran-ro, Gangnam-gu, Seoul"}
+            why="해외 배송 시스템은 앞에서부터 도로·도시를 읽으므로, 순서가 뒤집히면 주소를 인식하지 못해 반송될 수 있습니다."
           />
         </section>
 
@@ -92,6 +119,7 @@ export default function CommonMistakesGuide() {
           <WrongRight
             wrong={"152 Teheran-ro 101동 502호"}
             right={"152 Teheran-ro, 101-502"}
+            why="한글이 남아 있으면 현지 배송원이 못 읽고, 동/호수가 없으면 건물까지 와도 세대를 못 찾아 배달이 실패합니다."
           />
         </section>
 
@@ -109,6 +137,7 @@ export default function CommonMistakesGuide() {
           <WrongRight
             wrong={"한국  ZIP: 135-080\n일본  ZIP: 1000005"}
             right={"한국  ZIP: 06236\n일본  ZIP: 100-0005"}
+            why="우편번호 자동 분류기가 형식을 못 읽으면 수작업으로 넘어가 배송이 늦어지고, 옛 번호는 아예 매칭이 안 됩니다."
           />
         </section>
 
@@ -124,6 +153,7 @@ export default function CommonMistakesGuide() {
           <WrongRight
             wrong={"152 Teheran-ro, Gangnam-gu, Seoul 06236"}
             right={"152 Teheran-ro, Gangnam-gu, Seoul 06236, South Korea"}
+            why="국가가 없으면 발송국 내부 주소로 처리되어 국제 구간으로 넘어가지 못하거나 통관에서 막힐 수 있습니다."
           />
         </section>
 
@@ -141,6 +171,7 @@ export default function CommonMistakesGuide() {
           <WrongRight
             wrong={"Tehran-ro · Teheranro · Teheran Ro"}
             right={"Teheran-ro"}
+            why="철자가 공식 표기와 다르면 검증 시스템이 다른 주소로 보아, 서류 심사나 배송 조회에서 불일치 처리될 수 있습니다."
           />
         </section>
 
@@ -156,7 +187,53 @@ export default function CommonMistakesGuide() {
           <WrongRight
             wrong={"152 Teheran-ro, Yeoksam-dong 737"}
             right={"152 Teheran-ro (도로명 하나로 통일)"}
+            why="두 주소 체계가 섞이면 배송 시스템이 중복·모순 주소로 인식해 배송이 지연되거나 되돌아올 수 있습니다."
           />
+        </section>
+
+        <section className="space-y-3">
+          <h2 className="text-lg font-semibold text-gray-950">
+            보내기 전 최종 체크리스트
+          </h2>
+          <p>주소를 붙여넣기 전에 아래 8가지를 눈으로 한 번 확인하세요.</p>
+          <div className="rounded-lg border border-gray-200 bg-gray-50 px-5 py-4">
+            <ul className="space-y-1.5 text-sm leading-6 text-gray-800">
+              <li>☐ 순서를 뒤집었나? (도로명·번지 → 도시 → 시도 → 국가)</li>
+              <li>☐ City = 구·시, State = 시·도로 넣었나?</li>
+              <li>☐ 동/호수를 101-502처럼 하이픈으로 적었나?</li>
+              <li>☐ 우편번호 형식이 맞나? (한국 5자리 / 일본 3-4자리)</li>
+              <li>☐ 국가(South Korea 또는 Japan)를 넣었나?</li>
+              <li>☐ 로마자는 공식 표기(변환기 결과) 그대로인가?</li>
+              <li>☐ 도로명·지번을 하나로 통일했나?</li>
+              <li>☐ 받는 사람 이름·전화번호는 주소와 별도 칸에 넣었나?</li>
+            </ul>
+          </div>
+        </section>
+
+        <section className="space-y-3">
+          <h2 className="text-lg font-semibold text-gray-950">자주 묻는 질문</h2>
+          <div className="space-y-4">
+            <div>
+              <h3 className="font-semibold text-gray-900">
+                City 칸 하나만 있고 State 칸이 없어요.
+              </h3>
+              <p className="mt-1">
+                그럴 때는 큰 도시 이름(예: Seoul, Busan)을 City에 넣으면 됩니다.
+                구·군까지 넣을 공간이 있으면 “Gangnam-gu, Seoul”처럼 함께
+                적어도 좋습니다.
+              </p>
+            </div>
+            <div>
+              <h3 className="font-semibold text-gray-900">
+                영문 주소는 대문자로 다 써야 하나요?
+              </h3>
+              <p className="mt-1">
+                꼭 그렇진 않습니다. 각 단어의 첫 글자만 대문자로 쓰는 것이
+                일반적입니다(예: Teheran-ro). 전부 대문자로 써도 배송에는 문제가
+                없습니다.
+              </p>
+            </div>
+          </div>
         </section>
 
         <section className="space-y-2">
@@ -170,6 +247,13 @@ export default function CommonMistakesGuide() {
               className="font-semibold text-blue-700 hover:underline"
             >
               한글 주소 영문으로 쓰는 법
+            </Link>
+            , 전국 시·도의 정확한 영문 표기는{" "}
+            <Link
+              href="/guide/korea-region-names"
+              className="font-semibold text-blue-700 hover:underline"
+            >
+              전국 시·도 영문 표기 정리표
             </Link>
             , 해외 쇼핑몰 주문서 입력은{" "}
             <Link

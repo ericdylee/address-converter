@@ -5,7 +5,9 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 import AddressSearch from "@/components/AddressSearch";
 import JpAddressSearch from "@/components/JpAddressSearch";
+import JsonLd from "@/components/JsonLd";
 import { extractDetail } from "@/lib/extract-detail";
+import { softwareAppSchema, websiteSchema } from "@/lib/structured-data";
 import type { AddressResult, JpAddressResult } from "@/lib/types";
 
 type Tab = "kr" | "jp";
@@ -52,6 +54,7 @@ export default function HomePage() {
 
   return (
     <main className="min-h-screen bg-background px-4 py-10 sm:py-14">
+      <JsonLd data={[websiteSchema(), softwareAppSchema()]} />
       <div className="mx-auto max-w-3xl">
         <header className="mb-8 text-center">
           <h1 className="text-balance break-keep text-3xl font-extrabold tracking-tight text-gray-950 sm:text-4xl">
