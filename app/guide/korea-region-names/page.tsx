@@ -55,6 +55,54 @@ export default function KoreaRegionNamesGuide() {
 
         <section>
           <h2 className="mb-3 text-lg font-semibold text-gray-950">
+            유형별 City·State 배치 예시
+          </h2>
+          <p className="mb-3">
+            같은 “시·도”라도 유형에 따라 City 칸에 넣는 것이 달라집니다. 네
+            가지 유형만 알면 헷갈리지 않습니다.
+          </p>
+          <div className="overflow-hidden rounded-lg border border-gray-200">
+            <table className="w-full text-sm">
+              <thead className="bg-gray-50 text-left text-gray-500">
+                <tr>
+                  <th className="px-4 py-2 font-semibold">유형</th>
+                  <th className="px-4 py-2 font-semibold">State</th>
+                  <th className="px-4 py-2 font-semibold">City</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-gray-100">
+                <tr>
+                  <td className="px-4 py-2">특별시·광역시</td>
+                  <td className="px-4 py-2 font-mono text-gray-900">Seoul</td>
+                  <td className="px-4 py-2 font-mono text-gray-900">Gangnam-gu</td>
+                </tr>
+                <tr>
+                  <td className="px-4 py-2">도(道)</td>
+                  <td className="px-4 py-2 font-mono text-gray-900">Gyeonggi-do</td>
+                  <td className="px-4 py-2 font-mono text-gray-900">Suwon-si</td>
+                </tr>
+                <tr>
+                  <td className="px-4 py-2">특별자치시(세종)</td>
+                  <td className="px-4 py-2 font-mono text-gray-900">Sejong</td>
+                  <td className="px-4 py-2 font-mono text-gray-900">Sejong</td>
+                </tr>
+                <tr>
+                  <td className="px-4 py-2">특별자치도(제주)</td>
+                  <td className="px-4 py-2 font-mono text-gray-900">Jeju-do</td>
+                  <td className="px-4 py-2 font-mono text-gray-900">Jeju-si</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p className="mt-3 text-sm leading-6 text-gray-500">
+            도(道) 안의 시에 구가 있으면(예: 성남시 분당구) City 칸에{" "}
+            <span className="font-mono">Bundang-gu, Seongnam-si</span>처럼 함께
+            적습니다. 세종시는 아래 구가 없어 State·City 모두 Sejong입니다.
+          </p>
+        </section>
+
+        <section>
+          <h2 className="mb-3 text-lg font-semibold text-gray-950">
             전국 17개 시·도 영문 표기
           </h2>
           <div className="overflow-hidden rounded-lg border border-gray-200">
@@ -89,6 +137,35 @@ export default function KoreaRegionNamesGuide() {
 
         <section>
           <h2 className="mb-2 text-lg font-semibold text-gray-950">
+            흔한 오기 주의
+          </h2>
+          <p className="mb-3">
+            소리 나는 대로 적으면 공식 표기와 달라집니다. 아래는 자주 틀리는
+            철자입니다.
+          </p>
+          <ul className="list-disc space-y-1.5 pl-5">
+            <li>
+              경기도 — <span className="font-mono">Gyeonggi-do</span> (O) /{" "}
+              <span className="font-mono text-red-600">Kyunggi, Gyunggi</span> (X)
+            </li>
+            <li>
+              강원 — <span className="font-mono">Gangwon-do</span> (O) /{" "}
+              <span className="font-mono text-red-600">Kangwon</span> (X)
+            </li>
+            <li>
+              전북 — <span className="font-mono">Jeollabuk-do</span> (O) /{" "}
+              <span className="font-mono text-red-600">Jeonbuk, Jeolabuk</span> (X)
+            </li>
+            <li>
+              <span className="font-semibold text-gray-900">-do</span>를 빼먹지
+              않기 — 도(道)는 이름 뒤에 <span className="font-mono">-do</span>까지
+              붙습니다(Gyeonggi-do).
+            </li>
+          </ul>
+        </section>
+
+        <section>
+          <h2 className="mb-2 text-lg font-semibold text-gray-950">
             City 칸만 있고 State 칸이 없을 때
           </h2>
           <p>
@@ -115,6 +192,32 @@ export default function KoreaRegionNamesGuide() {
           </p>
         </section>
 
+        <section className="space-y-3">
+          <h2 className="text-lg font-semibold text-gray-950">자주 묻는 질문</h2>
+          <div className="space-y-4">
+            <div>
+              <h3 className="font-semibold text-gray-900">
+                강원특별자치도처럼 이름이 바뀐 곳은 뭐라고 쓰나요?
+              </h3>
+              <p className="mt-1">
+                영문 주소에서는 보통 바뀌기 전 표기(
+                <span className="font-mono">Gangwon-do</span>)를 그대로 씁니다.
+                가장 정확한 값은 변환기 검색 결과를 따르세요.
+              </p>
+            </div>
+            <div>
+              <h3 className="font-semibold text-gray-900">
+                세종시는 State와 City에 똑같이 Sejong을 쓰나요?
+              </h3>
+              <p className="mt-1">
+                네. 세종특별자치시는 아래에 구가 없어 State·City 모두{" "}
+                <span className="font-mono">Sejong</span>으로 적습니다. City 칸만
+                있으면 Sejong 하나만 넣으면 됩니다.
+              </p>
+            </div>
+          </div>
+        </section>
+
         <section className="space-y-2">
           <h2 className="text-lg font-semibold text-gray-950">함께 보기</h2>
           <p>
@@ -131,6 +234,13 @@ export default function KoreaRegionNamesGuide() {
               className="font-semibold text-blue-700 hover:underline"
             >
               자주 틀리는 실수 7가지
+            </Link>
+            , 해외 쇼핑몰 입력은{" "}
+            <Link
+              href="/guide/overseas-shopping"
+              className="font-semibold text-blue-700 hover:underline"
+            >
+              해외직구 배송지 넣는 법
             </Link>
             에서 확인하세요.
           </p>
