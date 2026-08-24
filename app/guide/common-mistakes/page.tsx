@@ -62,6 +62,7 @@ export default function CommonMistakesGuide() {
       jsonLd={guideJsonLd({
         title: "영문 주소 변환할 때 자주 틀리는 실수 7가지",
         path: "/guide/common-mistakes",
+        dateModified: "2026-08-24",
       })}
     >
       <article className="space-y-7 rounded-lg border border-border bg-white p-6 text-[15px] leading-7 text-gray-700 shadow-card sm:p-8">

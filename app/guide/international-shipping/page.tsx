@@ -21,6 +21,7 @@ export default function InternationalShippingGuide() {
       jsonLd={guideJsonLd({
         title: "국제우편·EMS 영문 주소와 라벨 작성법",
         path: "/guide/international-shipping",
+        dateModified: "2026-08-24",
       })}
     >
       <article className="space-y-7 rounded-lg border border-border bg-white p-6 text-[15px] leading-7 text-gray-700 shadow-card sm:p-8">

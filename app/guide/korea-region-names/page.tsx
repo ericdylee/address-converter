@@ -46,6 +46,7 @@ export default function KoreaRegionNamesGuide() {
       jsonLd={guideJsonLd({
         title: "전국 시·도 영문 표기 정리표",
         path: "/guide/korea-region-names",
+        dateModified: "2026-08-24",
       })}
     >
       <article className="space-y-7 rounded-lg border border-border bg-white p-6 text-[15px] leading-7 text-gray-700 shadow-card sm:p-8">

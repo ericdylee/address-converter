@@ -22,6 +22,7 @@ export default function EnglishAddressGuide() {
       jsonLd={guideJsonLd({
         title: "한글 주소, 영문으로 쓰는 법",
         path: "/guide/english-address",
+        dateModified: "2026-08-24",
       })}
     >
       <GuideQuickAnswer

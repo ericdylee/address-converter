@@ -23,6 +23,7 @@ export default function OverseasShoppingGuide() {
       jsonLd={guideJsonLd({
         title: "해외직구 배송지에 한국·일본 주소 넣는 법",
         path: "/guide/overseas-shopping",
+        dateModified: "2026-08-24",
       })}
     >
       <GuideQuickAnswer

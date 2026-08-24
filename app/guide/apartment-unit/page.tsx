@@ -33,6 +33,7 @@ export default function ApartmentUnitGuide() {
       jsonLd={guideJsonLd({
         title: "아파트 동·호수, 건물명 영문 표기 정리",
         path: "/guide/apartment-unit",
+        dateModified: "2026-08-24",
       })}
     >
       <GuideQuickAnswer
