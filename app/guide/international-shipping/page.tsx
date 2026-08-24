@@ -58,7 +58,7 @@ export default function InternationalShippingGuide() {
                 한글 주소
               </div>
               <div className="text-gray-900">
-                대전광역시 유성구 대학로 291, 카이스트 (34141)
+                인천광역시 연수구 컨벤시아대로 165 (21998)
               </div>
             </div>
             <div className="rounded-lg border border-blue-200 bg-blue-50/80 px-4 py-3">
@@ -66,7 +66,7 @@ export default function InternationalShippingGuide() {
                 라벨 영문 (한 줄)
               </div>
               <div className="break-words font-mono text-sm text-gray-950">
-                291 Daehak-ro, Yuseong-gu, Daejeon 34141, South Korea
+                165 Convensia-daero, Yeonsu-gu, Incheon 21998, South Korea
               </div>
             </div>
           </div>

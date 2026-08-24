@@ -162,63 +162,59 @@ export default function OverseasShoppingGuide() {
             </li>
           </ol>
         </section>
-
         <section>
           <h2 className="mb-3 text-lg font-semibold text-gray-950">
-            6. 쇼핑몰별 입력 팁
+            6. 사이트마다 요구하는 게 다릅니다
           </h2>
           <p className="mb-3">
-            칸 이름과 순서는 사이트마다 조금씩 다릅니다. 자주 쓰는 곳의 특징을
-            정리했습니다. 로마자 표기가 헷갈리면{" "}
-            <Link
-              href="/guide/english-address"
-              className="font-medium text-blue-700 hover:underline"
-            >
-              한글 주소 영문 표기법
-            </Link>
-            을 참고하세요.
+            해외 쇼핑몰이라고 해서 전부 영문 주소를 받는 것은 아닙니다. 한국 배송을
+            오래 해온 곳은 아예 한국식 주소 입력창을 따로 만들어 두기도 합니다. 실제
+            화면을 확인한 결과를 정리하면 이렇습니다.
           </p>
-          <div className="overflow-hidden rounded-lg border border-gray-200">
-            <table className="w-full text-sm">
+          <div className="overflow-x-auto rounded-lg border border-gray-200">
+            <table className="w-full min-w-[480px] text-sm">
               <thead className="bg-gray-50 text-left text-gray-500">
                 <tr>
-                  <th className="px-4 py-2 font-semibold">쇼핑몰</th>
-                  <th className="px-4 py-2 font-semibold">특징·주의점</th>
+                  <th className="px-4 py-2 font-semibold">사이트</th>
+                  <th className="px-4 py-2 font-semibold">주소를 어떻게 받나</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-gray-100">
                 <tr>
-                  <td className="px-4 py-2 font-medium text-gray-900">Amazon</td>
+                  <td className="px-4 py-2 font-medium text-gray-900">아마존</td>
                   <td className="px-4 py-2">
-                    Address line 1/2, City, State/Province/Region, ZIP 순서.
-                    State 칸은 직접 타이핑(Seoul 등)합니다.
+                    영문 주소. <span className="font-mono">City</span> ·{" "}
+                    <span className="font-mono">Province</span> 칸이 나뉘어 있습니다.
                   </td>
                 </tr>
                 <tr>
-                  <td className="px-4 py-2 font-medium text-gray-900">eBay</td>
+                  <td className="px-4 py-2 font-medium text-gray-900">아이허브</td>
                   <td className="px-4 py-2">
-                    아마존과 거의 동일. 전화번호를 필수로 요구하는 경우가 많습니다.
+                    한글 주소. 우편번호·주소·상세주소 칸으로 받고 City·Province 칸이
+                    없습니다.
                   </td>
                 </tr>
                 <tr>
-                  <td className="px-4 py-2 font-medium text-gray-900">iHerb</td>
+                  <td className="px-4 py-2 font-medium text-gray-900">알리익스프레스</td>
                   <td className="px-4 py-2">
-                    한글 주소도 입력되지만, 통관·배송 안정성을 위해 영문 병기를
-                    권장합니다. 개인통관고유부호 칸이 따로 있습니다.
-                  </td>
-                </tr>
-                <tr>
-                  <td className="px-4 py-2 font-medium text-gray-900">
-                    AliExpress
-                  </td>
-                  <td className="px-4 py-2">
-                    Country → 도/시(State) → City 순서라 City와 State를 헷갈리기
-                    쉽습니다. 시·도를 State에, 구·시를 City에 넣으세요.
+                    한글 주소. 우편번호·도로명으로 찾는 한국식 검색창을 씁니다.
                   </td>
                 </tr>
               </tbody>
             </table>
           </div>
+          <p className="mt-3">
+            그래서 “해외직구에는 무조건 영문 주소”라는 말은 사실이 아닙니다. 영문 주소가
+            꼭 필요한 곳은 아마존·이베이처럼 한국 전용 입력 화면이 없는 사이트입니다.
+            사이트별 실제 화면과 칸별 입력값은{" "}
+            <Link
+              href="/shops"
+              className="font-medium text-blue-700 hover:underline"
+            >
+              쇼핑몰별 주소 입력법
+            </Link>
+            에 정리해 두었습니다.
+          </p>
         </section>
 
         <section>
@@ -247,7 +243,6 @@ export default function OverseasShoppingGuide() {
             에서 다룹니다.
           </p>
         </section>
-
         <section>
           <h2 className="mb-2 text-lg font-semibold text-gray-950">
             8. 전화번호와 개인통관고유부호
@@ -255,8 +250,13 @@ export default function OverseasShoppingGuide() {
           <ul className="list-disc space-y-2 pl-5">
             <li>
               <strong className="font-semibold text-gray-900">전화번호</strong> —
-              국제 형식으로 국가번호 +82를 붙이고 맨 앞 0을 뺍니다. 예:
-              010-1234-5678 → <span className="font-mono">+82 10-1234-5678</span>.
+              국가번호 <span className="font-mono">+82</span>를 고른 다음, 맨 앞 0을
+              빼는 곳과 그대로 두는 곳이 갈립니다. 아마존은 0을 뺀{" "}
+              <span className="font-mono">10 1234 5678</span> 형태를 예시로 보여주고,
+              알리익스프레스는 “01로 시작하는 11자리”를 요구합니다.{" "}
+              <strong className="font-semibold text-gray-900">
+                입력창 아래 안내 문구를 그대로 따르세요.
+              </strong>
             </li>
             <li>
               <strong className="font-semibold text-gray-900">
@@ -264,7 +264,12 @@ export default function OverseasShoppingGuide() {
               </strong>{" "}
               — 한국으로 들어오는 해외직구는 통관 시 이 번호가 필요합니다. 관세청
               유니패스에서 발급받아, 쇼핑몰의 해당 칸(또는 배대지)에 입력하세요.
-              주소와는 별개의 정보입니다.
+              주소와는 별개의 정보입니다. 영문 이름으로 주문할 때 전화번호가 통관부호
+              등록 정보와 맞아야 하는 경우가 있으니{" "}
+              <Link href="/shops/amazon" className="font-medium text-blue-700 hover:underline">
+                아마존 입력법
+              </Link>
+              의 통관 항목도 함께 보세요.
             </li>
           </ul>
         </section>
@@ -273,11 +278,17 @@ export default function OverseasShoppingGuide() {
           <h2 className="mb-2 text-lg font-semibold text-gray-950">
             9. 자주 하는 실수
           </h2>
-          <ul className="list-disc space-y-1.5 pl-5">
-            <li>City 칸만 있을 때 — 보통 큰 도시 이름(예: Seoul)을 넣습니다.</li>
-            <li>State와 City를 바꿔 넣기 — 시/도와 구/시는 서로 다른 칸입니다.</li>
-            <li>동/호수 누락 — Address Line 2가 없으면 Line 1 끝에 함께 적습니다.</li>
-          </ul>
+          <p>
+            City·State를 바꿔 넣기, 동/호수 누락, 우편번호 형식처럼 이 글 밖에서도
+            반복되는 실수는{" "}
+            <Link
+              href="/guide/common-mistakes"
+              className="font-medium text-blue-700 hover:underline"
+            >
+              자주 틀리는 실수 7가지
+            </Link>
+            에 잘못된 예·올바른 예와 함께 모아두었습니다.
+          </p>
         </section>
 
         <section>

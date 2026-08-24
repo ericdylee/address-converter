@@ -258,23 +258,16 @@ export default function EnglishAddressGuide() {
           <h2 className="mb-2 text-lg font-semibold text-gray-950">
             9. 자주 하는 실수
           </h2>
-          <ul className="list-disc space-y-1.5 pl-5">
-            <li>
-              시·도와 구·시를 바꿔 적기 — Seoul(시/도)과 Gangnam-gu(구)는 칸이
-              다릅니다.
-            </li>
-            <li>우편번호를 빠뜨리기 — 해외 배송에서 ZIP/Postal Code는 중요합니다.</li>
-            <li>국가(South Korea) 누락 — 국제 배송에는 반드시 국가가 필요합니다.</li>
-          </ul>
-          <p className="mt-3 text-sm text-gray-500">
-            더 많은 실수와 올바른 예는{" "}
+          <p>
+            City·State 뒤바꿈, 한글 어순 그대로 적기, 동/호수 누락, 우편번호 형식 등
+            흔한 실수는 잘못된 예와 올바른 예를 나란히 놓고{" "}
             <Link
               href="/guide/common-mistakes"
               className="font-medium text-blue-700 hover:underline"
             >
               자주 틀리는 실수 7가지
             </Link>
-            에서 확인하세요.
+            에 정리해 두었습니다. 이 글을 다 읽었다면 그 글로 한 번 점검해 보세요.
           </p>
         </section>
 

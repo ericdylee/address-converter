@@ -2,32 +2,36 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import ContentLayout from "@/components/ContentLayout";
 import GuideCta from "@/components/GuideCta";
+import LastVerified from "@/components/LastVerified";
 import { createPageMetadata } from "@/lib/metadata";
 import { guideJsonLd } from "@/lib/structured-data";
 
 export const metadata: Metadata = createPageMetadata({
   title: "전국 시·도 영문 표기 정리표 (City·State 넣는 법)",
   description:
-    "서울·부산·경기도 등 전국 17개 시·도의 공식 영문 표기와, 영문 주소에서 City·State 칸에 무엇을 넣는지, 한국 우편번호 형식까지 정리한 표입니다.",
+    "서울·부산·경기도 등 전국 16개 시·도의 공식 영문 표기와, 영문 주소에서 City·State 칸에 무엇을 넣는지, 한국 우편번호 형식까지 정리한 표입니다.",
   path: "/guide/korea-region-names",
 });
 
-// 전국 17개 광역자치단체. 영문 표기는 행정안전부 영문주소 표기 기준.
+// 전국 광역자치단체. 영문 표기는 행정안전부 영문주소 API가 실제로 반환하는 값
+// (= 이 사이트 변환기의 출력)과 일치시킨다. 표와 도구가 다른 값을 말하면 안 된다.
+//
+// 2026-07-01 광주광역시 + 전라남도 → 전남광주통합특별시로 통합되어 17개 → 16개.
+// 마지막 대조: 2026-08-24 (juso API 실제 조회).
 const regions: { ko: string; en: string; type: string }[] = [
   { ko: "서울특별시", en: "Seoul", type: "특별시" },
   { ko: "부산광역시", en: "Busan", type: "광역시" },
   { ko: "대구광역시", en: "Daegu", type: "광역시" },
   { ko: "인천광역시", en: "Incheon", type: "광역시" },
-  { ko: "광주광역시", en: "Gwangju", type: "광역시" },
   { ko: "대전광역시", en: "Daejeon", type: "광역시" },
   { ko: "울산광역시", en: "Ulsan", type: "광역시" },
-  { ko: "세종특별자치시", en: "Sejong", type: "특별자치시" },
+  { ko: "전남광주통합특별시", en: "Jeonnam-Gwangju", type: "통합특별시" },
+  { ko: "세종특별자치시", en: "Sejong-si", type: "특별자치시" },
   { ko: "경기도", en: "Gyeonggi-do", type: "도" },
   { ko: "강원특별자치도", en: "Gangwon-do", type: "특별자치도" },
   { ko: "충청북도", en: "Chungcheongbuk-do", type: "도" },
   { ko: "충청남도", en: "Chungcheongnam-do", type: "도" },
-  { ko: "전북특별자치도", en: "Jeollabuk-do", type: "특별자치도" },
-  { ko: "전라남도", en: "Jeollanam-do", type: "도" },
+  { ko: "전북특별자치도", en: "Jeonbuk-do", type: "특별자치도" },
   { ko: "경상북도", en: "Gyeongsangbuk-do", type: "도" },
   { ko: "경상남도", en: "Gyeongsangnam-do", type: "도" },
   { ko: "제주특별자치도", en: "Jeju-do", type: "특별자치도" },
@@ -37,7 +41,7 @@ export default function KoreaRegionNamesGuide() {
   return (
     <ContentLayout
       title="전국 시·도 영문 표기 정리표"
-      lead="영문 주소의 State / Province 칸에 들어가는 전국 17개 시·도의 공식 영문 표기를 한 표에 모았습니다."
+      lead="영문 주소의 State / Province 칸에 들어가는 전국 16개 시·도의 공식 영문 표기를 한 표에 모았습니다."
       backLink={{ label: "가이드 목록", href: "/guide" }}
       jsonLd={guideJsonLd({
         title: "전국 시·도 영문 표기 정리표",
@@ -88,8 +92,8 @@ export default function KoreaRegionNamesGuide() {
                 </tr>
                 <tr>
                   <td className="px-4 py-2">특별자치시(세종)</td>
-                  <td className="px-4 py-2 font-mono text-gray-900">Sejong</td>
-                  <td className="px-4 py-2 font-mono text-gray-900">Sejong</td>
+                  <td className="px-4 py-2 font-mono text-gray-900">Sejong-si</td>
+                  <td className="px-4 py-2 font-mono text-gray-900">Sejong-si</td>
                 </tr>
                 <tr>
                   <td className="px-4 py-2">특별자치도(제주)</td>
@@ -102,13 +106,13 @@ export default function KoreaRegionNamesGuide() {
           <p className="mt-3 text-sm leading-6 text-gray-500">
             도(道) 안의 시에 구가 있으면(예: 성남시 분당구) City 칸에{" "}
             <span className="font-mono">Bundang-gu, Seongnam-si</span>처럼 함께
-            적습니다. 세종시는 아래 구가 없어 State·City 모두 Sejong입니다.
+            적습니다. 세종시는 아래 구가 없어 State·City 모두 Sejong-si입니다.
           </p>
         </section>
 
         <section>
           <h2 className="mb-3 text-lg font-semibold text-gray-950">
-            전국 17개 시·도 영문 표기
+            전국 16개 시·도 영문 표기
           </h2>
           <div className="overflow-hidden rounded-lg border border-gray-200">
             <table className="w-full text-sm">
@@ -133,11 +137,41 @@ export default function KoreaRegionNamesGuide() {
             </table>
           </div>
           <p className="mt-3 text-sm text-gray-500">
-            ※ 강원특별자치도·전북특별자치도처럼 명칭이 바뀐 곳도 영문 주소에서는
-            보통 <span className="font-mono">Gangwon-do</span>,{" "}
-            <span className="font-mono">Jeollabuk-do</span> 표기를 그대로
-            사용합니다. 가장 정확한 값은 변환기 결과를 따르세요.
+            ※ 위 표의 영문 표기는 행정안전부 영문주소 API가 실제로 돌려주는 값입니다.
+            이 사이트의 변환기도 같은 값을 내보내므로 표와 도구 결과가 서로 다르지
+            않습니다.
           </p>
+        </section>
+
+        <section>
+          <div className="rounded-lg border border-blue-200 bg-blue-50/70 p-5">
+            <h2 className="mb-2 text-lg font-semibold text-blue-950">
+              2026년 7월, 광주와 전남이 하나가 됐습니다
+            </h2>
+            <p className="text-blue-900">
+              2026년 7월 1일{" "}
+              <strong className="font-semibold">전남광주통합특별시</strong>가 출범하면서
+              광주광역시와 전라남도가 하나의 광역자치단체로 합쳐졌습니다. 그래서 시·도가
+              17개에서 <strong className="font-semibold">16개</strong>로 줄었습니다.
+            </p>
+            <p className="mt-3 text-blue-900">
+              영문주소 API도 이 지역 주소를 이제{" "}
+              <span className="font-mono font-semibold">Jeonnam-Gwangju</span> 로
+              반환합니다. 광주 시내 주소든 여수·목포 같은 전남 주소든 State / Province
+              칸에는 같은 값이 들어갑니다.
+            </p>
+            <div className="mt-3 rounded-lg bg-white px-4 py-3 font-mono text-sm leading-6 text-gray-800">
+              전남광주통합특별시 서구 내방로 111
+              <br />→ 111 Naebang-ro, Seo-gu, Jeonnam-Gwangju 61945
+            </div>
+            <p className="mt-3 text-sm text-blue-900">
+              예전에 <span className="font-mono">Gwangju</span> 나{" "}
+              <span className="font-mono">Jeollanam-do</span> 로 적어 둔 주소가 있다면
+              바뀐 표기로 갱신해 두세요. 배송은 우편번호로 처리되므로 옛 표기로도 대개
+              도착하지만, 서류처럼 표기를 대조하는 곳에서는 최신 표기를 쓰는 편이
+              안전합니다.
+            </p>
+          </div>
         </section>
 
         <section>
@@ -158,8 +192,16 @@ export default function KoreaRegionNamesGuide() {
               <span className="font-mono text-red-600">Kangwon</span> (X)
             </li>
             <li>
-              전북 — <span className="font-mono">Jeollabuk-do</span> (O) /{" "}
-              <span className="font-mono text-red-600">Jeonbuk, Jeolabuk</span> (X)
+              전북 — <span className="font-mono">Jeonbuk-do</span> (O) /{" "}
+              <span className="font-mono text-red-600">Jeollabuk-do, Jeolabuk</span> (X)
+              <span className="block text-sm text-gray-500">
+                2024년 전북특별자치도로 바뀌면서 영문 표기도 짧아졌습니다. 예전 표기인
+                Jeollabuk-do로 알고 계신 분이 많습니다.
+              </span>
+            </li>
+            <li>
+              광주·전남 — <span className="font-mono">Jeonnam-Gwangju</span> (O) /{" "}
+              <span className="font-mono text-red-600">Gwangju, Jeollanam-do</span> (지금은 옛 표기)
             </li>
             <li>
               <span className="font-semibold text-gray-900">-do</span>를 빼먹지
@@ -202,22 +244,24 @@ export default function KoreaRegionNamesGuide() {
           <div className="space-y-4">
             <div>
               <h3 className="font-semibold text-gray-900">
-                강원특별자치도처럼 이름이 바뀐 곳은 뭐라고 쓰나요?
+                이름이 바뀐 지역은 옛 표기와 새 표기 중 뭘 쓰나요?
               </h3>
               <p className="mt-1">
-                영문 주소에서는 보통 바뀌기 전 표기(
-                <span className="font-mono">Gangwon-do</span>)를 그대로 씁니다.
-                가장 정확한 값은 변환기 검색 결과를 따르세요.
+                영문주소 API가 돌려주는 현재 표기를 쓰는 것이 원칙입니다. 강원특별자치도는{" "}
+                <span className="font-mono">Gangwon-do</span>로 그대로지만,
+                전북특별자치도는 <span className="font-mono">Jeonbuk-do</span>로,
+                광주·전남은 <span className="font-mono">Jeonnam-Gwangju</span>로
+                바뀌었습니다. 확실하지 않으면 변환기에 주소를 넣어 나오는 값을 쓰세요.
               </p>
             </div>
             <div>
               <h3 className="font-semibold text-gray-900">
-                세종시는 State와 City에 똑같이 Sejong을 쓰나요?
+                세종시는 State와 City에 똑같이 적나요?
               </h3>
               <p className="mt-1">
                 네. 세종특별자치시는 아래에 구가 없어 State·City 모두{" "}
-                <span className="font-mono">Sejong</span>으로 적습니다. City 칸만
-                있으면 Sejong 하나만 넣으면 됩니다.
+                <span className="font-mono">Sejong-si</span>로 적습니다. City 칸만
+                있으면 <span className="font-mono">Sejong-si</span> 하나만 넣으면 됩니다.
               </p>
             </div>
           </div>
@@ -250,6 +294,11 @@ export default function KoreaRegionNamesGuide() {
             에서 확인하세요.
           </p>
         </section>
+
+        <LastVerified
+          date="2026-08-24"
+          note="행정안전부 영문주소 API 조회로 16개 시·도 표기 전수 대조"
+        />
       </article>
 
       <GuideCta />
