@@ -163,13 +163,13 @@ export default function EnglishAddressGuide() {
               note="특별시·광역시는 구(Gangnam-gu)가 City, 시·도(Seoul)가 State."
             />
             <ExampleCard
-              ko="부산광역시 부산진구 서면로 39, 1201호 (47285)"
-              en="39 Seomyeon-ro, 1201, Busanjin-gu, Busan 47285, South Korea"
+              ko="부산광역시 부산진구 서면로 39, 1201호 (47288)"
+              en="39 Seomyeon-ro, 1201, Busanjin-gu, Busan 47288, South Korea"
               note="부산도 같은 규칙 — 구가 City, Busan이 State."
             />
             <ExampleCard
-              ko="경기도 성남시 분당구 판교로 228 (13529)"
-              en="228 Pangyo-ro, Bundang-gu, Seongnam-si, Gyeonggi-do 13529, South Korea"
+              ko="경기도 성남시 분당구 판교역로 136 (13529)"
+              en="136 Pangyoyeok-ro, Bundang-gu, Seongnam-si, Gyeonggi-do 13529, South Korea"
               note="도(道)는 시(Seongnam-si)가 City, 도(Gyeonggi-do)가 State. 구는 시 이름과 함께 적으면 됩니다."
             />
             <ExampleCard

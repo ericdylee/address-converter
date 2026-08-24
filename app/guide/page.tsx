@@ -56,7 +56,7 @@ const articles = [
   {
     href: "/guide/korea-region-names",
     title: "전국 시·도 영문 표기 정리표",
-    desc: "서울·부산·경기도 등 전국 17개 시·도의 공식 영문 표기와 City·State 칸에 넣는 법, 우편번호 형식을 정리했습니다.",
+    desc: "서울·부산·경기도 등 전국 16개 시·도의 공식 영문 표기와 City·State 칸에 넣는 법, 우편번호 형식을 정리했습니다.",
     example: "경기도 → Gyeonggi-do · 제주특별자치도 → Jeju-do",
   },
   {

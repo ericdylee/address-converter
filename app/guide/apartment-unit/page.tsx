@@ -115,7 +115,7 @@ export default function ApartmentUnitGuide() {
                 한글
               </div>
               <div className="text-gray-900">
-                부산광역시 해운대구 해운대로 570, 101동 2503호
+                부산광역시 해운대구 마린시티2로 33, 101동 2503호
               </div>
             </div>
             <div className="grid gap-3 sm:grid-cols-2">
@@ -124,7 +124,7 @@ export default function ApartmentUnitGuide() {
                   칸이 나뉜 양식
                 </div>
                 <div className="break-words font-mono text-sm text-gray-950">
-                  Line 1: 570 Haeundae-ro
+                  Line 1: 33 Marine city 2-ro
                   <br />
                   Line 2: 101-2503
                 </div>
@@ -134,11 +134,18 @@ export default function ApartmentUnitGuide() {
                   한 칸만 있는 양식
                 </div>
                 <div className="break-words font-mono text-sm text-gray-950">
-                  570 Haeundae-ro, 101-2503
+                  33 Marine city 2-ro, 101-2503
                 </div>
               </div>
             </div>
           </div>
+          <p className="mt-3 text-sm leading-6 text-gray-500">
+            ※ 도로명 자체의 로마자 표기는 짐작과 다를 때가 많습니다. “마린시티2로”의 공식
+            표기는 <span className="font-mono">Marine city 2-ro</span>이고, “해운대로”는
+            해운대+로가 아니라 해운+대로로 끊어{" "}
+            <span className="font-mono">Haeun-daero</span>가 됩니다. 도로명은 직접 옮기지
+            말고 변환기 결과를 그대로 쓰세요.
+          </p>
         </section>
 
         <section>
