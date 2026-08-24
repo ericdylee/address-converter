@@ -4,6 +4,7 @@ import {
   softwareAppSchema,
   articleSchema,
   breadcrumbSchema,
+  guideJsonLd,
 } from "./structured-data";
 
 describe("structured-data", () => {
@@ -21,6 +22,22 @@ describe("structured-data", () => {
     };
     expect(s["@type"]).toBe("SoftwareApplication");
     expect(s.offers.price).toBe("0");
+  });
+
+  // 글쓴이가 Organization이면 "누가 썼는지"가 없는 글이 된다. 사람이어야 한다.
+  it("articleSchema: author는 Person, publisher는 사이트", () => {
+    const s = articleSchema({
+      title: "t",
+      path: "/guide/t",
+      datePublished: "2026-08-24",
+      dateModified: "2026-08-24",
+    }) as {
+      author: { "@type": string; name: string };
+      publisher: { "@type": string };
+    };
+    expect(s.author["@type"]).toBe("Person");
+    expect(s.author.name.length).toBeGreaterThan(0);
+    expect(s.publisher["@type"]).toBe("Organization");
   });
 
   it("articleSchema: headline과 절대 url 포함", () => {
@@ -48,5 +65,38 @@ describe("structured-data", () => {
     expect(s.itemListElement).toHaveLength(2);
     expect(s.itemListElement[0].position).toBe(1);
     expect(s.itemListElement[1].position).toBe(2);
+  });
+
+  describe("guideJsonLd", () => {
+    const built = guideJsonLd({
+      title: "아마존 한국 주소 입력법",
+      path: "/guide/amazon-address",
+      datePublished: "2026-08-24",
+      dateModified: "2026-08-25",
+    }) as [
+      Record<string, unknown>,
+      { "@type": string; itemListElement: { name: string }[] },
+    ];
+
+    it("Article + BreadcrumbList 두 개를 만든다", () => {
+      expect(built).toHaveLength(2);
+      expect(built[0]["@type"]).toBe("Article");
+      expect(built[1]["@type"]).toBe("BreadcrumbList");
+    });
+
+    // 가이드 8편이 공유하던 GUIDE_DATE 상수와 달리, 글마다 다른 날짜를 받는다.
+    // 작성일과 수정일이 서로 다를 수 있어야 "관리되는 글"로 표기된다.
+    it("글별 날짜를 주면 그대로 싣는다 (공유 상수 대신)", () => {
+      expect(built[0].datePublished).toBe("2026-08-24");
+      expect(built[0].dateModified).toBe("2026-08-25");
+    });
+
+    it("이동경로가 홈 → 사용 가이드 → 글 순서다", () => {
+      expect(built[1].itemListElement.map((i) => i.name)).toEqual([
+        "홈",
+        "사용 가이드",
+        "아마존 한국 주소 입력법",
+      ]);
+    });
   });
 });

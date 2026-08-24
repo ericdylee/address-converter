@@ -7,7 +7,7 @@ export const contentType = "image/png";
 export default function Image() {
   return createOgImage({
     title: "전국 시·도 영문 표기 정리표",
-    subtitle: "서울·부산·경기도 등 17개 시·도의 공식 영문 표기를 한 번에.",
+    subtitle: "서울·부산·경기도 등 16개 시·도의 공식 영문 표기를 한 번에.",
     badge: "Korea Guide",
     rows: [
       { label: "서울특별시", value: "Seoul" },

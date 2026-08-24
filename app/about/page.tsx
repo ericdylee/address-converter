@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import ContentLayout from "@/components/ContentLayout";
-import { SITE_NAME } from "@/lib/site";
+import { AUTHOR_NAME, AUTHOR_NAME_EN, SITE_NAME } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "소개",
@@ -165,12 +165,50 @@ export default function AboutPage() {
 
         <section>
           <h2 className="mb-2 text-lg font-semibold text-gray-950">
+            누가 만들고 관리하나요
+          </h2>
+          <p>
+            이 사이트는{" "}
+            <strong className="font-semibold text-gray-900">
+              {AUTHOR_NAME} ({AUTHOR_NAME_EN})
+            </strong>
+            이 혼자 만들고 관리하는 개인 서비스입니다. 해외 사이트에 주소를 넣을 때마다
+            어느 칸에 무엇을 써야 하는지 매번 찾아보던 불편에서 시작했습니다.
+          </p>
+          <p className="mt-3">
+            글은 다음 기준으로 씁니다.
+          </p>
+          <ul className="mt-2 list-disc space-y-1.5 pl-5">
+            <li>
+              주소·우편번호·행정구역 표기는{" "}
+              <strong className="font-semibold text-gray-900">
+                행정안전부 영문주소 API로 직접 조회해 확인
+              </strong>
+              한 값만 씁니다. 기억이나 짐작으로 적지 않습니다.
+            </li>
+            <li>
+              쇼핑몰 입력 화면을 다루는 글은{" "}
+              <strong className="font-semibold text-gray-900">실제로 그 화면을 열어 캡처</strong>
+              하고, 캡처에서 읽히는 내용만 적습니다. 글 아래에 확인한 날짜를 남깁니다.
+            </li>
+            <li>
+              행정구역이 바뀌거나(예: 2026년 7월 전남광주통합특별시 출범) 사이트 화면이
+              바뀌면 해당 글을 고치고 수정일을 갱신합니다.
+            </li>
+          </ul>
+          <p className="mt-3">
+            잘못된 내용을 발견하시면 알려주세요. 확인 후 고치고, 무엇을 고쳤는지
+            해당 글에 남깁니다.
+          </p>
+        </section>
+
+        <section>
+          <h2 className="mb-2 text-lg font-semibold text-gray-950">
             운영 안내
           </h2>
           <p>
-            이 사이트는 해외 주소 입력에 불편을 겪는 분들을 돕기 위해 개인이
-            운영하는 무료 서비스입니다. 공식 데이터가 갱신되거나 표기 규칙에
-            개선이 필요하면 반영하고 있으며, 잘못된 결과 제보나 기능 제안은{" "}
+            모든 기능은 무료이며 광고로 운영비를 충당합니다. 공식 데이터가 갱신되거나
+            표기 규칙에 개선이 필요하면 반영하고 있으며, 잘못된 결과 제보나 기능 제안은{" "}
             <Link
               href="/contact"
               className="font-medium text-blue-700 hover:underline"

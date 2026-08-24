@@ -1,4 +1,4 @@
-import { SITE_NAME, SITE_URL } from "@/lib/site";
+import { AUTHOR_NAME, SITE_NAME, SITE_URL } from "@/lib/site";
 import { absoluteUrl } from "@/lib/metadata";
 
 // 구조화 데이터(JSON-LD) 빌더. 순수 함수라 서버/클라이언트 어디서든 호출 가능.
@@ -41,7 +41,8 @@ export function articleSchema(opts: {
     datePublished: opts.datePublished,
     dateModified: opts.dateModified,
     inLanguage: "ko-KR",
-    author: { "@type": "Organization", name: SITE_NAME },
+    // 글쓴이는 사람, 발행 주체는 사이트. 둘을 구분해야 E-E-A-T 신호가 산다.
+    author: { "@type": "Person", name: AUTHOR_NAME },
     publisher: { "@type": "Organization", name: SITE_NAME },
   };
   if (opts.description) schema.description = opts.description;
@@ -52,13 +53,20 @@ export function articleSchema(opts: {
 // 각 가이드 페이지가 ContentLayout의 jsonLd prop에 이 결과를 넘긴다.
 const GUIDE_DATE = "2026-07-14";
 
-export function guideJsonLd(opts: { title: string; path: string }) {
+export function guideJsonLd(opts: {
+  title: string;
+  path: string;
+  /** 글별 작성일. 없으면 기존 8편이 공유하는 GUIDE_DATE를 쓴다. */
+  datePublished?: string;
+  /** 글별 최종 수정일. 화면을 다시 확인해 고친 글은 이 값을 갱신한다. */
+  dateModified?: string;
+}) {
   return [
     articleSchema({
       title: opts.title,
       path: opts.path,
-      datePublished: GUIDE_DATE,
-      dateModified: GUIDE_DATE,
+      datePublished: opts.datePublished ?? GUIDE_DATE,
+      dateModified: opts.dateModified ?? GUIDE_DATE,
     }),
     breadcrumbSchema([
       { name: "홈", path: "/" },

@@ -22,6 +22,7 @@ export default function EnglishAddressGuide() {
       jsonLd={guideJsonLd({
         title: "한글 주소, 영문으로 쓰는 법",
         path: "/guide/english-address",
+        dateModified: "2026-08-24",
       })}
     >
       <GuideQuickAnswer
@@ -163,13 +164,13 @@ export default function EnglishAddressGuide() {
               note="특별시·광역시는 구(Gangnam-gu)가 City, 시·도(Seoul)가 State."
             />
             <ExampleCard
-              ko="부산광역시 부산진구 서면로 39, 1201호 (47285)"
-              en="39 Seomyeon-ro, 1201, Busanjin-gu, Busan 47285, South Korea"
+              ko="부산광역시 부산진구 서면로 39, 1201호 (47288)"
+              en="39 Seomyeon-ro, 1201, Busanjin-gu, Busan 47288, South Korea"
               note="부산도 같은 규칙 — 구가 City, Busan이 State."
             />
             <ExampleCard
-              ko="경기도 성남시 분당구 판교로 228 (13529)"
-              en="228 Pangyo-ro, Bundang-gu, Seongnam-si, Gyeonggi-do 13529, South Korea"
+              ko="경기도 성남시 분당구 판교역로 136 (13529)"
+              en="136 Pangyoyeok-ro, Bundang-gu, Seongnam-si, Gyeonggi-do 13529, South Korea"
               note="도(道)는 시(Seongnam-si)가 City, 도(Gyeonggi-do)가 State. 구는 시 이름과 함께 적으면 됩니다."
             />
             <ExampleCard
@@ -258,23 +259,16 @@ export default function EnglishAddressGuide() {
           <h2 className="mb-2 text-lg font-semibold text-gray-950">
             9. 자주 하는 실수
           </h2>
-          <ul className="list-disc space-y-1.5 pl-5">
-            <li>
-              시·도와 구·시를 바꿔 적기 — Seoul(시/도)과 Gangnam-gu(구)는 칸이
-              다릅니다.
-            </li>
-            <li>우편번호를 빠뜨리기 — 해외 배송에서 ZIP/Postal Code는 중요합니다.</li>
-            <li>국가(South Korea) 누락 — 국제 배송에는 반드시 국가가 필요합니다.</li>
-          </ul>
-          <p className="mt-3 text-sm text-gray-500">
-            더 많은 실수와 올바른 예는{" "}
+          <p>
+            City·State 뒤바꿈, 한글 어순 그대로 적기, 동/호수 누락, 우편번호 형식 등
+            흔한 실수는 잘못된 예와 올바른 예를 나란히 놓고{" "}
             <Link
               href="/guide/common-mistakes"
               className="font-medium text-blue-700 hover:underline"
             >
               자주 틀리는 실수 7가지
             </Link>
-            에서 확인하세요.
+            에 정리해 두었습니다. 이 글을 다 읽었다면 그 글로 한 번 점검해 보세요.
           </p>
         </section>
 

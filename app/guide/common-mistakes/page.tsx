@@ -62,6 +62,7 @@ export default function CommonMistakesGuide() {
       jsonLd={guideJsonLd({
         title: "영문 주소 변환할 때 자주 틀리는 실수 7가지",
         path: "/guide/common-mistakes",
+        dateModified: "2026-08-24",
       })}
     >
       <article className="space-y-7 rounded-lg border border-border bg-white p-6 text-[15px] leading-7 text-gray-700 shadow-card sm:p-8">
@@ -85,8 +86,8 @@ export default function CommonMistakesGuide() {
             <strong className="font-semibold text-gray-900">City</strong> 칸에 들어갑니다.
           </p>
           <WrongRight
-            wrong={"City: Seoul\nState: Gangnam-gu"}
-            right={"City: Gangnam-gu\nState: Seoul"}
+            wrong={"City: Daegu\nState: Jung-gu"}
+            right={"City: Jung-gu\nState: Daegu"}
             why="배송 시스템이 지역을 잘못 분류해 배송이 지연되거나, 영문 서류에서는 주소 불일치로 반려될 수 있습니다."
           />
         </section>
@@ -100,8 +101,8 @@ export default function CommonMistakesGuide() {
             도로명·건물번호가 맨 앞에 오고, 도시·시도·국가가 뒤로 갑니다.
           </p>
           <WrongRight
-            wrong={"Seoul, Gangnam-gu, Teheran-ro 152"}
-            right={"152 Teheran-ro, Gangnam-gu, Seoul"}
+            wrong={"Daegu, Jung-gu, Gongpyeong-ro 88"}
+            right={"88 Gongpyeong-ro, Jung-gu, Daegu"}
             why="해외 배송 시스템은 앞에서부터 도로·도시를 읽으므로, 순서가 뒤집히면 주소를 인식하지 못해 반송될 수 있습니다."
           />
         </section>
@@ -117,8 +118,8 @@ export default function CommonMistakesGuide() {
             적어도 됩니다.
           </p>
           <WrongRight
-            wrong={"152 Teheran-ro 101동 502호"}
-            right={"152 Teheran-ro, 101-502"}
+            wrong={"88 Gongpyeong-ro 101동 502호"}
+            right={"88 Gongpyeong-ro, 101-502"}
             why="한글이 남아 있으면 현지 배송원이 못 읽고, 동/호수가 없으면 건물까지 와도 세대를 못 찾아 배달이 실패합니다."
           />
         </section>
@@ -151,8 +152,8 @@ export default function CommonMistakesGuide() {
             <span className="font-mono">Japan</span> 으로 적습니다.
           </p>
           <WrongRight
-            wrong={"152 Teheran-ro, Gangnam-gu, Seoul 06236"}
-            right={"152 Teheran-ro, Gangnam-gu, Seoul 06236, South Korea"}
+            wrong={"88 Gongpyeong-ro, Jung-gu, Daegu 41911"}
+            right={"88 Gongpyeong-ro, Jung-gu, Daegu 41911, South Korea"}
             why="국가가 없으면 발송국 내부 주소로 처리되어 국제 구간으로 넘어가지 못하거나 통관에서 막힐 수 있습니다."
           />
         </section>
@@ -163,14 +164,14 @@ export default function CommonMistakesGuide() {
           </h2>
           <p>
             도로명·지역명은 행정안전부 공식 영문 표기를 그대로 쓰는 것이
-            안전합니다. 예를 들어 “테헤란로”는{" "}
-            <span className="font-mono">Teheran-ro</span> 가 공식 표기입니다.
+            안전합니다. 예를 들어 “공평로”는{" "}
+            <span className="font-mono">Gongpyeong-ro</span> 가 공식 표기입니다.
             소리 나는 대로 임의로 적으면 배송·서류에서 다른 주소로 인식될 수
             있습니다.
           </p>
           <WrongRight
-            wrong={"Tehran-ro · Teheranro · Teheran Ro"}
-            right={"Teheran-ro"}
+            wrong={"Gongpyung-ro · Gongpyeongro · Gongpyeong Ro"}
+            right={"Gongpyeong-ro"}
             why="철자가 공식 표기와 다르면 검증 시스템이 다른 주소로 보아, 서류 심사나 배송 조회에서 불일치 처리될 수 있습니다."
           />
         </section>
