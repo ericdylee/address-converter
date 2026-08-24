@@ -167,12 +167,30 @@ function FieldMappingGuide({ country }: { country: Country }) {
               <span className="font-mono">Chiyoda-ku</span>)을 넣습니다.
             </p>
           ) : (
-            <p className="text-sm text-blue-800 leading-relaxed">
-              <span className="font-semibold">팁 · </span>
-              양식에 <span className="font-medium">City 칸만 있고 State 칸이 없으면</span>{" "}
-              보통 큰 도시 이름(예: <span className="font-mono">Seoul</span>)을 City에 넣습니다.
-              서울·부산 같은 광역시는 시(State)와 구(City)가 나뉘어 있어 헷갈릴 수 있어요.
-            </p>
+            // 쇼핑몰이 칸 아래 띄우는 회색 예시가 오히려 사람을 헷갈리게 하는 경우가
+            // 많다. 아마존이 대표적이라 실제 사례로 짚어준다(2026-08-24 확인).
+            <div className="text-sm text-blue-800 leading-relaxed">
+              <p>
+                <span className="font-semibold">팁 · </span>
+                칸 아래 흐리게 뜨는{" "}
+                <span className="font-medium">예시 글씨를 그대로 따라 넣지 마세요.</span>{" "}
+                아마존은 City에 <span className="font-mono">Seoul</span>, Province에{" "}
+                <span className="font-mono">Kyeonggi-do</span>를 예시로 띄우는데 서울은
+                경기도에 속하지 않습니다. 규칙은 하나입니다 —{" "}
+                <span className="font-medium">
+                  작은 단위가 City(구·시·군), 큰 단위가 State/Province(시·도)
+                </span>
+                .
+              </p>
+              <p className="mt-2">
+                <Link
+                  href="/shops"
+                  className="font-semibold text-blue-700 underline-offset-2 hover:underline"
+                >
+                  쇼핑몰별 입력법 보기 →
+                </Link>
+              </p>
+            </div>
           )}
         </div>
       </div>

@@ -6,4 +6,4 @@
 - **게시 전 개인정보 마스킹 필수** — 실명·실주소·전화번호·이메일·주문번호·통관고유부호
 - 마스킹 원본(미처리 캡처)은 저장소에 커밋하지 않는다
 - 주소 입력 폼 영역만 크롭 (사이트 UI 전체를 통째로 싣지 않는다)
-- 가상 예시 통일: `Hong Gildong` / `100 Inha-ro, Inha APT 101-502, Michuhol-gu, Incheon 22212`
+- 가상 예시 통일: `홍길동 (Hong, Gil-Dong)` / `100 Inha-ro, Inha APT 101-502, Michuhol-gu, Incheon 22212`

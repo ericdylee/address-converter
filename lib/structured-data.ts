@@ -68,6 +68,28 @@ export function guideJsonLd(opts: { title: string; path: string }) {
   ];
 }
 
+// 쇼핑몰별 실전 입력법 글 1편에 넣을 구조화 데이터(글 + 이동경로).
+//
+// 가이드(guideJsonLd)와 달리 날짜를 글마다 인자로 받는다. 실전 글은 대상
+// 사이트의 화면이 바뀌면 다시 확인해 고치는 글이라, "언제 확인한 내용인지"가
+// 내용의 일부다. 공유 상수로 묶으면 그 정보가 사라진다.
+export function shopJsonLd(opts: {
+  title: string;
+  path: string;
+  description?: string;
+  datePublished: string;
+  dateModified: string;
+}) {
+  return [
+    articleSchema(opts),
+    breadcrumbSchema([
+      { name: "홈", path: "/" },
+      { name: "쇼핑몰별 입력법", path: "/shops" },
+      { name: opts.title, path: opts.path },
+    ]),
+  ];
+}
+
 export function breadcrumbSchema(items: { name: string; path: string }[]) {
   return {
     "@context": "https://schema.org",
