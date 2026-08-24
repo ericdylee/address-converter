@@ -4,7 +4,6 @@ import Link from "next/link";
 const LINKS = [
   { href: "/about", label: "소개" },
   { href: "/guide", label: "가이드" },
-  { href: "/shops", label: "쇼핑몰별" },
   { href: "/faq", label: "FAQ" },
   { href: "/contact", label: "문의" },
   { href: "/privacy", label: "개인정보처리방침" },

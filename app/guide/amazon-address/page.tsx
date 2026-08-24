@@ -6,7 +6,7 @@ import GuideQuickAnswer from "@/components/GuideQuickAnswer";
 import GuideCta from "@/components/GuideCta";
 import LastVerified from "@/components/LastVerified";
 import { createPageMetadata } from "@/lib/metadata";
-import { shopJsonLd } from "@/lib/structured-data";
+import { guideJsonLd } from "@/lib/structured-data";
 
 // 이 글의 모든 칸 이름·힌트·경고 문구는 아래 날짜에 실제 아마존 화면을 보고
 // 옮긴 것이다. 화면이 바뀌면 캡처부터 다시 찍고 문장을 고친다.
@@ -16,7 +16,7 @@ export const metadata: Metadata = createPageMetadata({
   title: "아마존 한국 주소 입력법 (City·Province 헷갈리지 않기)",
   description:
     "아마존 주소 입력 화면을 그대로 보면서 City·Province·Zip Code에 무엇을 넣는지, 아마존이 보여주는 힌트가 왜 헷갈리는지, 결제 단계의 개인통관고유부호까지 실제 화면으로 정리했습니다.",
-  path: "/shops/amazon",
+  path: "/guide/amazon-address",
 });
 
 export default function AmazonShopGuide() {
@@ -24,10 +24,10 @@ export default function AmazonShopGuide() {
     <ContentLayout
       title="아마존 한국 주소 입력법"
       lead="아마존의 실제 주소 입력 화면을 보면서 칸별로 짚어봅니다. City와 Province를 헷갈리게 만드는 원인이 아마존 화면 자체에 있습니다."
-      backLink={{ label: "쇼핑몰별 입력법", href: "/shops" }}
-      jsonLd={shopJsonLd({
+      backLink={{ label: "가이드 목록", href: "/guide" }}
+      jsonLd={guideJsonLd({
         title: "아마존 한국 주소 입력법",
-        path: "/shops/amazon",
+        path: "/guide/amazon-address",
         datePublished: VERIFIED,
         dateModified: VERIFIED,
       })}

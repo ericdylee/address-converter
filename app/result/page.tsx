@@ -184,10 +184,10 @@ function FieldMappingGuide({ country }: { country: Country }) {
               </p>
               <p className="mt-2">
                 <Link
-                  href="/shops"
+                  href="/guide/amazon-address"
                   className="font-semibold text-blue-700 underline-offset-2 hover:underline"
                 >
-                  쇼핑몰별 입력법 보기 →
+                  아마존 입력법 실제 화면으로 보기 →
                 </Link>
               </p>
             </div>

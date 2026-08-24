@@ -12,6 +12,12 @@ export const metadata: Metadata = createPageMetadata({
 
 const articles = [
   {
+    href: "/guide/amazon-address",
+    title: "아마존 한국 주소 입력법 (실제 화면)",
+    desc: "아마존의 실제 주소 입력 화면을 캡처해 칸별로 짚었습니다. City·Province를 헷갈리게 만드는 원인과 결제 단계의 개인통관고유부호까지 다룹니다.",
+    example: "City → Michuhol-gu · Province → Incheon",
+  },
+  {
     href: "/guide/english-address",
     title: "한글 주소, 영문으로 쓰는 법",
     desc: "영문 주소의 어순, 도로명·지번 차이, 동/호수·층 표기, 실제 변환 예시까지 한 번에 정리했습니다.",

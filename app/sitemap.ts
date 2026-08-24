@@ -22,8 +22,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   return [
     entry("", 1, "weekly"), // 홈(검색)
     entry("/guide", 0.8, "monthly"), // 가이드 목록
-    entry("/shops", 0.9, "monthly"), // 쇼핑몰별 입력법 목록
-    entry("/shops/amazon", 0.9, "monthly"), // 아마존 주소 입력법
+    entry("/guide/amazon-address", 0.9, "monthly"), // 아마존 주소 입력법(실제 화면)
     entry("/guide/english-address", 0.8, "monthly"), // 영문주소 작성법
     entry("/guide/apartment-unit", 0.8, "monthly"), // 동·호수 영문 표기
     entry("/guide/overseas-shopping", 0.8, "monthly"), // 해외직구 배송지 작성법

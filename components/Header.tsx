@@ -6,7 +6,6 @@ import Link from "next/link";
 const NAV = [
   { href: "/about", label: "소개" },
   { href: "/guide", label: "가이드" },
-  { href: "/shops", label: "쇼핑몰별" },
   { href: "/faq", label: "FAQ" },
   { href: "/contact", label: "문의" },
 ];

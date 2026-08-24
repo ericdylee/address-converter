@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import ContentLayout from "@/components/ContentLayout";
 import GuideCta from "@/components/GuideCta";
@@ -203,15 +204,44 @@ export default function OverseasShoppingGuide() {
               </tbody>
             </table>
           </div>
+          <div className="mt-4 grid gap-4 sm:grid-cols-2">
+            <figure>
+              <Image
+                src="/shots/iherb/01-new-address-form.png"
+                alt="아이허브의 새 배송 주소 추가 화면. 국가를 대한민국으로 고르면 이름, 우편번호, 주소(도시명·구·동·지번 또는 도로명), 상세주소, 휴대폰번호 칸이 한글로 표시된다."
+                width={1626}
+                height={1278}
+                className="h-auto w-full rounded-lg border border-gray-200"
+              />
+              <figcaption className="mt-2 text-xs leading-5 text-gray-500">
+                아이허브 — 칸 이름이 전부 한글이고 City·Province 칸이 없습니다.
+                (2026-08-24 확인)
+              </figcaption>
+            </figure>
+            <figure>
+              <Image
+                src="/shots/aliexpress/01-new-address-form.png"
+                alt="알리익스프레스의 배송지 추가 화면. 국가는 Korea, 받는 사람과 +82 휴대폰 번호를 받고, 주소는 우편번호·도로명·건물명·번지로 찾는 한국식 검색창을 쓴다."
+                width={1646}
+                height={786}
+                className="h-auto w-full rounded-lg border border-gray-200"
+              />
+              <figcaption className="mt-2 text-xs leading-5 text-gray-500">
+                알리익스프레스 — 한국식 주소 검색창을 씁니다. 전화번호는 “01로 시작하는
+                11자리”를 요구합니다. (2026-08-24 확인)
+              </figcaption>
+            </figure>
+          </div>
+
           <p className="mt-3">
             그래서 “해외직구에는 무조건 영문 주소”라는 말은 사실이 아닙니다. 영문 주소가
             꼭 필요한 곳은 아마존·이베이처럼 한국 전용 입력 화면이 없는 사이트입니다.
             사이트별 실제 화면과 칸별 입력값은{" "}
             <Link
-              href="/shops"
+              href="/guide/amazon-address"
               className="font-medium text-blue-700 hover:underline"
             >
-              쇼핑몰별 주소 입력법
+              아마존 한국 주소 입력법
             </Link>
             에 정리해 두었습니다.
           </p>
@@ -266,7 +296,7 @@ export default function OverseasShoppingGuide() {
               유니패스에서 발급받아, 쇼핑몰의 해당 칸(또는 배대지)에 입력하세요.
               주소와는 별개의 정보입니다. 영문 이름으로 주문할 때 전화번호가 통관부호
               등록 정보와 맞아야 하는 경우가 있으니{" "}
-              <Link href="/shops/amazon" className="font-medium text-blue-700 hover:underline">
+              <Link href="/guide/amazon-address" className="font-medium text-blue-700 hover:underline">
                 아마존 입력법
               </Link>
               의 통관 항목도 함께 보세요.

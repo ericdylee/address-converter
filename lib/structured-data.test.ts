@@ -4,7 +4,7 @@ import {
   softwareAppSchema,
   articleSchema,
   breadcrumbSchema,
-  shopJsonLd,
+  guideJsonLd,
 } from "./structured-data";
 
 describe("structured-data", () => {
@@ -51,10 +51,10 @@ describe("structured-data", () => {
     expect(s.itemListElement[1].position).toBe(2);
   });
 
-  describe("shopJsonLd", () => {
-    const built = shopJsonLd({
+  describe("guideJsonLd", () => {
+    const built = guideJsonLd({
       title: "아마존 한국 주소 입력법",
-      path: "/shops/amazon",
+      path: "/guide/amazon-address",
       datePublished: "2026-08-24",
       dateModified: "2026-08-25",
     }) as [
@@ -70,15 +70,15 @@ describe("structured-data", () => {
 
     // 가이드 8편이 공유하던 GUIDE_DATE 상수와 달리, 글마다 다른 날짜를 받는다.
     // 작성일과 수정일이 서로 다를 수 있어야 "관리되는 글"로 표기된다.
-    it("작성일과 수정일을 각각 그대로 싣는다", () => {
+    it("글별 날짜를 주면 그대로 싣는다 (공유 상수 대신)", () => {
       expect(built[0].datePublished).toBe("2026-08-24");
       expect(built[0].dateModified).toBe("2026-08-25");
     });
 
-    it("이동경로가 홈 → 쇼핑몰별 → 글 순서다", () => {
+    it("이동경로가 홈 → 사용 가이드 → 글 순서다", () => {
       expect(built[1].itemListElement.map((i) => i.name)).toEqual([
         "홈",
-        "쇼핑몰별 입력법",
+        "사용 가이드",
         "아마존 한국 주소 입력법",
       ]);
     });
