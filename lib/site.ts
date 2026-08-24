@@ -4,6 +4,13 @@
 // 사이트맵·메타데이터·문의 이메일이 모두 그 도메인 기준으로 자동 갱신된다.
 // (Vercel 프로젝트 Settings → Environment Variables 에 등록 후 재배포)
 
+/**
+ * 사이트를 만들고 관리하는 사람. 구조화 데이터(Article.author)와 About 소개에 쓴다.
+ * 구글은 "누가 책임지고 쓰는 글인지"를 품질 신호로 본다(E-E-A-T).
+ */
+export const AUTHOR_NAME = "이도영";
+export const AUTHOR_NAME_EN = "Doyoung Lee";
+
 /** 사이트 대표 이름 (브라우저 탭 제목·OpenGraph 등에 사용) */
 export const SITE_NAME = "한글·일본 주소 → 영문 변환기";
 

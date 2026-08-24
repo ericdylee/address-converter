@@ -24,6 +24,22 @@ describe("structured-data", () => {
     expect(s.offers.price).toBe("0");
   });
 
+  // 글쓴이가 Organization이면 "누가 썼는지"가 없는 글이 된다. 사람이어야 한다.
+  it("articleSchema: author는 Person, publisher는 사이트", () => {
+    const s = articleSchema({
+      title: "t",
+      path: "/guide/t",
+      datePublished: "2026-08-24",
+      dateModified: "2026-08-24",
+    }) as {
+      author: { "@type": string; name: string };
+      publisher: { "@type": string };
+    };
+    expect(s.author["@type"]).toBe("Person");
+    expect(s.author.name.length).toBeGreaterThan(0);
+    expect(s.publisher["@type"]).toBe("Organization");
+  });
+
   it("articleSchema: headline과 절대 url 포함", () => {
     const s = articleSchema({
       title: "테스트 글",

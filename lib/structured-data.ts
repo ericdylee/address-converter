@@ -1,4 +1,4 @@
-import { SITE_NAME, SITE_URL } from "@/lib/site";
+import { AUTHOR_NAME, SITE_NAME, SITE_URL } from "@/lib/site";
 import { absoluteUrl } from "@/lib/metadata";
 
 // 구조화 데이터(JSON-LD) 빌더. 순수 함수라 서버/클라이언트 어디서든 호출 가능.
@@ -41,7 +41,8 @@ export function articleSchema(opts: {
     datePublished: opts.datePublished,
     dateModified: opts.dateModified,
     inLanguage: "ko-KR",
-    author: { "@type": "Organization", name: SITE_NAME },
+    // 글쓴이는 사람, 발행 주체는 사이트. 둘을 구분해야 E-E-A-T 신호가 산다.
+    author: { "@type": "Person", name: AUTHOR_NAME },
     publisher: { "@type": "Organization", name: SITE_NAME },
   };
   if (opts.description) schema.description = opts.description;
