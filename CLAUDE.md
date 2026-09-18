@@ -31,7 +31,7 @@ Next.js App Router 기반 두 라우트 앱(`/` 검색, `/result` 결과). juso 
   Browser (AddressSearch, 300ms debounce)
     → GET /api/search-address?q=<키워드>
       → lib/juso.ts: searchAddress()
-        → business.juso.go.kr/addrlinkApi/addrEngApi.do (confmKey 포함)
+        → business.juso.go.kr/addrlink/addrEngApi.do (confmKey 포함)
       ← JusoApiItem[] → AddressResult[]로 정규화
     ← SearchResponse
   드롭다운 렌더 → 사용자가 후보 클릭
@@ -46,6 +46,9 @@ Next.js App Router 기반 두 라우트 앱(`/` 검색, `/result` 결과). juso 
 라우트 이동 시점에 AdSense Auto Ads(Vignette)가 광고를 자체 판단으로 서빙. 빈도 보장은 없음.
 
 **모듈 경계:**
+- `lib/guides.ts` — 가이드 글 카탈로그의 단일 출처. 글마다 단계(1~3단계)·작성일/수정일·확인 기준·참고한 공식 자료·이어서 읽기 목록을 담는다. 가이드 목록 페이지(`/guide`), 각 글의 `GuideByline`/`GuideSources`/`GuideNext`, `app/sitemap.ts`의 lastModified가 모두 여기서 나온다. **글을 추가·수정하면 여기부터 고친다.** `lib/guides.test.ts`가 끊어진 내부 링크·빈 단계·날짜 형식을 막는다.
+  - `verified.date`는 *실제로 다시 확인한 날*만 적는다. 글을 손봤다고 올리지 않는다.
+  - `sources`에는 정말 근거로 삼은 자료만 넣는다. 권위 있어 보이려고 읽지 않은 문서를 링크하면, 확인하는 쪽에서 바로 드러난다.
 - `lib/juso.ts` — juso API 응답 모양을 알고 있는 유일한 파일. `parseEnglishAddress()`가 `engAddr` 콤마 문자열을 Street/City/State로 분리. juso가 응답 형식을 바꾸면 여기만 고치면 됩니다.
 - `lib/romanize.ts` — `romanizeDetail()`이 상세주소 한글 접미사를 변환. `101동 502호` 같이 동+공백+호 패턴은 `101-502`로 합쳐짐 (동은 `-`로, 호는 제거). 그 외: `층`→`F`, `번지`→`-beonji`, `관`→`-gwan`, `실`→`-sil`. 한글이 없는 입력은 그대로 통과. `combineStreetWithDetail()`이 상세주소를 Street 필드에 합치는 진입점.
 - `app/api/search-address/route.ts` — 얇은 핸들러. `MISSING_KEY` 에러는 503 + 사용자용 한글 메시지로, 그 외 에러는 500으로 변환. 개발 모드에서는 `detail` 필드에 원본 에러도 담음.

@@ -18,7 +18,7 @@ export default function PrivacyPage() {
             ← 홈으로
           </Link>
           <h1 className="mt-4 text-2xl font-semibold text-gray-950">개인정보처리방침</h1>
-          <p className="mt-2 text-xs text-gray-500">시행일: 2026-06-04 · 최종 수정일: 2026-06-11</p>
+          <p className="mt-2 text-xs text-gray-500">시행일: 2026-06-04 · 최종 수정일: 2026-09-18</p>
         </header>
 
         <div className="space-y-6 rounded-lg border border-border bg-white p-6 text-sm leading-7 text-gray-700 shadow-card">
@@ -26,6 +26,26 @@ export default function PrivacyPage() {
             본 방침은 ‘한글 → 영문 주소 변환기’(이하 ‘서비스’)가 이용자의 개인정보를 어떻게
             처리하는지 설명합니다.
           </p>
+
+          <section>
+            <h2 className="mb-2 font-semibold text-gray-950">
+              0. 이 사이트에서 실제로 작동하는 기능
+            </h2>
+            <p>
+              아래 방침은 이 사이트에 실제로 있는 기능만을 대상으로 합니다. 다른
+              사이트의 방침을 옮겨 적지 않았습니다. 현재 이 사이트에는{" "}
+              <strong className="font-semibold text-gray-900">
+                회원가입·로그인, 댓글, 게시판, 문의 폼, 뉴스레터 구독이 없습니다.
+              </strong>{" "}
+              문의는 이메일로만 받습니다. 기능이 추가되면 이 방침을 먼저 고치고
+              최종 수정일을 갱신합니다.
+            </p>
+            <ul className="mt-3 list-disc space-y-1.5 pl-5">
+              <li>주소 검색 — 입력한 검색어를 공식 주소 API 조회에만 사용</li>
+              <li>방문 통계 — Vercel Web Analytics (쿠키 없음)</li>
+              <li>광고 — Google AdSense (쿠키 사용)</li>
+            </ul>
+          </section>
 
           <section>
             <h2 className="mb-2 font-semibold text-gray-950">1. 수집하는 개인정보</h2>
@@ -84,7 +104,18 @@ export default function PrivacyPage() {
           </section>
 
           <section>
-            <h2 className="mb-2 font-semibold text-gray-950">3. 외부 링크</h2>
+            <h2 className="mb-2 font-semibold text-gray-950">3. 방문 통계</h2>
+            <p>
+              어떤 페이지가 얼마나 읽히는지 파악하기 위해 Vercel Web Analytics를
+              사용합니다. 이 도구는{" "}
+              <strong className="font-semibold text-gray-900">쿠키를 사용하지 않으며</strong>,
+              페이지 주소·유입 경로·국가·기기 종류 같은 집계용 정보만 남깁니다.
+              개인을 식별하거나 다른 사이트까지 따라다니며 추적하지 않습니다.
+            </p>
+          </section>
+
+          <section>
+            <h2 className="mb-2 font-semibold text-gray-950">4. 외부 링크</h2>
             <p>
               본 서비스는 외부 사이트로 연결되는 링크를 포함할 수 있으며, 외부 사이트의 개인정보
               처리에 대해서는 책임지지 않습니다.
@@ -92,12 +123,12 @@ export default function PrivacyPage() {
           </section>
 
           <section>
-            <h2 className="mb-2 font-semibold text-gray-950">4. 방침 변경</h2>
+            <h2 className="mb-2 font-semibold text-gray-950">5. 방침 변경</h2>
             <p>본 개인정보처리방침이 변경되는 경우 변경 내용을 본 페이지에 게시합니다.</p>
           </section>
 
           <section>
-            <h2 className="mb-2 font-semibold text-gray-950">5. 문의</h2>
+            <h2 className="mb-2 font-semibold text-gray-950">6. 문의</h2>
             <p>
               개인정보 처리에 관한 문의는 아래 이메일로 연락 주시기 바랍니다.
               <br />

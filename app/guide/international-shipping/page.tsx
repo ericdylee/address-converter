@@ -1,9 +1,12 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import ContentLayout from "@/components/ContentLayout";
 import GuideCta from "@/components/GuideCta";
 import { createPageMetadata } from "@/lib/metadata";
 import { guideJsonLd } from "@/lib/structured-data";
+import GuideByline from "@/components/GuideByline";
+import GuideSources from "@/components/GuideSources";
+import GuideNext from "@/components/GuideNext";
+import { getGuide } from "@/lib/guides";
 
 export const metadata: Metadata = createPageMetadata({
   title: "국제우편·EMS 영문 주소와 라벨 작성법",
@@ -12,16 +15,20 @@ export const metadata: Metadata = createPageMetadata({
   path: "/guide/international-shipping",
 });
 
+const guide = getGuide("/guide/international-shipping");
+
 export default function InternationalShippingGuide() {
   return (
     <ContentLayout
       title="국제우편·EMS 영문 주소와 라벨 작성법"
       lead="해외 쇼핑몰 주문서가 아니라, 내가 직접 해외로 물건을 ‘보낼 때’ 필요한 영문 주소와 라벨 작성법입니다."
       backLink={{ label: "가이드 목록", href: "/guide" }}
+      byline={<GuideByline guide={guide} />}
       jsonLd={guideJsonLd({
         title: "국제우편·EMS 영문 주소와 라벨 작성법",
-        path: "/guide/international-shipping",
-        dateModified: "2026-08-24",
+        path: guide.path,
+        datePublished: guide.datePublished,
+        dateModified: guide.dateModified,
       })}
     >
       <article className="space-y-7 rounded-lg border border-border bg-white p-6 text-[15px] leading-7 text-gray-700 shadow-card sm:p-8">
@@ -138,28 +145,10 @@ export default function InternationalShippingGuide() {
           </ul>
         </section>
 
-        <section className="space-y-2">
-          <h2 className="text-lg font-semibold text-gray-950">함께 보기</h2>
-          <p>
-            해외 쇼핑몰 주문서의 배송지 칸 채우는 법은{" "}
-            <Link
-              href="/guide/overseas-shopping"
-              className="font-semibold text-blue-700 hover:underline"
-            >
-              해외직구 배송지 넣는 법
-            </Link>
-            에서, 칸별 작성 원리는{" "}
-            <Link
-              href="/guide/english-address"
-              className="font-semibold text-blue-700 hover:underline"
-            >
-              한글 주소 영문으로 쓰는 법
-            </Link>
-            에서 확인하세요.
-          </p>
-        </section>
+        <GuideSources guide={guide} />
       </article>
 
+      <GuideNext guide={guide} />
       <GuideCta label="보낼 주소를 영문으로 변환하기" />
     </ContentLayout>
   );

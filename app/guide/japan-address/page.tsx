@@ -5,6 +5,10 @@ import GuideCta from "@/components/GuideCta";
 import GuideQuickAnswer from "@/components/GuideQuickAnswer";
 import { createPageMetadata } from "@/lib/metadata";
 import { guideJsonLd } from "@/lib/structured-data";
+import GuideByline from "@/components/GuideByline";
+import GuideSources from "@/components/GuideSources";
+import GuideNext from "@/components/GuideNext";
+import { getGuide } from "@/lib/guides";
 
 export const metadata: Metadata = createPageMetadata({
   title: "일본 주소, 영문으로 쓰는 법",
@@ -13,20 +17,29 @@ export const metadata: Metadata = createPageMetadata({
   path: "/guide/japan-address",
 });
 
+const guide = getGuide("/guide/japan-address");
+
 export default function JapanAddressGuide() {
   return (
     <ContentLayout
       title="일본 주소, 영문으로 쓰는 법"
       lead="일본 주소도 영문으로 쓸 때는 순서가 반대가 됩니다. 우편번호와 丁目·番地·号 규칙만 알면 어렵지 않습니다."
       backLink={{ label: "가이드 목록", href: "/guide" }}
+      byline={<GuideByline guide={guide} />}
       jsonLd={guideJsonLd({
         title: "일본 주소, 영문으로 쓰는 법",
-        path: "/guide/japan-address",
+        path: guide.path,
+        datePublished: guide.datePublished,
+        dateModified: guide.dateModified,
       })}
     >
       <GuideQuickAnswer
         rows={[
-          { label: "Address Line 1", value: "1-1-1 Marunouchi" },
+          {
+            label: "Address Line 1",
+            value: "1-1-1 Marunochi",
+            note: "일본우편 공식 로마자 표기입니다. 널리 쓰이는 Marunouchi와 철자가 다르지만 둘 다 배송됩니다.",
+          },
           {
             label: "Address Line 2",
             value: "Sakura Bldg. 5F",
@@ -57,7 +70,7 @@ export default function JapanAddressGuide() {
           <h2 className="mb-3 text-lg font-semibold text-gray-950">
             2. 일본 주소의 구성요소와 영문 대응
           </h2>
-          <div className="overflow-hidden rounded-lg border border-gray-200">
+          <div className="overflow-x-auto rounded-lg border border-gray-200">
             <table className="w-full text-sm">
               <thead className="bg-gray-50 text-left text-gray-500">
                 <tr>
@@ -75,7 +88,7 @@ export default function JapanAddressGuide() {
                 <tr>
                   <td className="px-4 py-2">町域 (동네 이름)</td>
                   <td className="px-4 py-2 font-medium text-gray-900">Street Address 뒷부분</td>
-                  <td className="px-4 py-2 font-mono">Marunouchi</td>
+                  <td className="px-4 py-2 font-mono">Marunochi</td>
                 </tr>
                 <tr>
                   <td className="px-4 py-2">건물명·호수</td>
@@ -119,18 +132,18 @@ export default function JapanAddressGuide() {
           <div className="space-y-4">
             <JpExample
               ko="〒100-0005 東京都千代田区丸の内1丁目1番1号"
-              en="1-1-1 Marunouchi, Chiyoda-ku, Tokyo 100-0005, Japan"
+              en="1-1-1 Marunochi, Chiyoda-ku, Tokyo 100-0005, Japan"
               note="도쿄 특별구 — 구(Chiyoda-ku)가 City, Tokyo가 State."
             />
             <JpExample
               ko="〒530-0001 大阪府大阪市北区梅田2丁目2番2号"
-              en="2-2-2 Umeda, Kita-ku, Osaka 530-0001, Japan"
-              note="오사카는 부(府)와 시 이름이 겹칩니다. 이때는 구(Kita-ku)를 City, Osaka를 State에."
+              en="2-2-2 Umeda, Osaka-shi Kita-ku, Osaka 530-0001, Japan"
+              note="정령지정도시(오사카시·요코하마시 등)는 City에 시와 구를 함께 적습니다 — Osaka-shi Kita-ku. 구만 적으면 같은 이름의 구가 다른 시에도 있어 배송이 어긋날 수 있습니다."
             />
             <JpExample
               ko="〒273-0005 千葉県船橋市本町1丁目1番1号"
-              en="1-1-1 Honcho, Funabashi, Chiba 273-0005, Japan"
-              note="구가 없는 일반 시 — 시(Funabashi)가 City, 현(Chiba)이 State."
+              en="1-1-1 Honcho, Funabashi-shi, Chiba 273-0005, Japan"
+              note="구가 없는 일반 시 — 시(Funabashi-shi)가 City, 현(Chiba)이 State."
             />
           </div>
           <p className="mt-3 text-sm leading-6 text-gray-500">
@@ -230,6 +243,14 @@ export default function JapanAddressGuide() {
               칸에 넣고, City에는 시·구(예: Chiyoda-ku)를 넣습니다.
             </li>
             <li>
+              정령지정도시에서 구만 적기 — 오사카시·요코하마시·나고야시 등은
+              City에 <span className="font-mono">Osaka-shi Kita-ku</span>처럼
+              시와 구를 함께 적습니다. 北区(Kita-ku)만 해도 오사카시·교토시·나고야시·
+              삿포로시·고베시 등 11곳에 있어서, 구만 적으면 어느 도시인지 특정되지
+              않습니다. 도쿄도 北区만 시가 없어 City가{" "}
+              <span className="font-mono">Kita-ku</span>가 됩니다.
+            </li>
+            <li>
               우편번호 하이픈 누락 — 일본 우편번호는{" "}
               <span className="font-mono">100-0005</span> 처럼 3자리-4자리
               형식입니다.
@@ -286,8 +307,10 @@ export default function JapanAddressGuide() {
             </div>
           </div>
         </section>
+        <GuideSources guide={guide} />
       </article>
 
+      <GuideNext guide={guide} />
       <GuideCta />
     </ContentLayout>
   );

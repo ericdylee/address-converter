@@ -1,10 +1,13 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import ContentLayout from "@/components/ContentLayout";
 import GuideCta from "@/components/GuideCta";
 import GuideQuickAnswer from "@/components/GuideQuickAnswer";
 import { createPageMetadata } from "@/lib/metadata";
 import { guideJsonLd } from "@/lib/structured-data";
+import GuideByline from "@/components/GuideByline";
+import GuideSources from "@/components/GuideSources";
+import GuideNext from "@/components/GuideNext";
+import { getGuide } from "@/lib/guides";
 
 export const metadata: Metadata = createPageMetadata({
   title: "아파트 동·호수, 건물명 영문 표기 정리",
@@ -24,16 +27,20 @@ const rules: { ko: string; en: string; note: string }[] = [
   { ko: "나동 302호", en: "Na-302", note: "나→Na, 다→Da …" },
 ];
 
+const guide = getGuide("/guide/apartment-unit");
+
 export default function ApartmentUnitGuide() {
   return (
     <ContentLayout
       title="아파트 동·호수, 건물명 영문 표기 정리"
       lead="도로명까지는 쉬운데 ‘101동 502호’를 영어로 어떻게 쓰는지에서 막히는 경우가 많습니다. 규칙은 생각보다 단순합니다."
       backLink={{ label: "가이드 목록", href: "/guide" }}
+      byline={<GuideByline guide={guide} />}
       jsonLd={guideJsonLd({
         title: "아파트 동·호수, 건물명 영문 표기 정리",
-        path: "/guide/apartment-unit",
-        dateModified: "2026-08-24",
+        path: guide.path,
+        datePublished: guide.datePublished,
+        dateModified: guide.dateModified,
       })}
     >
       <GuideQuickAnswer
@@ -69,7 +76,7 @@ export default function ApartmentUnitGuide() {
           <h2 className="mb-3 text-lg font-semibold text-gray-950">
             2. 경우별 변환 규칙표
           </h2>
-          <div className="overflow-hidden rounded-lg border border-gray-200">
+          <div className="overflow-x-auto rounded-lg border border-gray-200">
             <table className="w-full text-sm">
               <thead className="bg-gray-50 text-left text-gray-500">
                 <tr>
@@ -199,28 +206,10 @@ export default function ApartmentUnitGuide() {
           </ul>
         </section>
 
-        <section className="space-y-2">
-          <h2 className="text-lg font-semibold text-gray-950">함께 보기</h2>
-          <p>
-            칸별 작성 원리 전체는{" "}
-            <Link
-              href="/guide/english-address"
-              className="font-semibold text-blue-700 hover:underline"
-            >
-              한글 주소 영문으로 쓰는 법
-            </Link>
-            에서, 흔한 실수 모음은{" "}
-            <Link
-              href="/guide/common-mistakes"
-              className="font-semibold text-blue-700 hover:underline"
-            >
-              자주 틀리는 실수 7가지
-            </Link>
-            에서 확인할 수 있습니다.
-          </p>
-        </section>
+        <GuideSources guide={guide} />
       </article>
 
+      <GuideNext guide={guide} />
       <GuideCta />
     </ContentLayout>
   );

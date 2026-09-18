@@ -1,10 +1,13 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import ContentLayout from "@/components/ContentLayout";
 import GuideCta from "@/components/GuideCta";
 import LastVerified from "@/components/LastVerified";
 import { createPageMetadata } from "@/lib/metadata";
 import { guideJsonLd } from "@/lib/structured-data";
+import GuideByline from "@/components/GuideByline";
+import GuideSources from "@/components/GuideSources";
+import GuideNext from "@/components/GuideNext";
+import { getGuide } from "@/lib/guides";
 
 export const metadata: Metadata = createPageMetadata({
   title: "전국 시·도 영문 표기 정리표 (City·State 넣는 법)",
@@ -37,16 +40,20 @@ const regions: { ko: string; en: string; type: string }[] = [
   { ko: "제주특별자치도", en: "Jeju-do", type: "특별자치도" },
 ];
 
+const guide = getGuide("/guide/korea-region-names");
+
 export default function KoreaRegionNamesGuide() {
   return (
     <ContentLayout
       title="전국 시·도 영문 표기 정리표"
       lead="영문 주소의 State / Province 칸에 들어가는 전국 16개 시·도의 공식 영문 표기를 한 표에 모았습니다."
       backLink={{ label: "가이드 목록", href: "/guide" }}
+      byline={<GuideByline guide={guide} />}
       jsonLd={guideJsonLd({
         title: "전국 시·도 영문 표기 정리표",
-        path: "/guide/korea-region-names",
-        dateModified: "2026-08-24",
+        path: guide.path,
+        datePublished: guide.datePublished,
+        dateModified: guide.dateModified,
       })}
     >
       <article className="space-y-7 rounded-lg border border-border bg-white p-6 text-[15px] leading-7 text-gray-700 shadow-card sm:p-8">
@@ -71,7 +78,7 @@ export default function KoreaRegionNamesGuide() {
             같은 “시·도”라도 유형에 따라 City 칸에 넣는 것이 달라집니다. 네
             가지 유형만 알면 헷갈리지 않습니다.
           </p>
-          <div className="overflow-hidden rounded-lg border border-gray-200">
+          <div className="overflow-x-auto rounded-lg border border-gray-200">
             <table className="w-full text-sm">
               <thead className="bg-gray-50 text-left text-gray-500">
                 <tr>
@@ -115,7 +122,7 @@ export default function KoreaRegionNamesGuide() {
           <h2 className="mb-3 text-lg font-semibold text-gray-950">
             전국 16개 시·도 영문 표기
           </h2>
-          <div className="overflow-hidden rounded-lg border border-gray-200">
+          <div className="overflow-x-auto rounded-lg border border-gray-200">
             <table className="w-full text-sm">
               <thead className="bg-gray-50 text-left text-gray-500">
                 <tr>
@@ -268,40 +275,15 @@ export default function KoreaRegionNamesGuide() {
           </div>
         </section>
 
-        <section className="space-y-2">
-          <h2 className="text-lg font-semibold text-gray-950">함께 보기</h2>
-          <p>
-            칸별 작성 원리는{" "}
-            <Link
-              href="/guide/english-address"
-              className="font-semibold text-blue-700 hover:underline"
-            >
-              한글 주소 영문으로 쓰는 법
-            </Link>
-            , 흔한 실수는{" "}
-            <Link
-              href="/guide/common-mistakes"
-              className="font-semibold text-blue-700 hover:underline"
-            >
-              자주 틀리는 실수 7가지
-            </Link>
-            , 해외 쇼핑몰 입력은{" "}
-            <Link
-              href="/guide/overseas-shopping"
-              className="font-semibold text-blue-700 hover:underline"
-            >
-              해외직구 배송지 넣는 법
-            </Link>
-            에서 확인하세요.
-          </p>
-        </section>
 
         <LastVerified
           date="2026-08-24"
           note="행정안전부 영문주소 API 조회로 16개 시·도 표기 전수 대조"
         />
+        <GuideSources guide={guide} />
       </article>
 
+      <GuideNext guide={guide} />
       <GuideCta />
     </ContentLayout>
   );

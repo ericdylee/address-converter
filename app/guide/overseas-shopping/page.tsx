@@ -6,6 +6,10 @@ import GuideCta from "@/components/GuideCta";
 import GuideQuickAnswer from "@/components/GuideQuickAnswer";
 import { createPageMetadata } from "@/lib/metadata";
 import { guideJsonLd } from "@/lib/structured-data";
+import GuideByline from "@/components/GuideByline";
+import GuideSources from "@/components/GuideSources";
+import GuideNext from "@/components/GuideNext";
+import { getGuide } from "@/lib/guides";
 
 export const metadata: Metadata = createPageMetadata({
   title: "해외직구 배송지에 한국·일본 주소 넣는 법",
@@ -14,16 +18,20 @@ export const metadata: Metadata = createPageMetadata({
   path: "/guide/overseas-shopping",
 });
 
+const guide = getGuide("/guide/overseas-shopping");
+
 export default function OverseasShoppingGuide() {
   return (
     <ContentLayout
       title="해외직구 배송지에 한국·일본 주소 넣는 법"
       lead="해외 주문서의 영어 칸 이름이 낯설어도, 어떤 칸에 무엇을 넣는지만 알면 됩니다."
       backLink={{ label: "가이드 목록", href: "/guide" }}
+      byline={<GuideByline guide={guide} />}
       jsonLd={guideJsonLd({
         title: "해외직구 배송지에 한국·일본 주소 넣는 법",
-        path: "/guide/overseas-shopping",
-        dateModified: "2026-08-24",
+        path: guide.path,
+        datePublished: guide.datePublished,
+        dateModified: guide.dateModified,
       })}
     >
       <GuideQuickAnswer
@@ -68,7 +76,7 @@ export default function OverseasShoppingGuide() {
           <h2 className="mb-3 text-lg font-semibold text-gray-950">
             2. 해외 양식에 자주 나오는 칸 이름
           </h2>
-          <div className="overflow-hidden rounded-lg border border-gray-200">
+          <div className="overflow-x-auto rounded-lg border border-gray-200">
             <table className="w-full text-sm">
               <thead className="bg-gray-50 text-left text-gray-500">
                 <tr>
@@ -356,8 +364,10 @@ export default function OverseasShoppingGuide() {
             </div>
           </div>
         </section>
+        <GuideSources guide={guide} />
       </article>
 
+      <GuideNext guide={guide} />
       <GuideCta />
     </ContentLayout>
   );
