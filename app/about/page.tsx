@@ -16,6 +16,23 @@ export default function AboutPage() {
       title="서비스 소개"
       lead={`${SITE_NAME}는 한글·일본 주소를 해외 사이트 입력 양식에 맞는 영문 주소로 바꿔주는 무료 도구입니다.`}
     >
+      {/* 무엇이 아닌지를 먼저 밝힌다. 공식 기관의 사이트로 오해하면
+          이 사이트의 결과를 과신하게 되고, 그건 사용자에게 손해다. */}
+      <aside className="mb-6 rounded-lg border border-amber-200 bg-amber-50/80 p-5 text-[15px] leading-7 text-amber-950">
+        <h2 className="mb-1.5 text-base font-semibold">먼저 밝힙니다</h2>
+        <p>
+          이 사이트는{" "}
+          <strong className="font-semibold">
+            행정안전부·우정사업본부·일본우편 등 공식 기관과 아무 관련이 없는 개인
+            사이트
+          </strong>
+          입니다. 공식 기관이 공개한 데이터를 가져와 보기 쉽게 정리할 뿐이고,
+          주소를 새로 만들거나 공적으로 증명해 주지는 않습니다. 변환 결과는
+          참고용이며, 최종 확인은 아래에 적어 둔 공식 사이트에서 하시는 것이
+          가장 안전합니다.
+        </p>
+      </aside>
+
       <article className="space-y-6 rounded-lg border border-border bg-white p-6 text-[15px] leading-7 text-gray-700 shadow-card sm:p-8">
         <section>
           <h2 className="mb-2 text-lg font-semibold text-gray-950">

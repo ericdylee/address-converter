@@ -5,6 +5,10 @@ import GuideCta from "@/components/GuideCta";
 import GuideQuickAnswer from "@/components/GuideQuickAnswer";
 import { createPageMetadata } from "@/lib/metadata";
 import { guideJsonLd } from "@/lib/structured-data";
+import GuideByline from "@/components/GuideByline";
+import GuideSources from "@/components/GuideSources";
+import GuideNext from "@/components/GuideNext";
+import { getGuide } from "@/lib/guides";
 
 export const metadata: Metadata = createPageMetadata({
   title: "한글 주소, 영문으로 쓰는 법",
@@ -13,16 +17,20 @@ export const metadata: Metadata = createPageMetadata({
   path: "/guide/english-address",
 });
 
+const guide = getGuide("/guide/english-address");
+
 export default function EnglishAddressGuide() {
   return (
     <ContentLayout
       title="한글 주소, 영문으로 쓰는 법"
       lead="영문 주소는 한글 주소와 순서가 반대입니다. 원리만 이해하면 어렵지 않습니다."
       backLink={{ label: "가이드 목록", href: "/guide" }}
+      byline={<GuideByline guide={guide} />}
       jsonLd={guideJsonLd({
         title: "한글 주소, 영문으로 쓰는 법",
-        path: "/guide/english-address",
-        dateModified: "2026-08-24",
+        path: guide.path,
+        datePublished: guide.datePublished,
+        dateModified: guide.dateModified,
       })}
     >
       <GuideQuickAnswer
@@ -59,7 +67,7 @@ export default function EnglishAddressGuide() {
           <h2 className="mb-3 text-lg font-semibold text-gray-950">
             2. 한국 주소의 구성요소와 영문 대응
           </h2>
-          <div className="overflow-hidden rounded-lg border border-gray-200">
+          <div className="overflow-x-auto rounded-lg border border-gray-200">
             <table className="w-full text-sm">
               <thead className="bg-gray-50 text-left text-gray-500">
                 <tr>
@@ -112,7 +120,7 @@ export default function EnglishAddressGuide() {
             도로명은 “로”, “길”, “대로”처럼 끝이 조금씩 다른데, 영문 표기도 그에
             맞춰 붙습니다. 규칙만 알면 대부분 그대로 옮길 수 있습니다.
           </p>
-          <div className="overflow-hidden rounded-lg border border-gray-200">
+          <div className="overflow-x-auto rounded-lg border border-gray-200">
             <table className="w-full text-sm">
               <thead className="bg-gray-50 text-left text-gray-500">
                 <tr>
@@ -309,8 +317,10 @@ export default function EnglishAddressGuide() {
             </div>
           </div>
         </section>
+        <GuideSources guide={guide} />
       </article>
 
+      <GuideNext guide={guide} />
       <GuideCta />
     </ContentLayout>
   );

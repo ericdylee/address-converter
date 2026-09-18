@@ -11,12 +11,21 @@ type Props = {
   lead?: ReactNode;
   /** 상단 뒤로가기 링크. 기본은 "← 홈으로". */
   backLink?: { label: string; href: string };
+  /** 제목·안내문 아래 붙는 글 이력(작성자·날짜·확인 기준). 가이드 글에서만 쓴다. */
+  byline?: ReactNode;
   /** 구조화 데이터(JSON-LD). 있으면 페이지에 <script>로 삽입된다. */
   jsonLd?: object | object[];
   children: ReactNode;
 };
 
-export default function ContentLayout({ title, lead, backLink, jsonLd, children }: Props) {
+export default function ContentLayout({
+  title,
+  lead,
+  backLink,
+  byline,
+  jsonLd,
+  children,
+}: Props) {
   return (
     <main className="min-h-screen bg-background px-4 py-10 sm:py-14">
       {jsonLd && <JsonLd data={jsonLd} />}
@@ -34,6 +43,7 @@ export default function ContentLayout({ title, lead, backLink, jsonLd, children 
           {lead && (
             <p className="mt-3 text-base leading-7 text-gray-600">{lead}</p>
           )}
+          {byline}
         </header>
 
         {children}

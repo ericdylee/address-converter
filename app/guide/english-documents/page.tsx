@@ -1,9 +1,12 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import ContentLayout from "@/components/ContentLayout";
 import GuideCta from "@/components/GuideCta";
 import { createPageMetadata } from "@/lib/metadata";
 import { guideJsonLd } from "@/lib/structured-data";
+import GuideByline from "@/components/GuideByline";
+import GuideSources from "@/components/GuideSources";
+import GuideNext from "@/components/GuideNext";
+import { getGuide } from "@/lib/guides";
 
 export const metadata: Metadata = createPageMetadata({
   title: "영문 주소가 필요한 서류 총정리 (비자·유학·해외 계좌)",
@@ -35,15 +38,20 @@ const cases: { title: string; body: string; tip: string }[] = [
   },
 ];
 
+const guide = getGuide("/guide/english-documents");
+
 export default function EnglishDocumentsGuide() {
   return (
     <ContentLayout
       title="영문 주소가 필요한 서류 총정리"
       lead="배송뿐 아니라 비자·유학·해외 계좌·증명서 같은 서류에서도 주소를 영어로 적어야 합니다. 서류는 배송과 달리 ‘표기 일관성’이 특히 중요합니다."
       backLink={{ label: "가이드 목록", href: "/guide" }}
+      byline={<GuideByline guide={guide} />}
       jsonLd={guideJsonLd({
         title: "영문 주소가 필요한 서류 총정리",
-        path: "/guide/english-documents",
+        path: guide.path,
+        datePublished: guide.datePublished,
+        dateModified: guide.dateModified,
       })}
     >
       <article className="space-y-7 rounded-lg border border-border bg-white p-6 text-[15px] leading-7 text-gray-700 shadow-card sm:p-8">
@@ -130,28 +138,10 @@ export default function EnglishDocumentsGuide() {
           </p>
         </section>
 
-        <section className="space-y-2">
-          <h2 className="text-lg font-semibold text-gray-950">함께 보기</h2>
-          <p>
-            칸별 작성 원리는{" "}
-            <Link
-              href="/guide/english-address"
-              className="font-semibold text-blue-700 hover:underline"
-            >
-              한글 주소 영문으로 쓰는 법
-            </Link>
-            , 시·도 공식 영문 표기는{" "}
-            <Link
-              href="/guide/korea-region-names"
-              className="font-semibold text-blue-700 hover:underline"
-            >
-              전국 시·도 영문 표기 정리표
-            </Link>
-            에서 확인할 수 있습니다.
-          </p>
-        </section>
+        <GuideSources guide={guide} />
       </article>
 
+      <GuideNext guide={guide} />
       <GuideCta label="서류용 영문 주소 만들기" />
     </ContentLayout>
   );

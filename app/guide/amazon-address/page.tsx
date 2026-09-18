@@ -7,6 +7,10 @@ import GuideCta from "@/components/GuideCta";
 import LastVerified from "@/components/LastVerified";
 import { createPageMetadata } from "@/lib/metadata";
 import { guideJsonLd } from "@/lib/structured-data";
+import GuideByline from "@/components/GuideByline";
+import GuideSources from "@/components/GuideSources";
+import GuideNext from "@/components/GuideNext";
+import { getGuide } from "@/lib/guides";
 
 // 이 글의 모든 칸 이름·힌트·경고 문구는 아래 날짜에 실제 아마존 화면을 보고
 // 옮긴 것이다. 화면이 바뀌면 캡처부터 다시 찍고 문장을 고친다.
@@ -19,17 +23,20 @@ export const metadata: Metadata = createPageMetadata({
   path: "/guide/amazon-address",
 });
 
+const guide = getGuide("/guide/amazon-address");
+
 export default function AmazonShopGuide() {
   return (
     <ContentLayout
       title="아마존 한국 주소 입력법"
       lead="아마존의 실제 주소 입력 화면을 보면서 칸별로 짚어봅니다. City와 Province를 헷갈리게 만드는 원인이 아마존 화면 자체에 있습니다."
       backLink={{ label: "가이드 목록", href: "/guide" }}
+      byline={<GuideByline guide={guide} />}
       jsonLd={guideJsonLd({
         title: "아마존 한국 주소 입력법",
-        path: "/guide/amazon-address",
-        datePublished: VERIFIED,
-        dateModified: VERIFIED,
+        path: guide.path,
+        datePublished: guide.datePublished,
+        dateModified: guide.dateModified,
       })}
     >
       {/* 값 자리에는 "실제로 칸에 넣는 것"을 둔다(다른 가이드와 동일한 규칙).
@@ -351,30 +358,12 @@ export default function AmazonShopGuide() {
           </ul>
         </section>
 
-        <section>
-          <h2 className="mb-2 text-lg font-semibold text-gray-950">함께 보기</h2>
-          <p>
-            영문 주소를 만드는 원리부터 보고 싶다면{" "}
-            <Link
-              href="/guide/english-address"
-              className="font-medium text-blue-700 hover:underline"
-            >
-              한글 주소, 영문으로 쓰는 법
-            </Link>
-            을, 다른 쇼핑몰의 칸 이름이 궁금하다면{" "}
-            <Link
-              href="/guide/overseas-shopping"
-              className="font-medium text-blue-700 hover:underline"
-            >
-              해외직구 배송지에 주소 넣는 법
-            </Link>
-            을 보세요.
-          </p>
-        </section>
 
         <LastVerified date={VERIFIED} note="데스크톱 웹 amazon.com 기준" />
+        <GuideSources guide={guide} />
       </article>
 
+      <GuideNext guide={guide} />
       <GuideCta label="내 주소를 아마존 칸에 맞게 변환하기" />
     </ContentLayout>
   );

@@ -4,6 +4,10 @@ import ContentLayout from "@/components/ContentLayout";
 import GuideCta from "@/components/GuideCta";
 import { createPageMetadata } from "@/lib/metadata";
 import { guideJsonLd } from "@/lib/structured-data";
+import GuideByline from "@/components/GuideByline";
+import GuideSources from "@/components/GuideSources";
+import GuideNext from "@/components/GuideNext";
+import { getGuide } from "@/lib/guides";
 
 export const metadata: Metadata = createPageMetadata({
   title: "영문 주소 변환할 때 자주 틀리는 실수 7가지",
@@ -53,16 +57,20 @@ function WrongRight({
   );
 }
 
+const guide = getGuide("/guide/common-mistakes");
+
 export default function CommonMistakesGuide() {
   return (
     <ContentLayout
       title="영문 주소 변환할 때 자주 틀리는 실수 7가지"
       lead="해외 배송지나 영문 서류에 한국·일본 주소를 적을 때 가장 많이 나오는 실수와 올바른 예를 모았습니다."
       backLink={{ label: "가이드 목록", href: "/guide" }}
+      byline={<GuideByline guide={guide} />}
       jsonLd={guideJsonLd({
         title: "영문 주소 변환할 때 자주 틀리는 실수 7가지",
-        path: "/guide/common-mistakes",
-        dateModified: "2026-08-24",
+        path: guide.path,
+        datePublished: guide.datePublished,
+        dateModified: guide.dateModified,
       })}
     >
       <article className="space-y-7 rounded-lg border border-border bg-white p-6 text-[15px] leading-7 text-gray-700 shadow-card sm:p-8">
@@ -273,8 +281,10 @@ export default function CommonMistakesGuide() {
             에서 예시와 함께 확인할 수 있습니다.
           </p>
         </section>
+        <GuideSources guide={guide} />
       </article>
 
+      <GuideNext guide={guide} />
       <GuideCta />
     </ContentLayout>
   );
