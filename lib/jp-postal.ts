@@ -55,3 +55,49 @@ export function lookupPostalCode(input: string): JpAddressResult[] {
     };
   });
 }
+
+/** 표기 흔들림 통일용 비교 키. 글자 수는 그대로라 매칭 길이를 원문에 그대로 쓸 수 있다. */
+export function jpKey(s: string): string {
+  return s.replace(/ヶ/g, "ケ").replace(/ノ/g, "の");
+}
+
+type Entry = { zip: string; idx: number; full: string; noPref: string };
+
+function toEntry(zip: string, r: JpTuple, idx: number): Entry {
+  return { zip, idx, full: jpKey(r[3] + r[4] + r[5]), noPref: jpKey(r[4] + r[5]) };
+}
+
+let flat: Entry[] | null = null;
+
+// ponytail: 12만 행 선형 탐색(요청당 ~30ms). 느려지면 현·시 단위 인덱스로.
+function getFlat(): Entry[] {
+  if (!flat) {
+    flat = [];
+    for (const [zip, rows] of Object.entries(getData())) {
+      rows.forEach((r, idx) => flat!.push(toEntry(zip, r, idx)));
+    }
+  }
+  return flat;
+}
+
+/**
+ * text(공백 없는 일본어 주소)의 앞부분과 가장 길게 일치하는 "현+시+동네"(또는 현 생략 "시+동네") 행.
+ * zip을 주면 그 우편번호의 행만 본다. matchedLength = text 앞에서 소비한 글자 수.
+ */
+export function matchKanjiPrefix(
+  text: string,
+  zip?: string,
+): { result: JpAddressResult; matchedLength: number } | null {
+  const key = jpKey(text);
+  const z = zip ? normalizeZip(zip) : null;
+  const pool = z ? (getData()[z] ?? []).map((r, idx) => toEntry(z, r, idx)) : getFlat();
+
+  let best: { e: Entry; len: number } | null = null;
+  for (const e of pool) {
+    for (const p of [e.full, e.noPref]) {
+      if (p && key.startsWith(p) && (!best || p.length > best.len)) best = { e, len: p.length };
+    }
+  }
+  if (!best) return null;
+  return { result: lookupPostalCode(best.e.zip)[best.e.idx], matchedLength: best.len };
+}
