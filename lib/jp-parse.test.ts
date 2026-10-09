@@ -56,3 +56,21 @@ test("parseJpAddress: 해석 불가면 null", () => {
   expect(parseJpAddress("hello world")).toBeNull();
   expect(parseJpAddress("")).toBeNull();
 });
+
+test("review: 'Hotel' 안의 tel을 전화번호로 자르지 않는다", () => {
+  expect(parseJpAddress("〒100-0005 東京都千代田区丸の内1-1-1 Hotel Okura")?.block).toBe("Hotel Okura, 1-1-1");
+});
+
+test("review: 시·구까지만 맞으면(동네 불일치) 그럴듯한 오답 대신 null", () => {
+  expect(parseJpAddress("東京都千代田区霞ヶ関1-1-1")).toBeNull();
+  expect(parseJpAddress("広島県府中市本町1-1")).toBeNull();
+});
+
+test("review: FAX·라벨 없는 끝 전화번호는 Street에 들어가지 않는다", () => {
+  expect(parseJpAddress("東京都渋谷区神宮前1-2-3 03-1234-5678")?.block).toBe("1-2-3");
+  expect(parseJpAddress("東京都港区六本木6-10-1 FAX 03-1234-5678")?.block).toBe("6-10-1");
+});
+
+test("review: 우편번호가 틀려도 한자로 동네가 맞으면 한자를 따른다", () => {
+  expect(parseJpAddress("〒100-0005 東京都渋谷区神宮前1-2-3")?.result.english.postalCode).toBe("150-0001");
+});

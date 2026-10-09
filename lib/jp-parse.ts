@@ -1,5 +1,5 @@
 import { lookupPostalCode, matchKanjiPrefix } from "./jp-postal";
-import type { ParsedJpAddress } from "./types";
+import type { JpAddressResult, ParsedJpAddress } from "./types";
 
 // 일본어 주소 한 줄(예약 메일·호텔 페이지에서 복사한 것)을 "동네 + 번지 + 건물"로 쪼갠다.
 // 동네까지는 우편번호 데이터와 맞춰 영문을 얻고, 번지는 숫자로 정규화하고,
@@ -61,24 +61,37 @@ export function parseJpAddress(input: string): ParsedJpAddress | null {
   // 앞뒤가 숫자가 아닌 3+4자리만 우편번호로 본다 (03-1234-5678 같은 전화번호 배제)
   const zipM = text.match(/〒?\s*(?<!\d)(\d{3})-?(\d{4})(?![\d-])/);
   const zip = zipM ? zipM[1] + zipM[2] : undefined;
-  // 같이 복사된 전화번호(TEL 03-… / 電話 …)는 주소가 아니므로 잘라낸다
-  const body = (zipM ? text.replace(zipM[0], " ") : text).replace(/\s*(?:TEL|電話|☎).*$/i, "").trim();
+  // 같이 복사된 전화번호(TEL 03-… / FAX … / 電話 …, 또는 끝에 붙은 0으로 시작하는 번호)는 주소가 아니다.
+  // \b가 없으면 "Hotel" 안의 tel에서 잘려버린다.
+  const body = (zipM ? text.replace(zipM[0], " ") : text)
+    .replace(/\s*(?:\bTEL\b|\bFAX\b|電話|☎).*$/i, "")
+    .replace(/\s+0\d{1,4}-?\d{1,4}-?\d{3,4}\s*$/, "")
+    .trim();
   const compact = body.replace(/\s+/g, "");
   if (!compact && !zip) return null;
 
-  // 1) 우편번호 후보 중 한자가 맞는 것 → 2) 우편번호 후보가 하나뿐이면 그것 → 3) 한자만으로 전체 검색
+  // 시·구만 맞고 동네가 비어 있는 행(XXX-0000)인데 뒤에 글자가 남았다 = 동네를 못 알아봤다.
+  // 그럴듯한 오답(빈 Street, -0000 우편번호)보다 "못 알아봤어요" 안내가 낫다.
+  const finish = (result: JpAddressResult, rest: string): ParsedJpAddress | null =>
+    !result.english.street && rest.trim() ? null : { result, ...splitBlock(rest) };
+
+  // 1) 우편번호 후보 중 한자가 맞는 것 → 2) 한자로 동네까지 맞은 것(우편번호 오타보다 한자를 믿는다)
+  // → 3) 우편번호 후보가 하나뿐이면 그것(한자가 없거나 영문인 입력) → 4) 한자로 시·구만 맞은 것
   const byZip = zip ? matchKanjiPrefix(compact, zip) : null;
-  if (byZip) return { result: byZip.result, ...splitBlock(sliceAfterChars(body, byZip.matchedLength)) };
+  if (byZip) return finish(byZip.result, sliceAfterChars(body, byZip.matchedLength));
+
+  const byKanji = compact ? matchKanjiPrefix(compact) : null;
+  if (byKanji?.result.english.street) {
+    return finish(byKanji.result, sliceAfterChars(body, byKanji.matchedLength));
+  }
 
   if (zip) {
     const c = lookupPostalCode(zip);
     if (c.length === 1) {
       const i = body.search(/\d/);
-      return { result: c[0], ...splitBlock(i < 0 ? "" : body.slice(i)) };
+      return finish(c[0], i < 0 ? "" : body.slice(i));
     }
   }
 
-  const byKanji = matchKanjiPrefix(compact);
-  if (byKanji) return { result: byKanji.result, ...splitBlock(sliceAfterChars(body, byKanji.matchedLength)) };
-  return null;
+  return byKanji ? finish(byKanji.result, sliceAfterChars(body, byKanji.matchedLength)) : null;
 }
