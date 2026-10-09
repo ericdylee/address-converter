@@ -35,6 +35,18 @@ export type JpSearchResponse = {
   results: JpAddressResult[];
 };
 
+// 일본어 주소 한 줄을 해석한 결과. block은 결과 페이지 detail로 그대로 넘긴다(예: "5F, 1-2-3").
+// building은 공식 영문 표기가 없는 건물명 원문 — 로마자로 바꾸지 않고 안내에만 쓴다.
+export type ParsedJpAddress = {
+  result: JpAddressResult;
+  block: string;
+  building: string;
+};
+
+export type JpParseResponse = {
+  parsed: ParsedJpAddress | null;
+};
+
 export type JusoApiItem = {
   korAddr: string;
   roadAddr: string;

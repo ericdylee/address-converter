@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 import AddressSearch from "@/components/AddressSearch";
 import JpAddressSearch from "@/components/JpAddressSearch";
+import JpPasteInput from "@/components/JpPasteInput";
 import JsonLd from "@/components/JsonLd";
 import { extractDetail } from "@/lib/extract-detail";
 import { softwareAppSchema, websiteSchema } from "@/lib/structured-data";
@@ -14,7 +15,7 @@ type Tab = "kr" | "jp";
 
 export default function HomePage() {
   const router = useRouter();
-  const [tab, setTab] = useState<Tab>("kr");
+  const [tab, setTab] = useState<Tab>("jp");
 
   // 한국: 후보의 4필드 + 검색어에서 추출한 상세주소를 URL로 전달.
   function handleKrSelect(result: AddressResult, query: string) {
@@ -58,14 +59,14 @@ export default function HomePage() {
       <div className="mx-auto max-w-3xl">
         <header className="mb-8 text-center">
           <h1 className="text-balance break-keep text-3xl font-extrabold tracking-tight text-gray-950 sm:text-4xl">
-            한글·일본 주소{" "}
+            일본·한글 주소{" "}
             <span aria-hidden="true" className="text-blue-600">
               →
             </span>{" "}
             영문 변환기
           </h1>
           <p className="mt-3 text-[15px] leading-7 text-gray-600">
-            해외 사이트 입력란에 맞춰 필드별로 복사할 수 있습니다
+            일본어 주소를 붙여넣으면 비짓재팬웹·EMS·해외 쇼핑몰 칸에 맞춰 영문으로 나눠드려요
           </p>
         </header>
 
@@ -83,22 +84,6 @@ export default function HomePage() {
             <button
               type="button"
               role="tab"
-              aria-selected={tab === "kr"}
-              onClick={() => setTab("kr")}
-              className={`${tabBase} ${tab === "kr" ? tabActive : tabIdle}`}
-            >
-              <span
-                className={`mr-2 rounded px-1.5 py-0.5 text-[10px] font-bold ${
-                  tab === "kr" ? "bg-white/20 text-white" : "bg-blue-100 text-blue-700"
-                }`}
-              >
-                KR
-              </span>
-              한국
-            </button>
-            <button
-              type="button"
-              role="tab"
               aria-selected={tab === "jp"}
               onClick={() => setTab("jp")}
               className={`${tabBase} ${tab === "jp" ? tabActive : tabIdle}`}
@@ -112,12 +97,32 @@ export default function HomePage() {
               </span>
               일본
             </button>
+            <button
+              type="button"
+              role="tab"
+              aria-selected={tab === "kr"}
+              onClick={() => setTab("kr")}
+              className={`${tabBase} ${tab === "kr" ? tabActive : tabIdle}`}
+            >
+              <span
+                className={`mr-2 rounded px-1.5 py-0.5 text-[10px] font-bold ${
+                  tab === "kr" ? "bg-white/20 text-white" : "bg-blue-100 text-blue-700"
+                }`}
+              >
+                KR
+              </span>
+              한국
+            </button>
           </div>
 
           {tab === "kr" ? (
             <AddressSearch onSelect={handleKrSelect} />
           ) : (
-            <JpAddressSearch onSelect={handleJpSelect} />
+            <>
+              <JpPasteInput onSelect={handleJpSelect} />
+              <p className="mb-3 text-sm font-semibold text-gray-900">또는 우편번호로 찾기</p>
+              <JpAddressSearch onSelect={handleJpSelect} />
+            </>
           )}
           </div>
         </section>
@@ -126,11 +131,11 @@ export default function HomePage() {
         <section className="mt-10 space-y-6">
           <div className="rounded-lg border border-border bg-white p-6 shadow-field sm:p-8">
             <h2 className="text-xl font-bold text-gray-950">
-              한글·일본 주소를 영문으로 쉽고 정확하게
+              일본·한글 주소를 영문으로 쉽고 정확하게
             </h2>
             <p className="mt-3 text-[15px] leading-7 text-gray-700">
-              해외 사이트에 주소를 영어로 입력해야 할 때, 도로명·지번·일본 우편번호
-              주소를 공식 데이터 기반으로 변환해 Street / City / State / Postal Code
+              해외 사이트에 주소를 영어로 입력해야 할 때, 일본어 주소(붙여넣기·우편번호)와
+              한국 도로명·지번 주소를 공식 데이터 기반으로 변환해 Street / City / State / Postal Code
               칸별로 보여줍니다. 각 칸은 복사 버튼으로 바로 붙여넣을 수 있어요.
               회원가입 없이 무료로 사용하세요.
             </p>
