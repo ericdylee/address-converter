@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 import AddressSearch from "@/components/AddressSearch";
 import JpAddressSearch from "@/components/JpAddressSearch";
+import JpPasteInput from "@/components/JpPasteInput";
 import JsonLd from "@/components/JsonLd";
 import { extractDetail } from "@/lib/extract-detail";
 import { softwareAppSchema, websiteSchema } from "@/lib/structured-data";
@@ -117,7 +118,11 @@ export default function HomePage() {
           {tab === "kr" ? (
             <AddressSearch onSelect={handleKrSelect} />
           ) : (
-            <JpAddressSearch onSelect={handleJpSelect} />
+            <>
+              <JpPasteInput onSelect={handleJpSelect} />
+              <p className="mb-3 text-sm font-semibold text-gray-900">또는 우편번호로 찾기</p>
+              <JpAddressSearch onSelect={handleJpSelect} />
+            </>
           )}
           </div>
         </section>
