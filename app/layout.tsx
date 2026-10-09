@@ -25,7 +25,7 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: "한글·일본 주소 → 영문 변환기 | 도로명·지번 영문주소 변환",
+    default: "한글·일본 주소 → 영문 변환기 | 일본 주소 영문 변환·도로명 영문주소",
     template: `%s | ${SITE_NAME}`,
   },
   description: defaultDescription,
@@ -36,6 +36,9 @@ export const metadata: Metadata = {
     "도로명주소 영문",
     "지번주소 영문",
     "일본 주소 영문 변환",
+    "일본주소 영문변환",
+    "일본 주소 영어로",
+    "비짓재팬웹 주소",
     "해외직구 주소 입력",
     "영문 주소 변환기",
     "english address converter korea",
