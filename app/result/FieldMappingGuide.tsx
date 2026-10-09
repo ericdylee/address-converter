@@ -58,8 +58,42 @@ const JP_ROWS: GuideRow[] = [
   { foreign: "Country / Region", field: "Japan" },
 ];
 
+// 비짓재팬웹(Visit Japan Web) "Address in Japan (Accommodation)" 화면.
+// 확인: 공식 매뉴얼 https://www.vjw.digital.go.jp/manual/main/visitjapanweb_manual_en.html
+// (2026-07-22판 3-1(8)·4-1(7), 2026-10-09 확인). Address·Hotel name 칸은
+// 영문·숫자·쉼표·하이픈·마침표·공백만 받는다.
+const JP_VJW_ROWS: GuideRow[] = [
+  {
+    foreign: "Postal code",
+    field: "Postal Code (하이픈 빼고, 예: 1500001)",
+    note: "넣고 “Enter automatically using postal code”를 누르면 Prefecture·City·Address가 자동으로 채워져요.",
+  },
+  { foreign: "Prefecture", field: "Prefecture (목록에서 선택, 예: Tokyo)" },
+  { foreign: "City", field: "City (목록에서 선택, 예: Shibuya-ku)" },
+  {
+    foreign: "Address",
+    field: "Street Address (예: 1-2-3 Jingumae)",
+    note: "자동 입력엔 번지가 빠져 있으니 번지를 덧붙이세요. # 기호는 입력할 수 없어 빼고 넣으세요.",
+  },
+  {
+    foreign: "Hotel name, place of stay",
+    field: "숙소 이름 (영문)",
+    note: "예약 확인 메일에 적힌 영문 호텔명을 그대로 쓰면 됩니다.",
+  },
+  { foreign: "Contact phone number", field: "숙소 전화번호 (숫자만, 하이픈 없이)" },
+];
+
+type GuideSection = { title?: string; rows: GuideRow[] };
+
+const SECTIONS: Record<Country, GuideSection[]> = {
+  kr: [{ rows: KR_ROWS }],
+  jp: [
+    { title: "해외 쇼핑몰·배송 양식", rows: JP_ROWS },
+    { title: "비짓재팬웹 (입국 시 숙소 주소)", rows: JP_VJW_ROWS },
+  ],
+};
+
 export default function FieldMappingGuide({ country }: { country: Country }) {
-  const rows = country === "jp" ? JP_ROWS : KR_ROWS;
 
   return (
     <details open className="group mt-4 overflow-hidden rounded-lg border border-border bg-white">
@@ -84,27 +118,34 @@ export default function FieldMappingGuide({ country }: { country: Country }) {
         <p className="mb-3 text-sm leading-6 text-gray-500">
           칸 이름은 사이트마다 조금씩 다를 수 있습니다. 아래 가이드를 참고해주세요
         </p>
-        <ul className="space-y-3">
-          {rows.map((row) => (
-            <li
-              key={row.field}
-              className="grid grid-cols-1 gap-0.5 sm:grid-cols-[1fr_auto_1fr] sm:items-baseline sm:gap-3"
-            >
-              <span className="text-sm text-gray-500 break-words">{row.foreign}</span>
-              <span className="hidden sm:block text-gray-300" aria-hidden="true">
-                →
-              </span>
-              <span className="text-sm font-medium text-gray-900 break-words">
-                {row.field}
-                {row.note && (
-                  <span className="block mt-0.5 text-sm font-normal text-gray-500">
-                    {row.note}
+        {SECTIONS[country].map((section) => (
+          <div key={section.title ?? country} className="mt-4 first:mt-0">
+            {section.title && (
+              <h3 className="mb-2 text-sm font-semibold text-gray-900">{section.title}</h3>
+            )}
+            <ul className="space-y-3">
+              {section.rows.map((row) => (
+                <li
+                  key={row.field}
+                  className="grid grid-cols-1 gap-0.5 sm:grid-cols-[1fr_auto_1fr] sm:items-baseline sm:gap-3"
+                >
+                  <span className="text-sm text-gray-500 break-words">{row.foreign}</span>
+                  <span className="hidden sm:block text-gray-300" aria-hidden="true">
+                    →
                   </span>
-                )}
-              </span>
-            </li>
-          ))}
-        </ul>
+                  <span className="text-sm font-medium text-gray-900 break-words">
+                    {row.field}
+                    {row.note && (
+                      <span className="block mt-0.5 text-sm font-normal text-gray-500">
+                        {row.note}
+                      </span>
+                    )}
+                  </span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
 
         <div className="mt-4 rounded-lg bg-blue-50/60 px-4 py-3">
           {country === "jp" ? (
