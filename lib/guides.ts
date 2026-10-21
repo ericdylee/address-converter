@@ -92,6 +92,12 @@ const SRC_JP_ROMAN: GuideSource = {
   note: "이 사이트 일본 탭이 쓰는 공식 로마자 데이터의 원본입니다.",
 };
 
+const SRC_VJW: GuideSource = {
+  label: "Visit Japan Web 사용 매뉴얼 (일본 디지털청)",
+  url: "https://www.vjw.digital.go.jp/manual/main/visitjapanweb_manual_en.html",
+  note: "입국 등록 시 숙소 주소(Address in Japan) 칸 이름과 자동 입력 동작을 확인한 곳입니다.",
+};
+
 const SRC_PASSPORT: GuideSource = {
   label: "여권 로마자 성명 표기 규정 (외교부)",
   url: "https://www.passport.go.kr/home/kor/contents.do?menuPos=39",
@@ -218,12 +224,12 @@ export const GUIDES: Guide[] = [
     example: "東京都千代田区丸の内1-1-1 → 1-1-1 Marunochi, Chiyoda-ku, Tokyo",
     stage: "abroad",
     datePublished: "2026-07-14",
-    dateModified: "2026-09-18",
+    dateModified: "2026-10-21",
     verified: {
-      date: "2026-09-18",
-      how: "예시 3건과 정령지정도시 표기를 이 사이트가 쓰는 일본우편 로마자 데이터로 다시 조회해 대조하고, 어긋난 표기 3건(Marunouchi·Kita-ku·Funabashi)을 공식 표기로 고쳤습니다.",
+      date: "2026-10-21",
+      how: "비짓재팬웹 숙소 주소 칸 이름과 우편번호 자동 입력 동작을 디지털청 공식 매뉴얼에서 다시 확인했습니다. (예시 3건과 정령지정도시 표기는 2026-09-18에 일본우편 로마자 데이터로 대조)",
     },
-    sources: [SRC_JP_ZIP, SRC_JP_ROMAN],
+    sources: [SRC_JP_ZIP, SRC_JP_ROMAN, SRC_VJW],
     next: ["/guide/overseas-shopping", "/guide/english-address", "/guide/common-mistakes"],
   },
 ];

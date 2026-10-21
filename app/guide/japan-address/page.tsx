@@ -235,7 +235,49 @@ export default function JapanAddressGuide() {
 
         <section>
           <h2 className="mb-2 text-lg font-semibold text-gray-950">
-            7. 자주 하는 실수
+            7. 비짓재팬웹(Visit Japan Web)에 숙소 주소 넣기
+          </h2>
+          <p>
+            일본 입국 전에 비짓재팬웹에 입국 예정을 등록하면 &lsquo;Address in
+            Japan (Accommodation)&rsquo; 화면에서 숙소 주소를 영문으로
+            적어야 합니다. 칸이 나뉘어 있어서, 위에서 익힌 구분을 그대로 쓰면
+            됩니다.
+          </p>
+          <ol className="mt-3 list-decimal space-y-2 pl-5">
+            <li>
+              <strong className="font-semibold text-gray-900">Postal code</strong>{" "}
+              — 숙소 우편번호를 숫자만 넣습니다(예:{" "}
+              <span className="font-mono">1500001</span>).
+            </li>
+            <li>
+              <strong className="font-semibold text-gray-900">
+                Enter automatically using postal code
+              </strong>{" "}
+              버튼을 누르면 Prefecture·City·Address가 자동으로 채워집니다.
+            </li>
+            <li>
+              <strong className="font-semibold text-gray-900">Address</strong>{" "}
+              — 자동 입력에는 번지가 없으니 끝에 번지를 덧붙입니다(예:{" "}
+              <span className="font-mono">Jingumae 1-2-3</span>). 영문·숫자·쉼표·하이픈·마침표만
+               들어가므로 #, 일본어는 빼고 적습니다.
+            </li>
+            <li>
+              <strong className="font-semibold text-gray-900">
+                Hotel name, place of stay
+              </strong>{" "}
+              — 예약 확인 메일에 적힌 영문 숙소명을 그대로 씁니다.
+            </li>
+          </ol>
+          <p className="mt-3">
+            예약 메일에 일본어 주소만 있다면, 이 사이트 일본 탭에 주소 한 줄을
+            통째로 붙여넣으세요. 우편번호·동네·번지를 나눠 주고, 결과 화면에서
+            비짓재팬웹 칸별로 무엇을 넣을지 보여 줍니다.
+          </p>
+        </section>
+
+        <section>
+          <h2 className="mb-2 text-lg font-semibold text-gray-950">
+            8. 자주 하는 실수
           </h2>
           <ul className="list-disc space-y-1.5 pl-5">
             <li>
@@ -283,8 +325,9 @@ export default function JapanAddressGuide() {
                 동네 이름(丁目 앞)의 로마자를 모르겠어요.
               </h3>
               <p className="mt-1">
-                일본 탭에서 우편번호를 입력하면 동네·시·구·도도부현이 공식
-                로마자로 자동으로 채워집니다. 번지(1-2-3)만 직접 넣으면 됩니다.
+                일본 탭에 일본어 주소 한 줄을 붙여넣거나 우편번호를 입력하면
+                동네·시·구·도도부현이 공식 로마자로 자동으로 채워집니다.
+                우편번호만 넣었다면 번지(1-2-3)만 직접 덧붙이면 됩니다.
               </p>
             </div>
             <div>
