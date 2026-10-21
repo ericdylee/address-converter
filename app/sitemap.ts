@@ -12,6 +12,8 @@ type ChangeFrequency = MetadataRoute.Sitemap[number]["changeFrequency"];
 
 /** 고정 페이지(홈·소개·문의 등)를 마지막으로 손본 날 */
 const STATIC_PAGES_UPDATED = "2026-09-18";
+/** 홈을 마지막으로 손본 날 (2026-10-09: 일본 주소 중심으로 개편) */
+const HOME_UPDATED = "2026-10-09";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const entry = (
@@ -32,7 +34,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   );
 
   return [
-    entry("", 1, "weekly", STATIC_PAGES_UPDATED), // 홈(검색)
+    entry("", 1, "weekly", HOME_UPDATED), // 홈(검색)
     entry("/guide", 0.8, "monthly", STATIC_PAGES_UPDATED), // 가이드 목록
     ...guideEntries,
     entry("/faq", 0.7, "monthly", STATIC_PAGES_UPDATED), // 자주 묻는 질문
