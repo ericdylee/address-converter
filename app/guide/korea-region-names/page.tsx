@@ -10,9 +10,9 @@ import GuideNext from "@/components/GuideNext";
 import { getGuide } from "@/lib/guides";
 
 export const metadata: Metadata = createPageMetadata({
-  title: "서울 영문 Seoul · 경기도 Gyeonggi-do — 시·도 영문 표기표 (City·State)",
+  title: "경기도 영어로 Gyeonggi-do, 서울 영어로 Seoul — 전국 시·도 영문 표기표",
   description:
-    "서울은 State/Province 칸에 Seoul, 경기도는 Gyeonggi-do. 전국 16개 시·도 공식 영문 표기와 City·State·우편번호 칸에 무엇을 넣는지 한 표로 정리했습니다.",
+    "경기도는 영어로 Gyeonggi-do, 서울특별시는 Seoul, 부산은 Busan. 전국 16개 시·도 공식 영문 표기를 한 표로 정리하고 주소 양식의 State/Province·City 칸에 넣는 법까지 알려드립니다.",
   path: "/guide/korea-region-names",
 });
 
@@ -46,7 +46,7 @@ export default function KoreaRegionNamesGuide() {
   return (
     <ContentLayout
       title="전국 시·도 영문 표기 정리표"
-      lead="영문 주소의 State / Province 칸에 들어가는 전국 16개 시·도의 공식 영문 표기를 한 표에 모았습니다."
+      lead="경기도는 영어로 Gyeonggi-do, 서울특별시는 Seoul입니다. 전국 16개 시·도의 공식 영문 표기를 바로 아래 표에 모았습니다."
       backLink={{ label: "가이드 목록", href: "/guide" }}
       byline={<GuideByline guide={guide} />}
       jsonLd={guideJsonLd({
@@ -57,6 +57,39 @@ export default function KoreaRegionNamesGuide() {
       })}
     >
       <article className="space-y-7 rounded-lg border border-border bg-white p-6 text-[15px] leading-7 text-gray-700 shadow-card sm:p-8">
+        <section>
+          <h2 className="mb-3 text-lg font-semibold text-gray-950">
+            전국 16개 시·도 영어 표기 (경기도·서울 등)
+          </h2>
+          <div className="overflow-x-auto rounded-lg border border-gray-200">
+            <table className="w-full text-sm">
+              <thead className="bg-gray-50 text-left text-gray-500">
+                <tr>
+                  <th className="px-4 py-2 font-semibold">한글</th>
+                  <th className="px-4 py-2 font-semibold">영문 표기</th>
+                  <th className="px-4 py-2 font-semibold">종류</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-gray-100">
+                {regions.map((r) => (
+                  <tr key={r.ko}>
+                    <td className="px-4 py-2">{r.ko}</td>
+                    <td className="px-4 py-2 font-mono font-medium text-gray-900">
+                      {r.en}
+                    </td>
+                    <td className="px-4 py-2 text-gray-500">{r.type}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          <p className="mt-3 text-sm text-gray-500">
+            ※ 위 표의 영문 표기는 행정안전부 영문주소 API가 실제로 돌려주는 값입니다.
+            이 사이트의 변환기도 같은 값을 내보내므로 표와 도구 결과가 서로 다르지
+            않습니다.
+          </p>
+        </section>
+
         <section>
           <h2 className="mb-2 text-lg font-semibold text-gray-950">
             시·도는 State, 구·시·군은 City
@@ -115,39 +148,6 @@ export default function KoreaRegionNamesGuide() {
             도(道) 안의 시에 구가 있으면(예: 성남시 분당구) City 칸에{" "}
             <span className="font-mono">Bundang-gu, Seongnam-si</span>처럼 함께
             적습니다. 세종시는 아래 구가 없어 State·City 모두 Sejong-si입니다.
-          </p>
-        </section>
-
-        <section>
-          <h2 className="mb-3 text-lg font-semibold text-gray-950">
-            전국 16개 시·도 영문 표기
-          </h2>
-          <div className="overflow-x-auto rounded-lg border border-gray-200">
-            <table className="w-full text-sm">
-              <thead className="bg-gray-50 text-left text-gray-500">
-                <tr>
-                  <th className="px-4 py-2 font-semibold">한글</th>
-                  <th className="px-4 py-2 font-semibold">영문 표기</th>
-                  <th className="px-4 py-2 font-semibold">종류</th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-gray-100">
-                {regions.map((r) => (
-                  <tr key={r.ko}>
-                    <td className="px-4 py-2">{r.ko}</td>
-                    <td className="px-4 py-2 font-mono font-medium text-gray-900">
-                      {r.en}
-                    </td>
-                    <td className="px-4 py-2 text-gray-500">{r.type}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-          <p className="mt-3 text-sm text-gray-500">
-            ※ 위 표의 영문 표기는 행정안전부 영문주소 API가 실제로 돌려주는 값입니다.
-            이 사이트의 변환기도 같은 값을 내보내므로 표와 도구 결과가 서로 다르지
-            않습니다.
           </p>
         </section>
 

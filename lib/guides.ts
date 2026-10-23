@@ -139,11 +139,11 @@ export const GUIDES: Guide[] = [
   {
     path: "/guide/korea-region-names",
     title: "전국 시·도 영문 표기 정리표",
-    desc: "서울은 Seoul, 경기도는 Gyeonggi-do. 전국 16개 시·도 공식 영문 표기와 City·State 칸에 넣는 법, 우편번호 형식을 정리했습니다.",
+    desc: "경기도는 영어로 Gyeonggi-do, 서울은 Seoul. 전국 16개 시·도 공식 영문 표기와 City·State 칸에 넣는 법, 우편번호 형식을 정리했습니다.",
     example: "경기도 → Gyeonggi-do · 제주특별자치도 → Jeju-do",
     stage: "basics",
     datePublished: "2026-07-14",
-    dateModified: "2026-09-18",
+    dateModified: "2026-10-23",
     verified: {
       date: "2026-09-18",
       how: "16개 시·도의 영문 표기를 행정안전부 영문주소 API로 전수 재조회해 표와 한 건씩 대조했습니다(16건 전부 일치).",
