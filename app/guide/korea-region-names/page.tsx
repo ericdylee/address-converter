@@ -10,9 +10,9 @@ import GuideNext from "@/components/GuideNext";
 import { getGuide } from "@/lib/guides";
 
 export const metadata: Metadata = createPageMetadata({
-  title: "경기도 영어로 Gyeonggi-do, 서울 영어로 Seoul — 전국 시·도 영문 표기표",
+  title: "State/Province 칸에 서울·경기도 넣는 법 — 전국 시·도 영문 표기표",
   description:
-    "경기도는 영어로 Gyeonggi-do, 서울특별시는 Seoul, 부산은 Busan. 전국 16개 시·도 공식 영문 표기를 한 표로 정리하고 주소 양식의 State/Province·City 칸에 넣는 법까지 알려드립니다.",
+    "서울은 State 칸, 강남구는 City 칸? 세종·제주처럼 칸이 헷갈리는 경우별 입력 예시와 자주 틀리는 표기(Kyunggi 등), 경기도·서울 포함 16개 시·도 공식 영문 표기를 한 표로 정리했습니다.",
   path: "/guide/korea-region-names",
 });
 
