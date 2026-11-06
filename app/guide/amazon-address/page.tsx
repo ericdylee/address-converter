@@ -192,7 +192,7 @@ export default function AmazonShopGuide() {
             </div>
             <p className="mt-4 text-sm text-amber-900">
               규칙은 하나입니다. <strong className="font-semibold">작은 단위가 City,
-              큰 단위가 Province.</strong> 서울 주소라면 City에 {" "}
+              큰 단위가 Province.</strong> 서울 주소라면 City에{" "}
               <span className="font-mono">Gangnam-gu</span>, Province에{" "}
               <span className="font-mono">Seoul</span> 이 들어갑니다. 전국 시·도 표기는{" "}
               <Link
@@ -357,7 +357,6 @@ export default function AmazonShopGuide() {
             ))}
           </ul>
         </section>
-
 
         <LastVerified date={VERIFIED} note="데스크톱 웹 amazon.com 기준" />
         <GuideSources guide={guide} />
