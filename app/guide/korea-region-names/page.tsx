@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import ContentLayout from "@/components/ContentLayout";
 import GuideCta from "@/components/GuideCta";
 import LastVerified from "@/components/LastVerified";
@@ -194,6 +195,16 @@ export default function KoreaRegionNamesGuide() {
             <li>
               경기도 — <span className="font-mono">Gyeonggi-do</span> (O) /{" "}
               <span className="font-mono text-red-600">Kyunggi, Gyunggi</span> (X)
+              <span className="block text-sm text-gray-500">
+                아마존 Province 칸의 회색 예시도 옛 표기인 Kyeonggi-do로 떠 있습니다.{" "}
+                <Link
+                  href="/guide/amazon-address"
+                  className="font-medium text-blue-700 hover:underline"
+                >
+                  아마존 주소 입력법
+                </Link>
+                에서 실제 화면으로 짚어 뒀습니다.
+              </span>
             </li>
             <li>
               강원 — <span className="font-mono">Gangwon-do</span> (O) /{" "}

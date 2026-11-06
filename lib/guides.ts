@@ -149,7 +149,7 @@ export const GUIDES: Guide[] = [
       how: "16개 시·도의 영문 표기를 행정안전부 영문주소 API로 전수 재조회해 표와 한 건씩 대조했습니다(16건 전부 일치).",
     },
     sources: [SRC_JUSO_ENG, SRC_JUSO_API, SRC_ROMAN],
-    next: ["/guide/english-address", "/guide/common-mistakes", "/guide/english-documents"],
+    next: ["/guide/english-address", "/guide/amazon-address", "/guide/english-documents"],
   },
   {
     path: "/guide/common-mistakes",
