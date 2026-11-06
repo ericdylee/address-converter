@@ -10,9 +10,9 @@ import GuideNext from "@/components/GuideNext";
 import { getGuide } from "@/lib/guides";
 
 export const metadata: Metadata = createPageMetadata({
-  title: "아파트 동·호수, 건물명 영문 표기 정리",
+  title: "302호·101동 502호 영어로 — 아파트 동·호수 영문 표기법",
   description:
-    "101동 502호, 지하 1층, 오피스텔 호수, 빌라 건물명처럼 영문으로 옮기기 까다로운 상세주소를 어떤 규칙으로 쓰는지 실제 예시로 정리했습니다.",
+    "302호는 영어로 302, 101동 502호는 101-502로 씁니다. 지하·층수, 가동·나동, 오피스텔·빌라 건물명까지 해외 양식 어느 칸에 어떻게 넣는지 예시로 정리했습니다.",
   path: "/guide/apartment-unit",
 });
 
@@ -33,7 +33,7 @@ export default function ApartmentUnitGuide() {
   return (
     <ContentLayout
       title="아파트 동·호수, 건물명 영문 표기 정리"
-      lead="도로명까지는 쉬운데 ‘101동 502호’를 영어로 어떻게 쓰는지에서 막히는 경우가 많습니다. 규칙은 생각보다 단순합니다."
+      lead="302호는 영어로 302, 101동 502호는 101-502로 씁니다. 한글 단위(동·호)를 떼고 숫자와 하이픈만 남기면 됩니다. 층·지하·문자 동까지 아래에 정리했습니다."
       backLink={{ label: "가이드 목록", href: "/guide" }}
       byline={<GuideByline guide={guide} />}
       jsonLd={guideJsonLd({
