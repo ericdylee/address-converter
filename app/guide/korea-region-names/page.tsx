@@ -46,7 +46,7 @@ export default function KoreaRegionNamesGuide() {
   return (
     <ContentLayout
       title="전국 시·도 영문 표기 정리표"
-      lead="경기도는 영어로 Gyeonggi-do, 서울특별시는 Seoul입니다. 전국 16개 시·도의 공식 영문 표기를 바로 아래 표에 모았습니다."
+      lead="경기도는 영어로 Gyeonggi-do, 서울특별시는 Seoul입니다. 해외 양식의 State / Province 칸에는 이 시·도 이름을, City 칸에는 구·시(Gangnam-gu, Suwon-si)를 넣습니다. 전국 16개 시·도의 공식 영문 표기를 바로 아래 표에 모았습니다."
       backLink={{ label: "가이드 목록", href: "/guide" }}
       byline={<GuideByline guide={guide} />}
       jsonLd={guideJsonLd({
