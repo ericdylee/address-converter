@@ -66,7 +66,9 @@ export default function HomePage() {
             영문 변환기
           </h1>
           <p className="mt-3 text-[15px] leading-7 text-gray-600">
-            일본어 주소를 붙여넣으면 비짓재팬웹·EMS·해외 쇼핑몰 칸에 맞춰 영문으로 나눠드려요
+            {tab === "jp"
+              ? "일본어 주소를 붙여넣으면 비짓재팬웹·EMS·해외 쇼핑몰 칸에 맞춰 영문으로 나눠드려요"
+              : "한글 주소를 입력하면 영문 주소로 변환해 해외 양식 칸에 맞춰 나눠드려요"}
           </p>
         </header>
 

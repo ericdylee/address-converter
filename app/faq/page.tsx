@@ -76,28 +76,31 @@ export default function FaqPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
 
-      <div className="space-y-3">
+      <article className="divide-y divide-gray-100 rounded-xl border border-border bg-white px-6 py-2 text-[15px] leading-7 text-gray-700 shadow-card sm:px-10 sm:py-4">
         {faqs.map(({ q, a }) => (
-          <section
-            key={q}
-            className="rounded-lg border border-border bg-white p-5 shadow-field sm:p-6"
-          >
-            <h2 className="text-base font-semibold text-gray-950">{q}</h2>
-            <p className="mt-2 text-[15px] leading-7 text-gray-700">{a}</p>
+          <section key={q} className="py-7">
+            <h2 className="mb-3 flex items-center gap-2.5 text-lg font-semibold tracking-tight text-gray-950 before:h-4 before:w-1 before:rounded-full before:bg-blue-600 before:content-['']">{q}</h2>
+            <p>{a}</p>
           </section>
         ))}
-      </div>
+      </article>
 
-      <p className="mt-6 text-center text-sm text-gray-500">
-        원하는 답이 없다면{" "}
+      <nav className="mt-6 grid gap-3 sm:grid-cols-2">
         <Link
           href="/contact"
-          className="font-medium text-blue-700 hover:underline"
+          className="rounded-lg border border-border bg-white p-4 shadow-field transition-colors hover:border-blue-300"
         >
-          문의
-        </Link>{" "}
-        주세요.
-      </p>
+          <div className="text-sm font-semibold text-gray-950">문의하기 →</div>
+          <p className="mt-1 text-sm text-gray-600">원하는 답이 없다면 이메일로 알려주세요.</p>
+        </Link>
+        <Link
+          href="/guide"
+          className="rounded-lg border border-border bg-white p-4 shadow-field transition-colors hover:border-blue-300"
+        >
+          <div className="text-sm font-semibold text-gray-950">사용 가이드 →</div>
+          <p className="mt-1 text-sm text-gray-600">영문 주소 작성법과 해외직구 입력 방법을 예시로 정리했어요.</p>
+        </Link>
+      </nav>
     </ContentLayout>
   );
 }
