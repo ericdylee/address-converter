@@ -18,52 +18,38 @@ export default function GuideIndexPage() {
   return (
     <ContentLayout
       title="사용 가이드"
-      lead="영문 주소 작성이 처음이어도 따라 할 수 있도록, 원리부터 실제 입력 화면까지 순서대로 정리했습니다."
+      lead={`영문 주소 작성이 처음이어도 따라 할 수 있도록, 원리부터 실제 입력 화면까지 순서대로 정리한 ${GUIDES.length}편입니다. 처음이라면 1단계부터 차례로 읽는 것을 권합니다.`}
     >
-      <p className="mb-8 rounded-lg border border-blue-100 bg-blue-50/70 px-5 py-4 text-sm leading-6 text-blue-900">
-        전체 {GUIDES.length}편입니다. 처음이라면 1단계부터 차례로 읽는 것을
-        권합니다. 급하면 각 글 맨 위의 <strong className="font-semibold">빠른 답</strong>만
-        봐도 됩니다.
-      </p>
-
-      <div className="space-y-10">
+      <article className="divide-y divide-gray-100 rounded-xl border border-border bg-white px-6 py-2 text-[15px] leading-7 text-gray-700 shadow-card sm:px-10 sm:py-4">
         {STAGES.map((stage) => {
           const articles = guidesByStage(stage.id);
           if (articles.length === 0) return null;
 
           return (
-            <section key={stage.id}>
-              <header className="mb-4 border-b border-border pb-3">
-                <p className="text-xs font-bold uppercase tracking-wide text-blue-700">
-                  {stage.step}
-                </p>
-                <h2 className="mt-1 text-xl font-bold text-gray-950">
-                  {stage.title}
-                </h2>
-                <p className="mt-1.5 text-sm leading-6 text-gray-600">
-                  {stage.desc}
-                </p>
-              </header>
+            <section key={stage.id} className="py-7">
+              <p className="mb-1 text-xs font-bold uppercase tracking-wide text-blue-700">
+                {stage.step}
+              </p>
+              <h2 className="mb-3 flex items-center gap-2.5 text-lg font-semibold tracking-tight text-gray-950 before:h-4 before:w-1 before:rounded-full before:bg-blue-600 before:content-['']">
+                {stage.title}
+              </h2>
+              <p className="text-gray-600">{stage.desc}</p>
 
-              <ol className="space-y-3">
+              <ol className="mt-4 space-y-2">
                 {articles.map((a) => (
                   <li key={a.path}>
                     <Link
                       href={a.path}
-                      className="block rounded-lg border border-border bg-white p-5 shadow-card transition-colors hover:border-blue-300 sm:p-6"
+                      className="block rounded-lg bg-gray-50 px-5 py-4 transition-colors hover:bg-blue-50"
                     >
-                      <h3 className="text-lg font-semibold text-gray-950">
+                      <h3 className="font-semibold text-gray-950">
                         {a.title} →
                       </h3>
-                      <p className="mt-1.5 text-[15px] leading-7 text-gray-600">
+                      <p className="mt-1 text-sm leading-6 text-gray-600">
                         {a.desc}
                       </p>
-                      <p className="mt-3 break-words rounded-md bg-gray-50 px-3 py-2 font-mono text-[13px] leading-6 text-gray-600">
+                      <p className="mt-2 break-words font-mono text-[13px] leading-6 text-gray-500">
                         {a.example}
-                      </p>
-                      <p className="mt-2.5 text-xs leading-5 text-gray-500">
-                        <time dateTime={a.verified.date}>{a.verified.date}</time>{" "}
-                        확인
                       </p>
                     </Link>
                   </li>
@@ -72,16 +58,24 @@ export default function GuideIndexPage() {
             </section>
           );
         })}
-      </div>
+      </article>
 
-      <div className="mt-8 rounded-lg border border-blue-100 bg-blue-50/70 p-5 text-center">
-        <p className="text-sm text-blue-900">
-          바로 변환해 보고 싶다면?{" "}
-          <Link href="/" className="font-semibold text-blue-700 hover:underline">
-            주소 변환기로 이동 →
-          </Link>
-        </p>
-      </div>
+      <nav className="mt-6 grid gap-3 sm:grid-cols-2">
+        <Link
+          href="/"
+          className="rounded-lg border border-border bg-white p-4 shadow-field transition-colors hover:border-blue-300"
+        >
+          <div className="text-sm font-semibold text-gray-950">주소 변환기 →</div>
+          <p className="mt-1 text-sm text-gray-600">한글·일본 주소를 바로 영문으로 바꿔 보세요.</p>
+        </Link>
+        <Link
+          href="/faq"
+          className="rounded-lg border border-border bg-white p-4 shadow-field transition-colors hover:border-blue-300"
+        >
+          <div className="text-sm font-semibold text-gray-950">자주 묻는 질문 →</div>
+          <p className="mt-1 text-sm text-gray-600">동/호수 처리, 일본 번지, 정확도 등 궁금한 점을 모았어요.</p>
+        </Link>
+      </nav>
     </ContentLayout>
   );
 }
