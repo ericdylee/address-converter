@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import ContentLayout from "@/components/ContentLayout";
-import { AUTHOR_NAME, AUTHOR_NAME_EN, SITE_NAME } from "@/lib/site";
+import { SITE_NAME } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "소개",
@@ -16,26 +16,37 @@ export default function AboutPage() {
       title="서비스 소개"
       lead={`${SITE_NAME}는 한글·일본 주소를 해외 사이트 입력 양식에 맞는 영문 주소로 바꿔주는 무료 도구입니다.`}
     >
-      {/* 무엇이 아닌지를 먼저 밝힌다. 공식 기관의 사이트로 오해하면
-          이 사이트의 결과를 과신하게 되고, 그건 사용자에게 손해다. */}
-      <aside className="mb-6 rounded-lg border border-amber-200 bg-amber-50/80 p-5 text-[15px] leading-7 text-amber-950">
-        <h2 className="mb-1.5 text-base font-semibold">먼저 밝힙니다</h2>
+      {/* 공식 기관 사이트로 오해하면 결과를 과신하게 된다. 그래서 맨 위에 둔다. */}
+      <aside className="mb-8 flex gap-3 rounded-lg border border-amber-200 border-l-4 border-l-amber-400 bg-amber-50/70 p-5 text-[15px] leading-7 text-amber-950">
+        <svg
+          aria-hidden="true"
+          viewBox="0 0 20 20"
+          fill="currentColor"
+          className="mt-1 h-5 w-5 shrink-0 text-amber-500"
+        >
+          <path
+            fillRule="evenodd"
+            d="M18 10a8 8 0 1 1-16 0 8 8 0 0 1 16 0Zm-7-4a1 1 0 1 1-2 0 1 1 0 0 1 2 0ZM9 9a1 1 0 0 0 0 2v3a1 1 0 0 0 1 1h1a1 1 0 1 0 0-2v-3a1 1 0 0 0-1-1H9Z"
+            clipRule="evenodd"
+          />
+        </svg>
         <p>
           이 사이트는{" "}
           <strong className="font-semibold">
-            행정안전부·우정사업본부·일본우편 등 공식 기관과 아무 관련이 없는 개인
+            행정안전부·우정사업본부·일본우편 등의 공식 사이트 API를 기반으로 만든
             사이트
           </strong>
           입니다. 공식 기관이 공개한 데이터를 가져와 보기 쉽게 정리할 뿐이고,
-          주소를 새로 만들거나 공적으로 증명해 주지는 않습니다. 변환 결과는
-          참고용이며, 최종 확인은 아래에 적어 둔 공식 사이트에서 하시는 것이
-          가장 안전합니다.
+          주소를 새로 만들거나 공적으로 증명해 주지는 않는다는 점을 미리
+          고지해 드립니다. 변환 결과는 편의를 위한 참고용으로 활용해 주시길
+          바라며, 정확한 데이터 출처와 표기 기준은 아래에 적어 둔 공식 정부
+          기관을 참고해 주시길 바랍니다.
         </p>
       </aside>
 
-      <article className="space-y-6 rounded-lg border border-border bg-white p-6 text-[15px] leading-7 text-gray-700 shadow-card sm:p-8">
-        <section>
-          <h2 className="mb-2 text-lg font-semibold text-gray-950">
+      <article className="divide-y divide-gray-100 rounded-xl border border-border bg-white px-6 py-2 text-[15px] leading-7 text-gray-700 shadow-card sm:px-10 sm:py-4">
+        <section className="py-7">
+          <h2 className="mb-3 flex items-center gap-2.5 text-lg font-semibold tracking-tight text-gray-950 before:h-4 before:w-1 before:rounded-full before:bg-blue-600 before:content-['']">
             어떤 서비스인가요?
           </h2>
           <p>
@@ -51,11 +62,11 @@ export default function AboutPage() {
           </p>
         </section>
 
-        <section>
-          <h2 className="mb-2 text-lg font-semibold text-gray-950">
+        <section className="py-7">
+          <h2 className="mb-3 flex items-center gap-2.5 text-lg font-semibold tracking-tight text-gray-950 before:h-4 before:w-1 before:rounded-full before:bg-blue-600 before:content-['']">
             이런 상황에서 쓸 수 있어요
           </h2>
-          <ul className="list-disc space-y-1.5 pl-5">
+          <ul className="list-disc space-y-1.5 pl-5 marker:text-blue-500">
             <li>해외직구 — 아마존·이베이 등에서 배송지(주소)를 영어로 입력할 때</li>
             <li>해외 배송 송장·반품 라벨에 보내는 사람/받는 사람 주소를 적을 때</li>
             <li>유학·이민·비자 등 영문 서류에 주소를 기재할 때</li>
@@ -64,8 +75,8 @@ export default function AboutPage() {
           </ul>
         </section>
 
-        <section>
-          <h2 className="mb-2 text-lg font-semibold text-gray-950">
+        <section className="py-7">
+          <h2 className="mb-3 flex items-center gap-2.5 text-lg font-semibold tracking-tight text-gray-950 before:h-4 before:w-1 before:rounded-full before:bg-blue-600 before:content-['']">
             공식 주소 사이트와 무엇이 다른가요?
           </h2>
           <p>
@@ -75,7 +86,7 @@ export default function AboutPage() {
             있어서, 한 줄 주소를 매번 잘라 붙여야 하는 번거로움이 있습니다. 이
             도구는 그 과정을 대신합니다.
           </p>
-          <ul className="mt-3 list-disc space-y-1.5 pl-5">
+          <ul className="mt-3 list-disc space-y-1.5 pl-5 marker:text-blue-500">
             <li>
               영문 주소를 <strong className="font-semibold text-gray-900">칸별로 분리</strong>하고
               칸마다 개별 복사 버튼을 제공
@@ -92,8 +103,8 @@ export default function AboutPage() {
           </ul>
         </section>
 
-        <section>
-          <h2 className="mb-2 text-lg font-semibold text-gray-950">
+        <section className="py-7">
+          <h2 className="mb-3 flex items-center gap-2.5 text-lg font-semibold tracking-tight text-gray-950 before:h-4 before:w-1 before:rounded-full before:bg-blue-600 before:content-['']">
             어떻게 동작하나요?
           </h2>
           <p>
@@ -103,12 +114,12 @@ export default function AboutPage() {
           </p>
         </section>
 
-        <section>
-          <h2 className="mb-2 text-lg font-semibold text-gray-950">
+        <section className="py-7">
+          <h2 className="mb-3 flex items-center gap-2.5 text-lg font-semibold tracking-tight text-gray-950 before:h-4 before:w-1 before:rounded-full before:bg-blue-600 before:content-['']">
             데이터 출처와 표기 기준
           </h2>
           <p>정확도의 근거가 되는 데이터 출처는 다음과 같습니다.</p>
-          <ul className="mt-3 list-disc space-y-2 pl-5">
+          <ul className="mt-3 list-disc space-y-2 pl-5 marker:text-blue-500">
             <li>
               <strong className="font-semibold text-gray-900">한국 주소</strong> —
               행정안전부 도로명주소 영문 변환 API(
@@ -143,8 +154,8 @@ export default function AboutPage() {
           </ul>
         </section>
 
-        <section>
-          <h2 className="mb-2 text-lg font-semibold text-gray-950">
+        <section className="py-7">
+          <h2 className="mb-3 flex items-center gap-2.5 text-lg font-semibold tracking-tight text-gray-950 before:h-4 before:w-1 before:rounded-full before:bg-blue-600 before:content-['']">
             정확도와 한계
           </h2>
           <p>
@@ -162,8 +173,8 @@ export default function AboutPage() {
           </p>
         </section>
 
-        <section>
-          <h2 className="mb-2 text-lg font-semibold text-gray-950">
+        <section className="py-7">
+          <h2 className="mb-3 flex items-center gap-2.5 text-lg font-semibold tracking-tight text-gray-950 before:h-4 before:w-1 before:rounded-full before:bg-blue-600 before:content-['']">
             요금과 개인정보
           </h2>
           <p>
@@ -180,22 +191,19 @@ export default function AboutPage() {
           </p>
         </section>
 
-        <section>
-          <h2 className="mb-2 text-lg font-semibold text-gray-950">
-            누가 만들고 관리하나요
+        <section className="py-7">
+          <h2 className="mb-3 flex items-center gap-2.5 text-lg font-semibold tracking-tight text-gray-950 before:h-4 before:w-1 before:rounded-full before:bg-blue-600 before:content-['']">
+            누가 만들고 관리하나요?
           </h2>
           <p>
-            이 사이트는{" "}
+            이 사이트는 개발자 본인이 해외 사이트에 주소를 넣을 때마다 어느 칸에
+            무엇을 넣어야 하는지 매번 찾아보던 불편함에서 시작되었습니다.{" "}
             <strong className="font-semibold text-gray-900">
-              {AUTHOR_NAME} ({AUTHOR_NAME_EN})
+              개발자 본인이 직접 개발하고 스스로 관리하는 무료 주소 변환 서비스
             </strong>
-            이 혼자 만들고 관리하는 개인 서비스입니다. 해외 사이트에 주소를 넣을 때마다
-            어느 칸에 무엇을 써야 하는지 매번 찾아보던 불편에서 시작했습니다.
+            이며, 아래 기준으로 만들고 있습니다.
           </p>
-          <p className="mt-3">
-            글은 다음 기준으로 씁니다.
-          </p>
-          <ul className="mt-2 list-disc space-y-1.5 pl-5">
+          <ul className="mt-4 list-disc space-y-2 rounded-lg bg-gray-50 py-4 pl-9 pr-5 marker:text-blue-500">
             <li>
               주소·우편번호·행정구역 표기는{" "}
               <strong className="font-semibold text-gray-900">
@@ -214,13 +222,13 @@ export default function AboutPage() {
             </li>
           </ul>
           <p className="mt-3">
-            잘못된 내용을 발견하시면 알려주세요. 확인 후 고치고, 무엇을 고쳤는지
-            해당 글에 남깁니다.
+            잘못된 내용을 발견하시면 알려주세요. 확인 후 수정하고, 무엇을 고쳤는지
+            해당 글에 남기도록 하겠습니다.
           </p>
         </section>
 
-        <section>
-          <h2 className="mb-2 text-lg font-semibold text-gray-950">
+        <section className="py-7">
+          <h2 className="mb-3 flex items-center gap-2.5 text-lg font-semibold tracking-tight text-gray-950 before:h-4 before:w-1 before:rounded-full before:bg-blue-600 before:content-['']">
             운영 안내
           </h2>
           <p>
